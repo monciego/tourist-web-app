@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\RedirectLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+
+// ** Route for owner and superadministrator
+Route::group(['middleware' => ['auth', 'role:owner|superadministrator']], function() {
+    Route::get('/dashboard', RedirectLoginController::class);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// ** Route for users
+Route::group(['middleware' => ['auth', 'role:user']], function() {
+
+});
+
+
 
 require __DIR__.'/auth.php';
