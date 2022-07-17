@@ -1,4 +1,4 @@
-<nav x-data="{ open: false, searchOpen: true }" class="bg-white border-b fixed left-0 right-0 top-0 border-gray-100">
+<nav x-data="{ open: false, searchOpen: false }" class="bg-white border-b fixed left-0 right-0 top-0 border-gray-100">
     <div x-show="searchOpen" x-cloak x-on:click="searchOpen = false"
         class="bg-black/50 z-[100] fixed top-0 bottom-0 right-0 left-0">
     </div>
