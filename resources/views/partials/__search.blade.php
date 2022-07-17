@@ -1,4 +1,4 @@
-<div class=" inline-flex items-center px-1">
+<div x-on:click="searchOpen = !searchOpen" :class="searchOpen ? 'hidden' : 'inline-flex'" class="items-center px-1">
     <div
         class="flex items-center cursor-pointer border-1 transition-all rounded-full py-1 border hover:shadow-md border-gray-300 shadow bg-white 500 text-gray-600">
         <div class="text-gray-800 font-medium px-5 pr-28 text-sm">

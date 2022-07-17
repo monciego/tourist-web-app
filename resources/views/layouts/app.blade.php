@@ -13,9 +13,26 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+    {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/flatpickr@latest/dist/plugins/rangePlugin.js">
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="text/javascript" src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css" /> --}}
+
 </head>
 
-<body class="font-sans antialiased">
+<body class="relative font-sans antialiased">
     <div class=" bg-gray-100">
         @include('layouts.navigation')
 
