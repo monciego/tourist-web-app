@@ -1,7 +1,4 @@
-<x-app-layout>
-    <x-slot name="header">
-        Owner dashboard
+<x-app-sidebar-layout>
+    Owner dashboard
 
-    </x-slot>
-
-</x-app-layout>
+</x-app-sidebar-layout>

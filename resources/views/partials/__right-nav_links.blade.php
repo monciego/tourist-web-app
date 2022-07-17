@@ -8,10 +8,10 @@
         <a class="text-sm" href="#0">Become a Host</a>
         @endif
         @if (Auth::user()->hasRole('owner'))
-        <a class="text-sm" href="#0">Manage Properties</a>
+        <a class="text-sm" href="{{ route('dashboard') }}">Manage Properties</a>
         @endif
         @if (Auth::user()->hasRole('superadministrator'))
-        <a class="text-sm" href="#0">Dashboard</a>
+        <a class="text-sm" href="{{ route('dashboard') }}">Dashboard</a>
         @endif
         @endauth
         <svg viewBox="0 0 16 16" class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"

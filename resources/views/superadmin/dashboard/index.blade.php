@@ -1,6 +1,4 @@
-<x-app-layout>
-    <x-slot name="header">
-        Superadmin dashboard
-    </x-slot>
+<x-app-sidebar-layout>
+    Superadmin dashboard
 
-</x-app-layout>
+</x-app-sidebar-layout>

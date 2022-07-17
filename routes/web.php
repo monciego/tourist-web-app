@@ -19,7 +19,7 @@ Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 // ** Route for owner and superadministrator
 Route::group(['middleware' => ['auth', 'role:owner|superadministrator']], function() {
-    Route::get('/dashboard', RedirectLoginController::class);
+    Route::get('/dashboard', RedirectLoginController::class)->name('dashboard');
 });
 
 // ** Route for users
