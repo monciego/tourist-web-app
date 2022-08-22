@@ -27,7 +27,7 @@ class BusinessOwnersController extends Controller
      */
     public function create()
     {
-        //
+        return view('superadmin.business-owners.create');
     }
 
     /**
