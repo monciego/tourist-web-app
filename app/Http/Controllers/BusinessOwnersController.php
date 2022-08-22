@@ -47,9 +47,10 @@ class BusinessOwnersController extends Controller
      * @param  \App\Models\BusinessOwners  $businessOwners
      * @return \Illuminate\Http\Response
      */
-    public function show(BusinessOwners $businessOwners)
+    public function show($id)
     {
-        //
+        $business = User::whereRoleIs('owner')->with('business_owner')->findOrFail($id);
+        return view('superadmin.business-owners.show', compact('business'));
     }
 
     /**

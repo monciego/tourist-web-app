@@ -8,7 +8,7 @@
                     d="M21 7h-6a1 1 0 0 0-1 1v3h-2V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zM8 6h2v2H8V6zM6 16H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V6h2v2zm4 8H8v-2h2v2zm0-4H8v-2h2v2zm9 4h-2v-2h2v2zm0-4h-2v-2h2v2z">
                 </path>
             </svg>
-            <a href="#">
+            <a href="{{ route('businesses.show', $business) }}">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight  text-white">{{ $business->name }}
                 </h5>
             </a>
@@ -16,7 +16,7 @@
                 {{ $business->business_owner->business_description ?? 'The description of this property is not filled
                 yet.'}}
             </p>
-            <a href="#"
+            <a href="{{ route('businesses.show', $business) }}"
                 class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Read more
                 <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
