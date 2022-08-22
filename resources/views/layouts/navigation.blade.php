@@ -18,7 +18,7 @@
             <!-- Search-->
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 lg:flex ">
                 @include('partials.__search')
-                <p x-on:click="searchOpen = !searchOpen" :class="searchOpen ? 'block' : 'hidden'"
+                <p x-cloak x-on:click="searchOpen = !searchOpen" :class="searchOpen ? 'block' : 'hidden'"
                     class="text-base  font-medium ">Find
                     the best place to
                     enjoy your time</p>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="flex items-center justify-center mt-4">
-            <div x-show="searchOpen" class="inline-flex rounded-md shadow" role="group">
+            <div x-show="searchOpen" x-cloak class="inline-flex rounded-md shadow" role="group">
                 <button type="button" class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-transparent rounded-l-lg border
                     border-gray-300 hover:bg-gray-300
                  ">
