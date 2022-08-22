@@ -19,7 +19,14 @@
                 <div class="absolute bg-black/20 inset-0"></div>
                 <div class="absolute left-1/2 transform -translate-x-1/2 bottom-14 text-center">
                     <h2 class="text-white text-lg text-center mb-3 sm:text-3xl font-bold">
+                        @auth
+                        Let's start your journey, <br>
+                        {{ Auth::user()->name }}!
+                        @endauth
+
+                        @guest
                         Not sure where to go? Perfect.
+                        @endguest
                     </h2>
                     <a href=""
                         class="text-primary inline-flex items-center gap-2 active:scale-[.95] text-sm px-4 py-1 sm:text-lg sm:px-7 sm:py-2 rounded-lg shadow-md bg-white hover:bg-gray-200 font-bold">
