@@ -1,11 +1,5 @@
-<x-guest-layout>
+<x-app-sidebar-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -44,20 +38,16 @@
                     name="password_confirmation" required />
             </div>
 
-            <!-- Will register as user -->
+            <!-- Will register as owner -->
             <div class="mt-4">
-                <x-input id="role_id" class="block mt-1 w-full" type="hidden" name="role_id" value="user" />
+                <x-input id="role_id" class="block mt-1 w-full" type="hidden" name="role_id" value="owner" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
+            <div class="flex items-center justify-center mt-4">
+                <x-button class="w-full flex items-center justify-center">
+                    {{ __('Register account') }}
                 </x-button>
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-app-sidebar-layout>

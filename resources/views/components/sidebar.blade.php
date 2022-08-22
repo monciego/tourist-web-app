@@ -41,7 +41,8 @@
             {{-- -** Admin sidebar --}}
             @if (Auth::user()->hasRole('superadministrator'))
             {{-- Analytics --}}
-            <x-sidebar-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-sidebar-nav-link :href="route('register-owner-account')"
+                :active="request()->routeIs('register-owner-account')">
                 <div class="flex items-center">
                     <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                         <path class="fill-current text-slate-600 false" d="M0 20h24v2H0z"></path>
@@ -50,7 +51,7 @@
                         </path>
                     </svg>
                     <span class="text-sm font-medium ml-3 lg:opacity-100 2xl:opacity-100 duration-200">
-                        {{ __('Superadmin') }}
+                        {{ __('Register') }}
                     </span>
                 </div>
             </x-sidebar-nav-link>

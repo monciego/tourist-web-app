@@ -72,7 +72,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            @if (Auth::user()->hasRole('administrator'))
+            @if (Auth::user()->hasRole('superadministrator'))
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Superadmin') }}
             </x-responsive-nav-link>

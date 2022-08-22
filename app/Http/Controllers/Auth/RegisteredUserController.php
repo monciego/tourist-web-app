@@ -24,6 +24,16 @@ class RegisteredUserController extends Controller
     }
 
     /**
+     * Display the registration of owner account view.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function register()
+    {
+        return view('auth.register-owner');
+    }
+
+    /**
      * Handle an incoming registration request.
      *
      * @param  \Illuminate\Http\Request  $request
