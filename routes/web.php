@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BusinessOwnersController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\RedirectLoginController;
+use App\Models\BusinessOwners;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +28,7 @@ Route::group(['middleware' => ['auth', 'role:owner|superadministrator']], functi
 // ** Route for owner and superadministrator
 Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('/register-owner-account',[RegisteredUserController::class, 'register'])->name('register-owner-account');
+    Route::resource('businesses', BusinessOwnersController::class);
 });
 
 // ** Route for users

@@ -35,6 +35,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function business_owner() {
+        return $this->hasOne(BusinessOwners::class);
+    }
+
     /**
      * The attributes that should be cast.
      *
