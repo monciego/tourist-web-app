@@ -69,20 +69,22 @@
                     </span>
                 </div>
             </x-sidebar-nav-link>
-
             @endif
+
             {{-- **Owner sidebar** --}}
             @if (Auth::user()->hasRole('owner'))
-            <x-sidebar-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-sidebar-nav-link class="mt-2" :href="route('properties.index')"
+                :active="request()->routeIs('properties.index')">
                 <div class="flex items-center">
-                    <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
-                        <path class="fill-current text-slate-600 false" d="M0 20h24v2H0z"></path>
-                        <path class="fill-current text-slate-400 false"
-                            d="M4 18h2a1 1 0 001-1V8a1 1 0 00-1-1H4a1 1 0 00-1 1v9a1 1 0 001 1zM11 18h2a1 1 0 001-1V3a1 1 0 00-1-1h-2a1 1 0 00-1 1v14a1 1 0 001 1zM17 12v5a1 1 0 001 1h2a1 1 0 001-1v-5a1 1 0 00-1-1h-2a1 1 0 00-1 1z">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        style="fill: rgb(148, 163, 184);transform: ;msFilter:;">
+                        <path
+                            d="M18.991 2H9.01C7.899 2 7 2.899 7 4.01v5.637l-4.702 4.642A1 1 0 0 0 3 16v5a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4.009C21 2.899 20.102 2 18.991 2zm-8.069 13.111V20H5v-5.568l2.987-2.949 2.935 3.003v.625zM13 9h-2V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z">
                         </path>
+                        <path d="M7 15h2v2H7z"></path>
                     </svg>
                     <span class="text-sm font-medium ml-3 lg:opacity-100 2xl:opacity-100 duration-200">
-                        {{ __('Owner') }}
+                        {{ __('Properties') }}
                     </span>
                 </div>
             </x-sidebar-nav-link>

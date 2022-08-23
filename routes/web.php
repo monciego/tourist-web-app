@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BusinessLegalDocumentsController;
 use App\Http\Controllers\BusinessOwnersController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\OwnerPropertiesController;
 use App\Http\Controllers\RedirectLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,11 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('/download/{file}',[BusinessLegalDocumentsController::class, 'download']);
     Route::resource('businesses', BusinessOwnersController::class);
     Route::get('businesses/{user}/create',[BusinessOwnersController::class, 'create'])->name('legal-documents-create');
+});
+
+// ** Route for owner
+Route::group(['middleware' => ['auth', 'role:owner']], function() {
+    Route::resource('properties', OwnerPropertiesController::class);
 });
 
 // ** Route for users
