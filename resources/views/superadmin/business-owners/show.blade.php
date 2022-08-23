@@ -13,6 +13,15 @@
         </header>
         <div class="p-3">
             {{ $business->business_owner->business_description ?? '' }}
+            @foreach ($business->business_legal_documents as $business_legal_document)
+            <div class="bg-slate-700 text-white p-6 mb-4">
+                {{ $business_legal_document->legal_document_name ?? 'Not Found' }} <br>
+                {{ $business_legal_document->legal_document_file?? 'Not Found'}}
+
+                by: {{ $business->name ?? ''}}
+            </div>
+
+            @endforeach
         </div>
     </div>
 </x-app-sidebar-layout>

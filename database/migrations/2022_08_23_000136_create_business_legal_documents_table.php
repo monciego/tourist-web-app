@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('business_owners', function (Blueprint $table) {
+        Schema::create('business_legal_documents', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->longText('business_description')->nullable();
-            $table->integer('business_year_founded')->nullable();
-            $table->string('business_tags')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('legal_document_name')->nullable();
+            $table->string('legal_document_file')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business_owners');
+        Schema::dropIfExists('business_legal_documents');
     }
 };
