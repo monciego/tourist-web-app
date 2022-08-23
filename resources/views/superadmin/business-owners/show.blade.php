@@ -1,45 +1,39 @@
 <x-app-sidebar-layout>
     <div class="col-span-full xl:col-span-6 bg-white shadow-md rounded-sm border border-slate-200">
-        <header class="px-5 py-4 border-b border-slate-100 flex justify-between items-center">
-            <h2 class="font-semibold text-slate-800">{{ $business->name }}</h2>
-            <a href="{{ route('legal-documents-create', $business) }}"
-                class="px-4 py-2 font-medium text-sm inline-flex items-center justify-center border border-transparent rounded leading-5 shadow-sm transition duration-150 ease-in-out bg-indigo-500 hover:bg-indigo-600 text-white">
-                <svg class="w-3 h-3 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
-                    <path
-                        d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
-                </svg>
-                <span class="xs:block text-sm ml-2">Add Legal Document</span>
-            </a>
+        <header class="px-5 pt-4 border-b border-slate-100 flex justify-between items-center">
+            <h2 class="font-semibold text-slate-800">{{ $business->name }} Properties</h2>
+            @include('superadmin.business-owners.properties.create')
         </header>
         <div class="p-3">
-            <div class="grid grid-cols-12 gap-2">
-                @foreach ($business->business_legal_documents as $business_legal_document)
-                <div class="bg-slate-800 rounded-md text-white p-6 mb-4 col-span-12 lg:col-span-4">
-                    <span class="mb-2 block">{{ $business_legal_document->legal_document_name ?? 'Not Found' }}</span>
-                    <dd class="mt-1 text-sm text-gray-100 sm:mt-0 sm:col-span-2">
-                        <ul role="list" class="border border-gray-200 rounded-md divide-y divide-gray-200">
-                            <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                <div class="w-0 flex-1 flex items-center">
-                                    <!-- Heroicon name: solid/paper-clip -->
-                                    <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <span class="ml-2 flex-1 w-0 truncate"> {{
-                                        $business_legal_document->legal_document_file }} </span>
-                                </div>
-                                <div class="ml-4 flex-shrink-0">
-                                    <a href="{{ url('/download',$business_legal_document->legal_document_file) }}"
-                                        class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </dd>
-
+            <div class="grid grid-cols-6 gap-2">
+                @foreach ($properties as $property)
+                <div class="col-span-6 lg:col-span-3 p-6 rounded-lg border shadow-md bg-gray-800 border-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                        style="fill: rgba(217, 203, 203, 1);transform: ;msFilter:;">
+                        <path
+                            d="M21 7h-6a1 1 0 0 0-1 1v3h-2V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zM8 6h2v2H8V6zM6 16H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V6h2v2zm4 8H8v-2h2v2zm0-4H8v-2h2v2zm9 4h-2v-2h2v2zm0-4h-2v-2h2v2z">
+                        </path>
+                    </svg>
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight  text-white">{{ $property->property_name
+                            }}</h5>
+                    </a>
+                    <p class="mb-3 font-normal  text-gray-400">
+                        {{ $property->business_owner->business_description ?? 'The description of this property is not
+                        filled
+                        yet.' }}
+                    </p>
+                    <a href="{{ route('legal-documents', $property) }}"
+                        class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Legal Documents
+                        <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
                 </div>
-
                 @endforeach
             </div>
         </div>

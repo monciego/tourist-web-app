@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('business_owners', function (Blueprint $table) {
+        Schema::create('business_owners', function (Blueprint $table) { // property information
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('property_id');
             $table->longText('business_description')->nullable();
             $table->integer('business_year_founded')->nullable();
-            $table->string('business_tags')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('business_tags')->nullable(); // e.g amusement park
+            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
             $table->timestamps();
         });
     }

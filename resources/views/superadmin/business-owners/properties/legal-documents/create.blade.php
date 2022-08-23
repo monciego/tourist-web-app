@@ -6,7 +6,7 @@
         <form method="POST" action="{{ route('upload-document') }}" enctype="multipart/form-data">
             @csrf
 
-            <input type="hidden" name="user_id" value="{{ $user->id }}">
+            <input type="hidden" name="property_id" value="{{ $property->id }}">
 
             <!-- Legal Document Name -->
             <div>

@@ -35,12 +35,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function business_owner() {
-        return $this->hasOne(BusinessOwners::class);
-    }
-
-    public function business_legal_documents() {
-        return $this->hasMany(BusinessLegalDocuments::class);
+    public function properties() {
+        return $this->hasMany(Properties::class);
     }
 
     /**

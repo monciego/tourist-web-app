@@ -10,7 +10,7 @@ class BusinessOwners extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'property_id',
         'business_description',
         'business_year_founded',
         'business_file',

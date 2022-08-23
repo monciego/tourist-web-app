@@ -13,10 +13,11 @@
                 </h5>
             </a>
             <p class="mb-3 font-normal text-gray-400">
-                {{ $business->business_owner->business_description ?? 'The description of this property is not filled
-                yet.'}}
+                {{-- {{ $business->business_owner->business_description ?? 'The description of this property is not
+                filled
+                yet.'}} --}}
             </p>
-            <a href="{{ route('businesses.show', $business) }}"
+            <a href="{{ route('businesses.properties', $business) }}"
                 class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Read more
                 <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"

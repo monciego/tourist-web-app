@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('business_legal_documents', function (Blueprint $table) {
+        Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('property_id');
-            $table->string('legal_document_name')->nullable();
-            $table->string('legal_document_file')->nullable();
-            $table->foreign('property_id')->references('id')->on('properties')
-                ->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->string('property_name');
+            $table->foreign('user_id')->references('id')->on('users')
+                    ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business_legal_documents');
+        Schema::dropIfExists('properties');
     }
 };

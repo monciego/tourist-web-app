@@ -73,8 +73,8 @@
 
             {{-- **Owner sidebar** --}}
             @if (Auth::user()->hasRole('owner'))
-            <x-sidebar-nav-link class="mt-2" :href="route('properties.index')"
-                :active="request()->routeIs('properties.index')">
+            <x-sidebar-nav-link class="mt-2" :href="route('owner-properties.index')"
+                :active="request()->routeIs('owner-properties.index')">
                 <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         style="fill: rgb(148, 163, 184);transform: ;msFilter:;">

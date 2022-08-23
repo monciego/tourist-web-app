@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BusinessOwners;
 use App\Http\Requests\StoreBusinessOwnersRequest;
 use App\Http\Requests\UpdateBusinessOwnersRequest;
+use App\Models\Properties;
 use App\Models\User;
 
 class BusinessOwnersController extends Controller
@@ -16,7 +17,7 @@ class BusinessOwnersController extends Controller
      */
     public function index()
     {
-        $businesses = User::whereRoleIs('owner')->with('business_owner')->get();
+        $businesses = User::whereRoleIs('owner')->with('properties')->get();
         return view('superadmin.business-owners.index', compact('businesses'));
     }
 
@@ -25,10 +26,9 @@ class BusinessOwnersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(User $user)
+    public function create()
     {
-        $user = User::findOrFail($user->id);
-        return view('superadmin.business-owners.create', compact('user'));
+
     }
 
     /**
@@ -50,8 +50,10 @@ class BusinessOwnersController extends Controller
      */
     public function show($id)
     {
-        $business = User::whereRoleIs('owner')->with('business_owner', 'business_legal_documents')->findOrFail($id);
-        return view('superadmin.business-owners.show', compact('business'));
+        $business = User::whereRoleIs('owner')->with('properties')->findOrFail($id);
+        $properties = Properties::with('business_owner', 'business_legal_documents')->get(); // with business owners / information
+        return view('superadmin.business-owners.show', compact('business', 'properties'));
+
     }
 
     /**
