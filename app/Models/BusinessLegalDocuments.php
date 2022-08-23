@@ -10,6 +10,7 @@ class BusinessLegalDocuments extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'legal_document_name',
         'legal_document_file',
     ];

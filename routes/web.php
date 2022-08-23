@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BusinessLegalDocumentsController;
 use App\Http\Controllers\BusinessOwnersController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\RedirectLoginController;
-use App\Models\BusinessOwners;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +28,12 @@ Route::group(['middleware' => ['auth', 'role:owner|superadministrator']], functi
 // ** Route for owner and superadministrator
 Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('/register-owner-account',[RegisteredUserController::class, 'register'])->name('register-owner-account');
+    // upload legal document
+    Route::post('/upload',[BusinessLegalDocumentsController::class, 'store'])->name('upload-document');
+    // download
+    Route::get('/download/{file}',[BusinessLegalDocumentsController::class, 'download']);
     Route::resource('businesses', BusinessOwnersController::class);
+    Route::get('businesses/{user}/create',[BusinessOwnersController::class, 'create'])->name('legal-documents-create');
 });
 
 // ** Route for users

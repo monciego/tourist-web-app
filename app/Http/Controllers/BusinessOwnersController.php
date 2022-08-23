@@ -25,9 +25,10 @@ class BusinessOwnersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
-        return view('superadmin.business-owners.create');
+        $user = User::findOrFail($user->id);
+        return view('superadmin.business-owners.create', compact('user'));
     }
 
     /**
