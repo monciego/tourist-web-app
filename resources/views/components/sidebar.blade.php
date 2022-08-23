@@ -9,7 +9,7 @@
     </button>
     {{-- logo --}}
     <a href="{{ route('dashboard') }}" class="block">
-        <x-application-logo class="block h-12 " />
+        <x-application-logo-light class="block h-12 " />
     </a>
 </header>
 
