@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\OwnerProperties;
 use App\Http\Requests\StoreOwnerPropertiesRequest;
 use App\Http\Requests\UpdateOwnerPropertiesRequest;
+use App\Models\Properties;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerPropertiesController extends Controller
 {
@@ -15,7 +17,9 @@ class OwnerPropertiesController extends Controller
      */
     public function index()
     {
-        return view('owner.properties.index');
+        $user_id = Auth::id();
+        $properties = Properties::where('user_id', $user_id)->get();
+        return view('owner.properties.index', compact('properties'));
     }
 
     /**
