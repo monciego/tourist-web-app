@@ -51,7 +51,7 @@ class BusinessOwnersController extends Controller
     public function show($id)
     {
         $business = User::whereRoleIs('owner')->with('properties')->findOrFail($id);
-        $properties = Properties::with('business_owner', 'business_legal_documents')->get(); // with business owners / information
+        $properties = Properties::where('user_id', $id)->with('business_owner', 'business_legal_documents')->get(); // with business owners / information
         return view('superadmin.business-owners.show', compact('business', 'properties'));
 
     }
