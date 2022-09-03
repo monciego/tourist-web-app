@@ -51,7 +51,9 @@ class OwnerPropertiesController extends Controller
      */
     public function show(OwnerProperties $ownerProperties)
     {
-        //
+        return view('owner.properties.show', [
+            'ownerProperties' => $ownerProperties
+        ]);
     }
 
     /**
