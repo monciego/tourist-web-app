@@ -15,6 +15,21 @@ return new class extends Migration
     {
         Schema::create('owner_properties', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('property_id');
+            $table->string('image_one')->nullable();
+            $table->string('property_tag')->nullable();
+            $table->string('property_est')->nullable();
+            $table->string('property_address')->nullable();
+            $table->string('image_two')->nullable();
+            $table->string('image_three')->nullable();
+            $table->string('image_four')->nullable();
+            $table->string('images')->nullable();
+            $table->longText('property_description')->nullable();
+            $table->string('property_offers')->nullable(); // comma seperated
+            $table->longText('property_details')->nullable();
+            $table->integer('property_price')->nullable();
+            $table->foreign('property_id')->references('id')->on('properties')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

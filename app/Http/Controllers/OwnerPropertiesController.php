@@ -49,11 +49,10 @@ class OwnerPropertiesController extends Controller
      * @param  \App\Models\OwnerProperties  $ownerProperties
      * @return \Illuminate\Http\Response
      */
-    public function show(OwnerProperties $ownerProperties)
+    public function show($id)
     {
-        return view('owner.properties.show', [
-            'ownerProperties' => $ownerProperties
-        ]);
+        $properties = Properties::with('business_owner', 'business_legal_documents')->findOrFail($id); // add the properties details rlationship
+        return view('owner.properties.show', compact('properties'));
     }
 
     /**

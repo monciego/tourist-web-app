@@ -26,4 +26,7 @@ class Properties extends Model
         return $this->hasMany(BusinessLegalDocuments::class, 'property_id');
     }
 
+    public function properties_details() {
+        return $this->hasOne(OwnerProperties::class, 'property_id');
+    }
 }
