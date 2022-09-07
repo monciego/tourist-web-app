@@ -9,7 +9,7 @@ class OwnerProperties extends Model
 {
     use HasFactory;
 
-    private $fillable = [
+    protected $fillable = [
         'property_id',
         'image_one',
         'property_tag',

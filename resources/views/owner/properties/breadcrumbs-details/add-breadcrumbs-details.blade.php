@@ -26,16 +26,18 @@
                     </path>
                 </svg>
             </header>
-            <form class=" p-4" action="" method="POST">
+            <form class=" p-4" action="{{ route('store-breadcrumbs') }}" method="POST">
                 @csrf
+                <input name="property_id" type="hidden" value="{{ $properties->id }}">
                 <div>
                     <x-label for="property_tag" :value="__('Property Tag')" />
                     <x-input id="property_tag" class="block mt-1 w-full" type="text" name="property_tag"
                         :value="old('property_tag')" required autofocus />
+
                 </div>
                 <div class="mt-4">
                     <x-label for="property_est" :value="__('Year Established')" />
-                    <x-input id="property_est" class="block mt-1 w-full" type="text" name="property_est"
+                    <x-input id=" property_est" class="block mt-1 w-full" type="text" name="property_est"
                         :value="old('property_est')" required autofocus />
                 </div>
                 <div class="mt-4">
@@ -45,8 +47,10 @@
                 </div>
 
 
-                <button
-                    class="mt-4 bg-indigo-500 hover:bg-indigo-600 inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest  active:bg-indigo-900 focus:outline-none focus:border-v-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                <button class=" mt-4 bg-indigo-500 hover:bg-indigo-600 inline-flex items-center px-4 py-2 border
+                        border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest
+                        active:bg-indigo-900 focus:outline-none focus:border-v-900 focus:ring ring-gray-300
+                        disabled:opacity-25 transition ease-in-out duration-150">
                     {{ __('Yes, Create it') }}
                 </button>
             </form>

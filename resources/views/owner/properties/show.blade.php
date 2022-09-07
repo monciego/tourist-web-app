@@ -5,39 +5,11 @@
             <p class="px-8 pb-4 text-xl font-semibold">{{ $properties->property_name }}</p>
             <nav aria-label="Breadcrumb">
                 <ol role="list" class="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8">
-                    @include('owner.properties.breadcrumbs-details')
-                    {{-- three data - this will show if the text is added --}}
-                    {{-- <li>
-                        <div class="flex items-center">
-                            <a href="#" class="mr-2 text-sm font-medium text-gray-900">
-                                Amusement Park
-                            </a>
-                            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-4 h-5 text-gray-300">
-                                <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                            </svg>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="flex items-center">
-                            <a href="#" class="mr-2 text-sm font-medium text-gray-900">
-                                EST. 2010
-                            </a>
-                            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-4 h-5 text-gray-300">
-                                <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                            </svg>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="flex items-center">
-                            <a href="#" class="mr-2 text-sm font-medium text-gray-900">
-                                Town of Dasol
-                            </a>
-                        </div>
-                    </li> --}}
+                    @if(empty($properties->properties_details->property_tag))
+                    @include('owner.properties.breadcrumbs-details.add-breadcrumbs-details')
+                    @else
+                    @include('owner.properties.breadcrumbs-details.properties-breadcrumbs-details')
+                    @endif
                 </ol>
             </nav>
 
@@ -146,25 +118,24 @@
 
                 <!-- Options -->
                 <div class="relative mt-4 lg:mt-0 lg:row-span-3">
-                    <p class="tracking-tight text-3xl text-gray-900">
-                        @include('owner.properties.add-price')
-                    </p>
-                    {{-- <button type="submit"
-                        class="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
-                        to bag</button> --}}
+                    @if(empty($properties->properties_details->property_price))
+                    @include('owner.properties.property-price.add-price')
+                    @else
+                    @include('owner.properties.property-price.property-price')
+                    @endif
                 </div>
 
                 <div
                     class="relative py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
                     <!-- Description and details -->
                     <div>
-                        @include('owner.properties.add-property-description')
+
                         <h3 class="sr-only">Description</h3>
-                        {{-- <div class="space-y-6">
-                            <p class="text-base text-gray-900">
-                                text if thre is description
-                            </p>
-                        </div> --}}
+                        @if(empty($properties->properties_details->property_description))
+                        @include('owner.properties.property-description.add-property-description')
+                        @else
+                        @include('owner.properties.property-description.property-description')
+                        @endif
                     </div>
 
                     <div class="mt-10">
@@ -172,17 +143,13 @@
 
                         <div class="mt-4">
                             <ul role="list" class="pl-4 list-disc text-sm space-y-2">
-                                <li class="text-gray-400">
-                                    @include('owner.properties.add-property-offers')
-                                    {{-- <a href="" class="text-indigo-700 flex gap-2 underline">
-                                        Add what {{ $properties->property_name }} offers.
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                        </svg>
-                                    </a> --}}
+                                @if(empty($properties->properties_details->property_offers))
+                                <li>
+                                    @include('owner.properties.property-offers.add-property-offers')
                                 </li>
+                                @else
+                                @include('owner.properties.property-offers.property-offers')
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -191,9 +158,12 @@
                         <h2 class="text-sm font-medium text-gray-900">Details</h2>
 
                         <div class="mt-4 space-y-6">
-                            <p class="text-sm text-gray-600">
-                                @include('owner.properties.add-property-details')
-                            </p>
+                            @if(empty($properties->properties_details->property_details))
+                            @include('owner.properties.property-details.add-property-details')
+                            @else
+                            @include('owner.properties.property-details.property-details')
+                            @endif
+
                         </div>
                     </div>
                 </div>

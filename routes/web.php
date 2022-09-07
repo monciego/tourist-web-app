@@ -47,6 +47,12 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
 // ** Route for owner
 Route::group(['middleware' => ['auth', 'role:owner']], function() {
     Route::resource('owner-properties', OwnerPropertiesController::class);
+    // owner properties storing data
+    Route::post('/store-breadcrumbs-description', [OwnerPropertiesController::class, 'storeBreadcrumbs'])->name('store-breadcrumbs');
+    Route::post('/store-description', [OwnerPropertiesController::class, 'storeDescription'])->name('store-description');
+    Route::post('/store-property-details', [OwnerPropertiesController::class, 'storeDetails'])->name('store-property-details');
+    Route::post('/store-property-price', [OwnerPropertiesController::class, 'storePrice'])->name('store-property-price');
+    Route::post('/store-property-offers', [OwnerPropertiesController::class, 'storeOffers'])->name('store-property-offers');
 });
 
 // ** Route for users

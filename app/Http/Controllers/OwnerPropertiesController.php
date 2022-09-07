@@ -7,6 +7,8 @@ use App\Http\Requests\StoreOwnerPropertiesRequest;
 use App\Http\Requests\UpdateOwnerPropertiesRequest;
 use App\Models\Properties;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class OwnerPropertiesController extends Controller
 {
@@ -38,9 +40,58 @@ class OwnerPropertiesController extends Controller
      * @param  \App\Http\Requests\StoreOwnerPropertiesRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOwnerPropertiesRequest $request)
-    {
-        //
+
+     /*
+        Adding details (breadcrumbs)
+    */
+        public function storeBreadcrumbs (Request $request) {
+         $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+                $data->property_tag = $request->property_tag;
+                $data->property_est = $request->property_est;
+                $data->property_address = $request->property_address;
+                  $data->save();
+        return redirect(route('owner-properties.index'));
+    }
+    /*
+        Adding Store Description
+    */
+    public function storeDescription (Request $request) {
+        $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+                $data->property_description = $request->property_description;
+                  $data->save();
+        return redirect(route('owner-properties.index'));
+    }
+    /*
+        Adding Store Details
+    */
+    public function storeDetails (Request $request) {
+        $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+                $data->property_details = $request->property_details;
+                $data->save();
+        return redirect(route('owner-properties.index'));
+    }
+    /*
+        Adding Price
+    */
+    public function storePrice (Request $request) {
+        $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+                $data->property_price = $request->property_price;
+                $data->save();
+        return redirect(route('owner-properties.index'));
+    }
+    /*
+        Adding Offers
+    */
+    public function storeOffers (Request $request) {
+        $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+                $data->property_offers = $request->property_offers;
+                $data->save();
+        return redirect(route('owner-properties.index'));
     }
 
     /**
@@ -51,6 +102,10 @@ class OwnerPropertiesController extends Controller
      */
     public function show($id)
     {
+        /*  $ownerPropertiesIsNull = OwnerProperties::all();
+        //  dd(is_null($ownerPropertiesIsNull));
+         dd($ownerPropertiesIsNull->isEmpty()); */
+
         $properties = Properties::with('business_owner', 'business_legal_documents')->findOrFail($id); // add the properties details rlationship
         return view('owner.properties.show', compact('properties'));
     }
@@ -73,9 +128,9 @@ class OwnerPropertiesController extends Controller
      * @param  \App\Models\OwnerProperties  $ownerProperties
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOwnerPropertiesRequest $request, OwnerProperties $ownerProperties)
+    public function update(Request $request, $id)
     {
-        //
+         //
     }
 
     /**
