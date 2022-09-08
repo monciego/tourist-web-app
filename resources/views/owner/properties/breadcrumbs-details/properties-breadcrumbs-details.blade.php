@@ -31,7 +31,7 @@
 </li>
 
 <li>
-    <div class="flex items-center">
+    {{-- <div class="flex items-center">
         <button
             class="flex items-center gap-2 justify-center active:scale-[.98] text-sm rounded text-right text-white bg-indigo-600 hover:bg-indigo-800 px-4 py-1.5">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -41,7 +41,8 @@
             </svg>
             Edit
         </button>
-    </div>
+    </div> --}}
+    @include('owner.properties.breadcrumbs-details.add-breadcrumbs-details')
 </li>
 <li>
     <div class="flex items-center">
