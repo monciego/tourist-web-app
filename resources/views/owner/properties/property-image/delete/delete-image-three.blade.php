@@ -1,5 +1,5 @@
-<div>
-    <button
+<div x-data="{open:false}" class="inline">
+    <button x-on:click="open = true"
         class="absolute bottom-3 right-2 flex items-center gap-2 justify-center active:scale-[.98] text-sm rounded text-right text-white bg-red-600 hover:bg-red-800 px-4 py-1.5">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-4 h-4">
@@ -8,4 +8,35 @@
         </svg>
         Remove
     </button>
+    <div x-show="open" x-cloak x-on:click="open = false"
+        class="bg-black/40 z-[500] fixed top-0 bottom-0 right-0 left-0">
+    </div>
+    {{-- delete modal --}}
+    <div x-show="open" x-cloak>
+        <div class="fixed top-2/4 left-2/4" style="z-index: 501; transform: translate(-50%, -50%)">
+            <div class="p-4 text-left bg-white shadow-lg rounded-lg" style="width: 28rem">
+                <header class="text-sm text-gray-800 font-bold mb-2">
+                    Are you sure?
+                </header>
+                <p class="text-xs">
+                    This action will permanently remove the third image.
+                    This cannot be undone.
+                </p>
+                <div class="flex justify-end gap-2 mt-4">
+                    <div x-on:click="open = false"
+                        class="text-xs py-1 px-4 cursor-pointer text-gray-600 border border-gray-400 bg-gray-50 hover:border-gray-600 rounded-md">
+                        Cancel
+                    </div>
+                    <form method="POST" action="">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="text-xs cursor-pointer py-1 px-4 bg-red-500 hover:bg-red-600 text-white rounded-md">
+                            Yes, Delete it
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
