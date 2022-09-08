@@ -16,7 +16,7 @@
         @else
         <img src="{{ Storage::url($properties->properties_details->image_one) }}"
             alt="{{ $properties->property_name }} image" class="h-full w-full object-cover object-center">
-        @include('owner.properties.property-image.edit-delete.image-one')
+        @include('owner.properties.property-image.delete.delete-image-one')
         @endif
     </div>
     <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-4 ">
@@ -38,7 +38,7 @@
             @else
             <img src="{{ Storage::url($properties->properties_details->image_two) }}"
                 alt="{{ $properties->property_name }} image" class="h-full w-full object-cover object-center">
-            @include('owner.properties.property-image.edit-delete.image-two')
+            @include('owner.properties.property-image.delete.delete-image-two')
             @endif
         </div>
         <div class="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
@@ -59,7 +59,7 @@
             @else
             <img src="{{ Storage::url($properties->properties_details->image_three) }}"
                 alt="{{ $properties->property_name }} image" class="h-full w-full object-cover object-center">
-            @include('owner.properties.property-image.edit-delete.image-three')
+            @include('owner.properties.property-image.delete.delete-image-three')
             @endif
         </div>
     </div>
@@ -80,7 +80,7 @@
         @else
         <img src="{{ Storage::url($properties->properties_details->image_four) }}"
             alt="{{ $properties->property_name }} image" class="h-full w-full object-cover object-center">
-        @include('owner.properties.property-image.edit-delete.image-four')
+        @include('owner.properties.property-image.delete.delete-image-four')
         @endif
     </div>
 </div>
