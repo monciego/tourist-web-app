@@ -1,5 +1,5 @@
 <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-4 lg:px-8">
-    <div class="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
+    <div class="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block ">
         @if(empty($properties->properties_details->image_one))
         <div class="border-2 border-gray-300 border-dashed flex items-center justify-center flex-col">
             <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48"
@@ -16,6 +16,7 @@
         @else
         <img src="{{ Storage::url($properties->properties_details->image_one) }}"
             alt="{{ $properties->property_name }} image" class="h-full w-full object-cover object-center">
+        @include('owner.properties.property-image.edit-delete.image-one')
         @endif
     </div>
     <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-4 ">
@@ -37,6 +38,7 @@
             @else
             <img src="{{ Storage::url($properties->properties_details->image_two) }}"
                 alt="{{ $properties->property_name }} image" class="h-full w-full object-cover object-center">
+            @include('owner.properties.property-image.edit-delete.image-two')
             @endif
         </div>
         <div class="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
@@ -57,6 +59,7 @@
             @else
             <img src="{{ Storage::url($properties->properties_details->image_three) }}"
                 alt="{{ $properties->property_name }} image" class="h-full w-full object-cover object-center">
+            @include('owner.properties.property-image.edit-delete.image-three')
             @endif
         </div>
     </div>
@@ -77,6 +80,7 @@
         @else
         <img src="{{ Storage::url($properties->properties_details->image_four) }}"
             alt="{{ $properties->property_name }} image" class="h-full w-full object-cover object-center">
+        @include('owner.properties.property-image.edit-delete.image-four')
         @endif
     </div>
 </div>
