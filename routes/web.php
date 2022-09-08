@@ -53,6 +53,10 @@ Route::group(['middleware' => ['auth', 'role:owner']], function() {
     Route::post('/store-property-details', [OwnerPropertiesController::class, 'storeDetails'])->name('store-property-details');
     Route::post('/store-property-price', [OwnerPropertiesController::class, 'storePrice'])->name('store-property-price');
     Route::post('/store-property-offers', [OwnerPropertiesController::class, 'storeOffers'])->name('store-property-offers');
+    Route::post('/store-image-one', [OwnerPropertiesController::class, 'storeImageOne'])->name('store-image-one');
+    Route::post('/store-image-two', [OwnerPropertiesController::class, 'storeImageTwo'])->name('store-image-two');
+    Route::post('/store-image-three', [OwnerPropertiesController::class, 'storeImageThree'])->name('store-image-three');
+    Route::post('/store-image-four', [OwnerPropertiesController::class, 'storeImageFour'])->name('store-image-four');
 });
 
 // ** Route for users

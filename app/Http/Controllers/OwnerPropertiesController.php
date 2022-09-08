@@ -93,6 +93,78 @@ class OwnerPropertiesController extends Controller
                 $data->save();
         return redirect(route('owner-properties.index'));
     }
+    /*
+        Adding Image One
+    */
+    public function storeImageOne (Request $request) {
+        $randomNumber = random_int(1000, 9999);
+        $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+
+                if ($request->hasFile('image_one')) {
+                    $imagePath = $request->file('image_one')->storeAs(
+                    'image-one',
+                    $randomNumber . '.' . uniqid() . '.' . $request->file('image_one')->getClientOriginalExtension(),
+                    'public');
+                }
+                $data->image_one = $imagePath;
+                 $data->save();
+        return redirect(route('owner-properties.index'));
+    }
+    /*
+        Adding Image Two
+    */
+    public function storeImageTwo (Request $request) {
+        $randomNumber = random_int(1000, 9999);
+        $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+
+                if ($request->hasFile('image_two')) {
+                    $imagePath = $request->file('image_two')->storeAs(
+                    'image-two',
+                    $randomNumber . '.' . uniqid() . '.' . $request->file('image_two')->getClientOriginalExtension(),
+                    'public');
+                }
+                $data->image_two = $imagePath;
+                 $data->save();
+        return redirect(route('owner-properties.index'));
+    }
+    /*
+        Adding Image three
+    */
+    public function storeImageThree (Request $request) {
+        $randomNumber = random_int(1000, 9999);
+        $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+
+                if ($request->hasFile('image_three')) {
+                    $imagePath = $request->file('image_three')->storeAs(
+                    'image-three',
+                    $randomNumber . '.' . uniqid() . '.' . $request->file('image_three')->getClientOriginalExtension(),
+                    'public');
+                }
+                $data->image_three = $imagePath;
+                 $data->save();
+        return redirect(route('owner-properties.index'));
+    }
+    /*
+        Adding Image Four
+    */
+    public function storeImageFour (Request $request) {
+        $randomNumber = random_int(1000, 9999);
+        $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+
+                if ($request->hasFile('image_four')) {
+                    $imagePath = $request->file('image_four')->storeAs(
+                    'image-four',
+                    $randomNumber . '.' . uniqid() . '.' . $request->file('image_four')->getClientOriginalExtension(),
+                    'public');
+                }
+                $data->image_four = $imagePath;
+                 $data->save();
+        return redirect(route('owner-properties.index'));
+    }
 
     /**
      * Display the specified resource.
