@@ -49,29 +49,20 @@
         </div>
     </div>
 
-    <div class=" bg-white shadow m-4 p-4">
-        <h2 class="text-lg">
-            Destinations
-        </h2>
+    @include('pages.homepage.feature-cards')
+
+
+    {{-- must log in to show more --}}
+    <div class="flex items-center justify-center">
+        <button
+            class="flex items-center gap-2 justify-center active:scale-[.98] text-sm rounded text-right text-white bg-indigo-600 hover:bg-indigo-800 px-4 py-1.5">
+            Show More
+        </button>
     </div>
 
-    <div class="bg-white shadow m-4 p-4">
-        <h2 class="text-lg">
-            Destinations
-        </h2>
-    </div>
+    @include('pages.homepage.inspiration')
 
-    <div class="bg-white shadow m-4 p-4">
-        <h2 class="text-lg">
-            Destinations
-        </h2>
-    </div>
 
-    <div class="bg-white shadow m-4 p-4">
-        <h2 class="text-lg">
-            Destinations
-        </h2>
-    </div>
     @auth
 
     @endauth
