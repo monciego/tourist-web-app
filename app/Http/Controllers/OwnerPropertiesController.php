@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateOwnerPropertiesRequest;
 use App\Models\Properties;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Console\Input\Input;
 
 class OwnerPropertiesController extends Controller
@@ -211,8 +213,90 @@ class OwnerPropertiesController extends Controller
      * @param  \App\Models\OwnerProperties  $ownerProperties
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OwnerProperties $ownerProperties)
+    public function removeBreadCrumbs($id)
     {
-        //
+         OwnerProperties::where('property_id', $id)->update([
+            'property_tag' => null,
+            'property_est' => null,
+            'property_address' => null
+
+        ]);
+     return redirect(route('owner-properties.index'));
+    }
+    /*
+        remove description
+    */
+    public function removeDescription($id)
+    {
+         OwnerProperties::where('property_id', $id)->update([
+            'property_description' => null,
+        ]);
+     return redirect(route('owner-properties.index'));
+    }
+    /*
+        remove offers
+    */
+    public function removeOffers($id)
+    {
+         OwnerProperties::where('property_id', $id)->update([
+            'property_offers' => null,
+        ]);
+     return redirect(route('owner-properties.index'));
+    }
+    /*
+        remove details
+    */
+    public function removeDetails($id)
+    {
+         OwnerProperties::where('property_id', $id)->update([
+            'property_details' => null,
+        ]);
+     return redirect(route('owner-properties.index'));
+    }
+    /*
+        remove details
+    */
+    public function removePrice($id)
+    {
+         OwnerProperties::where('property_id', $id)->update([
+            'property_price' => null,
+        ]);
+     return redirect(route('owner-properties.index'));
+    }
+    /*
+        remove image one
+    */
+    public function removeImageOne($id) {
+         OwnerProperties::where('property_id', $id)->update([
+            'image_one' => null,
+        ]);
+     return redirect(route('owner-properties.index'));
+    }
+    /*
+        remove image two
+    */
+    public function removeImageTwo($id) {
+         OwnerProperties::where('property_id', $id)->update([
+            'image_two' => null,
+        ]);
+     return redirect(route('owner-properties.index'));
+    }
+    /*
+        remove image three
+    */
+    public function removeImageThree($id) {
+         OwnerProperties::where('property_id', $id)->update([
+            'image_three' => null,
+        ]);
+     return redirect(route('owner-properties.index'));
+    }
+    /*
+        remove image four
+    */
+    public function removeImageFour($id) {
+         OwnerProperties::where('property_id', $id)->update([
+            'image_four' => null,
+        ]);
+     return redirect(route('owner-properties.index'));
     }
 }

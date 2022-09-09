@@ -29,9 +29,9 @@
                         class="text-xs py-1 px-4 cursor-pointer text-gray-600 border border-gray-400 bg-gray-50 hover:border-gray-600 rounded-md">
                         Cancel
                     </div>
-                    <form method="POST" action="">
+                    <form method="POST"
+                        action="{{ route('remove.details', $properties->properties_details->property_id) }}">
                         @csrf
-                        @method('DELETE')
                         <button type="submit"
                             class="text-xs cursor-pointer py-1 px-4 bg-red-500 hover:bg-red-600 text-white rounded-md">
                             Yes, Delete it
