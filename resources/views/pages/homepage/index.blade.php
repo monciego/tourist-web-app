@@ -48,9 +48,7 @@
             </div>
         </div>
     </div>
-
     @include('pages.homepage.feature-cards')
-
 
     {{-- must log in to show more --}}
     <div class="flex items-center justify-center">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Properties;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
@@ -13,7 +14,8 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        return view('pages.homepage.index');
+        $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->get();
+        return view('pages.homepage.index', compact('properties'));
     }
 
     /**
