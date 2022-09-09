@@ -42,9 +42,14 @@
                 <input name="property_id" type="hidden" value="{{ $properties->id }}">
                 <div>
                     <x-label for="property_offers" :value="__('Property Offers (comma separated)')" />
+                    @if(empty($properties->properties_details->property_offers))
+                    <x-input id="property_offers" class="block mt-1 w-full" type="text" name="property_offers" required
+                        autofocus />
+                    @else
                     <x-input id="property_offers" class="block mt-1 w-full" type="text" name="property_offers"
                         :value="old('property_offers', $properties->properties_details->property_offers)" required
                         autofocus />
+                    @endif
                 </div>
 
                 <button

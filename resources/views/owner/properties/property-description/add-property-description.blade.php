@@ -46,10 +46,14 @@
                     <label for="property_description" class="block text-sm font-medium text-gray-700">
                         Property Description
                     </label>
+                    @if(empty($properties->properties_details->property_description))
+                    <textarea name="property_description" id="property_description" autocomplete="property_description"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                    @else
                     <textarea name="property_description" id="property_description" autocomplete="property_description"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ old('property_description', $properties->properties_details->property_description) }}</textarea>
+                    @endif
                 </div>
-
 
                 <button
                     class="mt-4 bg-indigo-500 hover:bg-indigo-600 inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest  active:bg-indigo-900 focus:outline-none focus:border-v-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">

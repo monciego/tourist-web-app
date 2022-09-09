@@ -45,23 +45,37 @@
                 <input name="property_id" type="hidden" value="{{ $properties->id }}">
                 <div>
                     <x-label for="property_tag" :value="__('Property Tag')" />
+                    @if(empty($properties->properties_details->property_tag))
                     <x-input id="property_tag" class="block
-                        mt-1 w-full" type="text" name="property_tag"
+                        mt-1 w-full" type="text" name="property_tag" required autofocus />
+                    @else
+                    <x-input id="property_tag" class="block
+                                            mt-1 w-full" type="text" name="property_tag"
                         :value="old('property_tag', $properties->properties_details->property_tag)" required
                         autofocus />
-
+                    @endif
                 </div>
                 <div class="mt-4">
                     <x-label for="property_est" :value="__('Year Established')" />
+                    @if(empty($properties->properties_details->property_est))
+                    <x-input id=" property_est" class="block mt-1 w-full" type="text" name="property_est" required
+                        autofocus />
+                    @else
                     <x-input id=" property_est" class="block mt-1 w-full" type="text" name="property_est"
                         :value="old('property_est', $properties->properties_details->property_est)" required
                         autofocus />
+                    @endif
                 </div>
                 <div class="mt-4">
                     <x-label for="property_address" :value="__('Property Address')" />
+                    @if(empty($properties->properties_details->property_address))
+                    <x-input id="property_address" class="block mt-1 w-full" type="text" name="property_address"
+                        required autofocus />
+                    @else
                     <x-input id="property_address" class="block mt-1 w-full" type="text" name="property_address"
                         :value="old('property_address', $properties->properties_details->property_address)" required
                         autofocus />
+                    @endif
                 </div>
 
 

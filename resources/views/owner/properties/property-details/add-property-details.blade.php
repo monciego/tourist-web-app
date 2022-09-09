@@ -44,8 +44,14 @@
                     <label for="property_details" class="block text-sm font-medium text-gray-700">
                         Property Details
                     </label>
+                    @if(empty($properties->properties_details->property_details))
+                    <textarea name="property_details" id="property_details" autocomplete="property_details"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                    @else
                     <textarea name="property_details" id="property_details" autocomplete="property_details"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ old('property_details', $properties->properties_details->property_details) }}</textarea>
+                    @endif
+
                 </div>
 
 

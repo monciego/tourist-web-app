@@ -41,9 +41,15 @@
                 <input name="property_id" type="hidden" value="{{ $properties->id }}">
                 <div>
                     <x-label for="property_price" :value="__('Property Price')" />
+                    @if(empty($properties->properties_details->property_price))
+                    <x-input id="property_price" class="block mt-1 w-full" type="number" name="property_price" required
+                        autofocus />
+                    @else
                     <x-input id="property_price" class="block mt-1 w-full" type="number" name="property_price"
                         :value="old('property_price', $properties->properties_details->property_price)" required
                         autofocus />
+                    @endif
+
                 </div>
                 <button
                     class="mt-4 bg-indigo-500 hover:bg-indigo-600 inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest  active:bg-indigo-900 focus:outline-none focus:border-v-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
