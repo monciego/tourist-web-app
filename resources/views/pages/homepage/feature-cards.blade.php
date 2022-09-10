@@ -1,7 +1,8 @@
 <div class="flex items-center justify-center px-6 lg:px-8">
     <div class="pb-5 pt-5 grid grid-cols-12 gap-3 w-full">
         @foreach ($properties as $property)
-        <a href=""
+        @if (!empty($property->properties_details->property_id))
+        <a href="{{ route('listing.show', $property->properties_details->property_id) }}"
             class="col-span-12 sm:col-span-6 lg:col-span-3  w-full border-gray-300 hover:shadow-md transition-all ease-in-out rounded-md pb-3">
             <!-- Image -->
             @if (!empty($property->properties_details->image_one))
@@ -31,6 +32,7 @@
                 @endif
             </div>
         </a>
+        @endif
         @endforeach
     </div>
 </div>
