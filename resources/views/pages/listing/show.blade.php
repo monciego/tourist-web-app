@@ -99,6 +99,21 @@
                                 </div>
                             </div>
 
+                            <div class="w-full gap-2 flex  mt-4">
+                                <div class="flex flex-col">
+                                    <label for="check_in" class="mb-1 text-sm block truncate">Check In</label>
+                                    <input class="w-full cursor-pointer rounded text-sm" type="text" name="check_in"
+                                        id="check_in" />
+                                </div>
+                                <div class="flex flex-col">
+                                    <label for="check_out" class="mb-1 text-sm block truncate">Check Out</label>
+                                    <input class="w-full cursor-pointer  rounded text-sm" type="text" name="check_out"
+                                        id="check_out" />
+                                </div>
+                            </div>
+
+                            @include('pages.listing.guest-dropdown')
+
                             <button type="submit"
                                 class="transform active:scale-[.98] mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#DE3151] py-3 px-8 text-base font-medium text-white hover:bg-[#d22544] focus:outline-none focus:ring-2 focus:ring-[#DE3151] focus:ring-offset-2">
                                 Reserve
@@ -170,3 +185,23 @@
         </div>
     </div>
 </x-app-layout>
+
+
+
+<script>
+    console.log(new Date());
+    $(function() {
+        $('input[name="check_in"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minDate:new Date(),
+        });
+    });
+    $(function() {
+        $('input[name="check_out"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minDate:new Date(),
+        });
+    });
+</script>
