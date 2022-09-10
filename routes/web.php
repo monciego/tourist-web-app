@@ -21,13 +21,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+Route::get('/listing/{id}', [HomepageController::class, 'show'])->name('listing.show');
 
 // ** Route for owner and superadministrator
 Route::group(['middleware' => ['auth', 'role:owner|superadministrator']], function() {
     Route::get('/dashboard', RedirectLoginController::class)->name('dashboard');
 });
 
-// ** Route for owner and superadministrator
+// ** Route for superadministrator
 Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('/register-owner-account',[RegisteredUserController::class, 'register'])->name('register-owner-account');
     // owner account (user)

@@ -180,7 +180,7 @@ class OwnerPropertiesController extends Controller
         //  dd(is_null($ownerPropertiesIsNull));
          dd($ownerPropertiesIsNull->isEmpty()); */
 
-        $properties = Properties::with('business_owner', 'business_legal_documents')->findOrFail($id); // add the properties details rlationship
+        $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->findOrFail($id); // add the properties details rlationship
         return view('owner.properties.show', compact('properties'));
     }
 

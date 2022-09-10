@@ -47,7 +47,8 @@ class HomepageController extends Controller
      */
     public function show($id)
     {
-        //
+        $listing = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->findOrFail($id); // add the properties details rlationship
+        return view('pages.listing.show', compact('listing'));
     }
 
     /**
