@@ -4,8 +4,9 @@
         <img src="{{ Storage::url($listing->properties_details->image_one) }}" alt="{{ $listing->property_name }} image"
             class="h-full w-full object-cover object-center">
         @else
-        <img alt="No Image" src="{{ asset('assets/images/no-image.jpg') }}"
-            class="rounded-t-md w-full object-cover max-h-44" />
+        <div class="bg-slate-800">
+            <p class="text-lg flex items-center justify-center h-full text-white">Image not available</p>
+        </div>
         @endif
     </div>
     <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-4 ">
