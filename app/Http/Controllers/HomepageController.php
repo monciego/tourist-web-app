@@ -14,7 +14,8 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->get();
+        // gets random data
+        $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->inRandomOrder()->limit(4)->get();
         return view('pages.homepage.index', compact('properties'));
     }
 
