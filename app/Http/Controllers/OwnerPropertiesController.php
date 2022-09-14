@@ -317,4 +317,13 @@ class OwnerPropertiesController extends Controller
         ]);
      return redirect(route('owner-properties.index'));
     }
+    /*
+        remove feature
+    */
+    public function removeFeature($id) {
+         OwnerProperties::where('property_id', $id)->update([
+            'feature' => null,
+        ]);
+     return redirect(route('owner-properties.index'));
+    }
 }

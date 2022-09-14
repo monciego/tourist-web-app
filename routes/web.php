@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth', 'role:owner']], function() {
     Route::post('/remove-image-two/{id}', [OwnerPropertiesController::class, 'removeImageTwo'])->name('remove.image_two');
     Route::post('/remove-image-three/{id}', [OwnerPropertiesController::class, 'removeImageThree'])->name('remove.image_three');
     Route::post('/remove-image-four/{id}', [OwnerPropertiesController::class, 'removeImageFour'])->name('remove.image_four');
+    Route::post('/remove-featurer/{id}', [OwnerPropertiesController::class, 'removeFeature'])->name('remove.feature');
 });
 
 // ** Route for users

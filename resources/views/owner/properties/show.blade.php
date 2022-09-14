@@ -21,7 +21,7 @@
             </video>
             <img src="{{ Storage::url($properties->properties_details->feature) }}" onerror="this.style.display='none';"
                 alt="{{ $properties->property_name }} image" class="h-full w-full object-cover object-center">
-            {{-- @include('owner.properties.property-image.delete.delete-image-one') --}}
+            @include('owner.properties.property-feature.destroy')
             @endif
         </div>
     </div>
