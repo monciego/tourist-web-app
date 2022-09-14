@@ -1,6 +1,25 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="h-[60vh]">
+                <div class="aspect-w-3 h-full  overflow-hidden rounded-lg lg:block ">
+                    @if(empty($listing->properties_details->feature))
+                    <div class="bg-slate-800">
+                        <p class="text-3xl font-bold flex items-center justify-center h-full text-white">{{
+                            $listing->property_name
+                            }}</p>
+                    </div>
+                    @else
+                    <video class="h-full w-full object-cover object-center" autoplay muted loop>
+                        <source src="{{ Storage::url($listing->properties_details->feature) }}" />
+                    </video>
+                    <img src="{{ Storage::url($listing->properties_details->feature) }}"
+                        onerror="this.style.display='none';" alt="{{ $listing->property_name }} image"
+                        class="h-full w-full object-cover object-center">
+                    {{-- @include('owner.properties.property-image.delete.delete-image-one') --}}
+                    @endif
+                </div>
+            </div>
             <div class="bg-white">
                 <div class="pt-6">
                     <p class="px-8 pb-4 text-xl font-semibold">{{ $listing->property_name }}</p>
