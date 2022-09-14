@@ -11,10 +11,11 @@ class OwnerProperties extends Model
 
     protected $fillable = [
         'property_id',
-        'image_one',
+        'feature',
         'property_tag',
         'property_est',
         'property_address',
+        'image_one',
         'image_two',
         'image_three',
         'image_four',

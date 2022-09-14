@@ -16,6 +16,9 @@
         @else
         <img src="{{ Storage::url($properties->properties_details->image_one) }}"
             alt="{{ $properties->property_name }} image" class="h-full w-full object-cover object-center">
+        {{-- <video class="h-full w-full object-cover object-center" autoplay muted loop>
+            <source src="{{ Storage::url($properties->properties_details->image_one) }}" type="video/mp4" />
+        </video> --}}
         @include('owner.properties.property-image.delete.delete-image-one')
         @endif
     </div>

@@ -167,6 +167,24 @@ class OwnerPropertiesController extends Controller
                  $data->save();
         return redirect(route('owner-properties.index'));
     }
+    /*
+        Adding Image Four
+    */
+    public function storeFeature (Request $request) {
+        $randomNumber = random_int(1000, 9999);
+        $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+
+                if ($request->hasFile('feature')) {
+                    $imagePath = $request->file('feature')->storeAs(
+                    'feature',
+                    $randomNumber . '.' . uniqid() . '.' . $request->file('feature')->getClientOriginalExtension(),
+                    'public');
+                }
+                $data->feature = $imagePath;
+                 $data->save();
+        return redirect(route('owner-properties.index'));
+    }
 
     /**
      * Display the specified resource.

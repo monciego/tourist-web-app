@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth', 'role:owner']], function() {
     Route::post('/store-image-two', [OwnerPropertiesController::class, 'storeImageTwo'])->name('store-image-two');
     Route::post('/store-image-three', [OwnerPropertiesController::class, 'storeImageThree'])->name('store-image-three');
     Route::post('/store-image-four', [OwnerPropertiesController::class, 'storeImageFour'])->name('store-image-four');
+    Route::post('/store-feature', [OwnerPropertiesController::class, 'storeFeature'])->name('store-feature');
     // owner properties deleting data
     Route::post('/remove-breadcrumbs/{id}', [OwnerPropertiesController::class, 'removeBreadCrumbs'])->name('remove.breadcrumbs');
     Route::post('/remove-description/{id}', [OwnerPropertiesController::class, 'removeDescription'])->name('remove.description');
