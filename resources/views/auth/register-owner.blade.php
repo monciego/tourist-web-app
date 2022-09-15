@@ -1,4 +1,5 @@
 <x-app-sidebar-layout>
+    @section('title', 'Register')
     <x-auth-card>
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />

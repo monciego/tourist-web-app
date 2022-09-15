@@ -1,4 +1,5 @@
 <x-app-sidebar-layout>
+    @section('title', 'Documents')
     <div class="col-span-full xl:col-span-6 bg-white shadow-md rounded-sm border border-slate-200">
         <header class="px-5 py-4 border-b border-slate-100 flex justify-between items-center">
             <h2 class="font-semibold text-slate-800">{{ $properties->property_name }}</h2>

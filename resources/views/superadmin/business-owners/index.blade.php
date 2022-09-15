@@ -1,4 +1,5 @@
 <x-app-sidebar-layout>
+    @section('title', 'Business Owners')
     <div class="grid grid-cols-6 gap-2">
         @foreach ($businesses as $business )
         <div class="col-span-6 lg:col-span-2 p-6 w-full rounded-lg border shadow-md bg-gray-800 border-gray-700">

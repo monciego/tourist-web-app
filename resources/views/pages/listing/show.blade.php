@@ -1,4 +1,5 @@
 <x-app-layout>
+    @section('title', isset($listing) ? $listing->property_name : 'Dasol Tourism')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="h-[60vh]">

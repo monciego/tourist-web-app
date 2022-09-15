@@ -1,4 +1,5 @@
 <x-app-sidebar-layout>
+    @section('title', isset($properties) ? $properties->property_name : 'Dasol Tourism')
     {{-- {{ $ownerProperties }} --}}
     <div class="h-[50vh]">
         <div class="aspect-w-3 h-full  overflow-hidden rounded-lg lg:block ">

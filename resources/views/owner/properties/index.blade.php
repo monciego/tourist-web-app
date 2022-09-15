@@ -1,4 +1,5 @@
 <x-app-sidebar-layout>
+    @section('title', 'Properties')
     <h2 class="mb-4 font-medium">Properties of {{ Auth::user()->name }}</h2>
     <div class="grid grid-cols-6 gap-2">
         @foreach ($properties as $property )
