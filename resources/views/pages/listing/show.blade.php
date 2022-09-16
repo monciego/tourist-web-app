@@ -134,10 +134,10 @@
 
                             @include('pages.listing.guest-dropdown')
 
-                            <button type="submit"
+                            <a href="{{ route('messages.create', $listing->id) }}"
                                 class="transform active:scale-[.98] mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#DE3151] py-3 px-8 text-base font-medium text-white hover:bg-[#d22544] focus:outline-none focus:ring-2 focus:ring-[#DE3151] focus:ring-offset-2">
-                                Reserve
-                            </button>
+                                Message
+                            </a>
                         </div>
 
 

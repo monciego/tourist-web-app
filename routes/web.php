@@ -8,6 +8,7 @@ use App\Http\Controllers\OwnerPropertiesController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RedirectLoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +79,15 @@ Route::group(['middleware' => ['auth', 'role:user']], function() {
 
 });
 
+
+Route::group(['middleware' => 'auth', 'prefix' => 'messages', 'as' => 'messages'], function () {
+    Route::get('/', [MessagesController::class, 'index']);
+    Route::get('{thread}/create', [MessagesController::class, 'create'])->name('.create');
+    Route::post('/', [MessagesController::class, 'store'])->name('.store');
+    Route::get('{thread}', [MessagesController::class, 'show'])->name('.show');
+    Route::put('{thread}', [MessagesController::class, 'update'])->name('.update');
+    Route::delete('{thread}', [MessagesController::class, 'destroy'])->name('.destroy');
+});
 
 
 require __DIR__.'/auth.php';

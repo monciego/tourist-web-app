@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Properties;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomepageController extends Controller
 {
@@ -48,8 +50,10 @@ class HomepageController extends Controller
      */
     public function show($id)
     {
+             $users = User::where('id', '!=', Auth::id())->get();
+
         $listing = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->findOrFail($id); // add the properties details rlationship
-        return view('pages.listing.show', compact('listing'));
+        return view('pages.listing.show', compact('listing', 'users'));
     }
 
     /**
