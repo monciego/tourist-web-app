@@ -1,12 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Create new message') }}
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <h2 class="text-md mb-2 font-semibold leading-tight text-gray-800">
+                {{ $properties->property_name }}
+            </h2>
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
@@ -39,7 +36,14 @@
 
                             <!-- Submit Form Input -->
                             <div class="mt-4">
-                                <x-button>Submit</x-button>
+                                <x-button class="flex items-center gap-2">
+                                    <span>Send</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                                    </svg>
+                                </x-button>
                             </div>
                         </div>
                     </form>
