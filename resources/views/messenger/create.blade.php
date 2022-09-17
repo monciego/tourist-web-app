@@ -14,13 +14,13 @@
                             <div>
                                 <x-label for="subject" :value="__('Subject')" />
                                 <x-input id="subject" class="block w-full mt-1" type="text" name="subject"
-                                    :value="old('subject')" />
+                                    :value="old('subject')" required />
                             </div>
 
                             <!-- Recipients list -->
                             <div class="mt-4">
                                 <x-label for="recipient" :value="__('Recipient')" />
-                                <select name="recipient"
+                                <select name="recipient" required
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     <option value="{{ $properties->user_id }}">{{ $properties->property_name }}
                                     </option>
@@ -30,7 +30,7 @@
                             <!-- Message Form Input -->
                             <div class="mt-4">
                                 <x-label for="message" :value="__('Message')" />
-                                <textarea name="message" rows="10"
+                                <textarea name="message" rows="10" required
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ old('message') }}</textarea>
                             </div>
 
