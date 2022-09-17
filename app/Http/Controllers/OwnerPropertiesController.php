@@ -194,11 +194,10 @@ class OwnerPropertiesController extends Controller
      */
     public function show($id)
     {
-        /*  $ownerPropertiesIsNull = OwnerProperties::all();
-        //  dd(is_null($ownerPropertiesIsNull));
-         dd($ownerPropertiesIsNull->isEmpty()); */
-
-        $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->findOrFail($id); // add the properties details rlationship
+            $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->findOrFail($id); // add the properties details rlationship
+           if($properties->user_id != auth()->id()) {
+             abort(403, 'Unauthorized Action');
+            }
         return view('owner.properties.show', compact('properties'));
     }
 
