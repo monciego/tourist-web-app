@@ -51,13 +51,15 @@
     </div>
     @include('pages.homepage.feature-cards')
 
-    {{-- must log in to show more --}}
+    @if ($properties->count() != 0)
     <div class="flex items-center justify-center">
-        <button
+        <a href="{{ route('listing.index') }}"
             class="flex items-center gap-2 justify-center active:scale-[.98] text-sm rounded text-right text-white bg-indigo-600 hover:bg-indigo-800 px-4 py-1.5">
             Show More
-        </button>
+        </a>
     </div>
+    @endif
+
 
     @include('pages.homepage.inspiration')
 
