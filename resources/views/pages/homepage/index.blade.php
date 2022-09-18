@@ -37,7 +37,7 @@
                         @endif
                         @endauth
                     </h2>
-                    <a href=""
+                    <a href="{{ route('listing.index') }}"
                         class="text-primary inline-flex items-center gap-2 active:scale-[.95] text-sm px-4 py-1 sm:text-lg sm:px-7 sm:py-2 rounded-lg shadow-md bg-white hover:bg-gray-200 font-bold">
                         Start Exploring
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"

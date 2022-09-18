@@ -11,8 +11,20 @@ class Properties extends Model
 
     protected $fillable = [
         'user_id',
-        'property_name'
+        'category_id',
+        'property_name',
     ];
+
+
+    public function scopeFilter($query, array $filters)
+    {
+        if($filters['category'] ?? false) {
+              $query->where('category_id', 'like', '%' . request('category') . '%');
+        }
+     /*    if($filters['tag'] ?? false) {
+
+        } */
+    }
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -28,5 +40,10 @@ class Properties extends Model
 
     public function properties_details() {
         return $this->hasOne(OwnerProperties::class, 'property_id');
+    }
+
+    public function category() {
+        // hasOne, hasMany, belongsTo, belongsToMany
+        return $this->belongsTo(Categories::class);
     }
 }

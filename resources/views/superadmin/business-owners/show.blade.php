@@ -15,11 +15,15 @@
                             d="M21 7h-6a1 1 0 0 0-1 1v3h-2V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zM8 6h2v2H8V6zM6 16H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V6h2v2zm4 8H8v-2h2v2zm0-4H8v-2h2v2zm9 4h-2v-2h2v2zm0-4h-2v-2h2v2z">
                         </path>
                     </svg>
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight  text-white">{{ $property->property_name
-                            }}</h5>
+                    <a href="#" class="mb-2 flex items-center gap-2">
+                        <h5 class="text-lg font-semibold tracking-tight  text-white">
+                            {{ $property->property_name }}
+                        </h5>
+                        <span class="text-sm text-white bg-slate-600 py-1 px-4 rounded-md">
+                            {{ $property->category->category_name }}
+                        </span>
                     </a>
-                    <p class="mb-3 font-normal  text-gray-400">
+                    <p class="mb-3 font-normal textsm text-gray-400">
                         {{ $property->business_owner->business_description ?? 'The description of this property is not
                         filled
                         yet.' }}
