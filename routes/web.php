@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BusinessLegalDocumentsController;
 use App\Http\Controllers\BusinessOwnersController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\OwnerPropertiesController;
@@ -95,5 +96,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'messages', 'as' => 'messages'
     Route::delete('{thread}', [MessagesController::class, 'destroy'])->name('.destroy');
 });
 
+
+// Fallback Route
+Route::fallback(FallbackController::class);
 
 require __DIR__.'/auth.php';
