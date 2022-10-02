@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OwnerProperties;
 use App\Models\Properties;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
+use Stevebauman\Location\Facades\Location;
 class HomepageController extends Controller
 {
     /**
@@ -48,12 +50,38 @@ class HomepageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-             $users = User::where('id', '!=', Auth::id())->get();
+        $users = User::where('id', '!=', Auth::id())->get();
+
+        /*
+        $lat = 16.1149123;
+		$lon = 119.9683174;
+         */
+        $property_id = OwnerProperties::where('id', $id)->first('property_id');
+        // dd($property_id);
+
+        $position = Location::get();
+        $lat = $position->latitude;
+        $lon = $position->longitude;
+/*         This is called Haversine formula and the constant 6371 is used to get distance in KM,
+        while 3959 is used to get distance in miles. */
+		$distance = DB::table('owner_properties')->select("owner_properties.property_id"
+		        ,DB::raw("6371 * acos(cos(radians(" . $lat . "))
+		        * cos(radians(owner_properties.latitude))
+		        * cos(radians(owner_properties.longitude) - radians(" . $lon . "))
+		        + sin(radians(" .$lat. "))
+		        * sin(radians(owner_properties.latitude))) AS distance"))
+                ->where('owner_properties.property_id', $id)
+		        ->get();
 
         $listing = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->findOrFail($id); // add the properties details rlationship
-        return view('pages.listing.show', compact('listing', 'users'));
+
+         if(empty($listing->properties_details->property_tag)) {
+             return abort(404);
+         }
+
+        return view('pages.listing.show', compact('listing', 'users', 'distance'));
     }
 
     /**

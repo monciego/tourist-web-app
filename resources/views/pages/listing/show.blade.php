@@ -21,6 +21,17 @@
                     @endif
                 </div>
             </div>
+
+            <p class="my-4">
+                @if(empty($listing->properties_details->latitude || $listing->properties_details->longitude ))
+                Distance not specified
+                @else
+                @foreach ($distance as $item)
+                {{ number_format($item->distance) }} KM away from you
+                @endforeach
+                @endif
+            </p>
+
             <div class="bg-white">
                 <div class="pt-6">
                     <p class="px-8 pb-4 text-xl font-semibold">{{ $listing->property_name }}</p>

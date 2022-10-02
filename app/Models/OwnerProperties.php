@@ -23,6 +23,8 @@ class OwnerProperties extends Model
         'property_description',
         'property_offers',
         'property_details',
-        'property_price'
+        'property_price',
+        'latitude',
+        'longitude'
     ];
 }

@@ -19,14 +19,6 @@ class ListingController extends Controller
 
         $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->filter(request(['category']))->get();
         $categories = Categories::all();
-        // dd(request('category'));
-        /*       $products = Properties::where('category_id', 1)->get();
-            //   dd($products);
-
-            for ($i = 0; $i < 0; $i++) {
-                dd($i);
-            }
-    */
         return view('pages.listing.index', compact('properties', 'categories'));
     }
 

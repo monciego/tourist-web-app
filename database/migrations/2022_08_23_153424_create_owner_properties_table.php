@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('images')->nullable();
             $table->longText('property_description')->nullable();
             $table->string('property_offers')->nullable(); // comma seperated
+            $table->decimal('latitude',8,6)->nullable();
+            $table->decimal('longitude', 9,6)->nullable();
             $table->longText('property_details')->nullable();
             $table->integer('property_price')->nullable();
             $table->foreign('property_id')->references('id')->on('properties')

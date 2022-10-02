@@ -86,6 +86,17 @@ class OwnerPropertiesController extends Controller
         return redirect(route('owner-properties.index'));
     }
     /*
+        Adding Price
+    */
+    public function storeLocation (Request $request) {
+        $data = OwnerProperties::updateOrCreate(['property_id' => $request->property_id]);
+                $data->property_id = $request->property_id;
+                $data->latitude = $request->latitude;
+                $data->longitude = $request->longitude;
+                $data->save();
+        return redirect(route('owner-properties.index'));
+    }
+    /*
         Adding Offers
     */
     public function storeOffers (Request $request) {
