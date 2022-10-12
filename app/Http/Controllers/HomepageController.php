@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Homepage;
 use App\Models\OwnerProperties;
 use App\Models\Properties;
 use App\Models\User;
@@ -20,7 +21,43 @@ class HomepageController extends Controller
     {
         // gets random data
         $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->inRandomOrder()->limit(4)->get();
-        return view('pages.homepage.index', compact('properties'));
+        $homepage_datas = Homepage::get();
+
+        return view('pages.homepage.index', compact('properties', 'homepage_datas'));
+    }
+
+    /**
+     * Adding homepage image
+     *
+     * @return \Illuminate\Http\Response
+     */
+        public function storeHomepageImage (Request $request) {
+        $randomNumber = random_int(1000, 9999);
+        $data = Homepage::updateOrCreate(['id' => Auth::user()->id]);
+                if ($request->hasFile('homepage_image')) {
+                    $imagePath = $request->file('homepage_image')->storeAs(
+                    'homepage_image',
+                    $randomNumber . '.' . uniqid() . '.' . $request->file('homepage_image')->getClientOriginalExtension(),
+                    'public');
+                }
+                $data->id = Auth::user()->id;
+                $data->homepage_image = $imagePath;
+                 $data->save();
+        return redirect(route('homepage'));
+    }
+
+    /**
+     * Adding homepage tagline
+     *
+     * @return \Illuminate\Http\Response
+     */
+        public function storeHomepageTagLine (Request $request) {
+
+        $data = Homepage::updateOrCreate(['id' => Auth::user()->id]);
+            $data->id = Auth::user()->id;
+            $data->homepage_tagline = $request->homepage_tagline;
+            $data->save();
+        return redirect(route('homepage'));
     }
 
     /**

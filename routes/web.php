@@ -49,7 +49,10 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     // download
     Route::get('/download/{file}',[BusinessLegalDocumentsController::class, 'download']);
     // categories
-      Route::resource('categories', CategoriesController::class);
+    Route::resource('categories', CategoriesController::class);
+    // add homepage image
+   Route::post('/store-homepage-image', [HomepageController::class, 'storeHomepageImage'])->name('store.homepage_image');
+   Route::post('/store-homepage-tag-line', [HomepageController::class, 'storeHomepageTagLine'])->name('store.homepage_tagline');
 });
 
 // ** Route for owner
