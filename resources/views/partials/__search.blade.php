@@ -2,7 +2,7 @@
     <div
         class="flex items-center cursor-pointer border-1 transition-all rounded-full py-1 border hover:shadow-md border-gray-300 shadow bg-white 500 text-gray-600">
         <div class="text-gray-800 font-medium px-5 pr-28 text-sm">
-            <span>Start your search</span>
+            <span>Let's begin your journey!</span>
         </div>
         <button type="submit" class="mr-1">
             <svg class="h-8 w-8" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">

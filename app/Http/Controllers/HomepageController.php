@@ -22,7 +22,6 @@ class HomepageController extends Controller
         // gets random data
         $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->inRandomOrder()->limit(4)->get();
         $homepage_datas = Homepage::get();
-
         return view('pages.homepage.index', compact('properties', 'homepage_datas'));
     }
 
