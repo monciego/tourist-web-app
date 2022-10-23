@@ -12,6 +12,8 @@ use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RedirectLoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\TourRegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +88,10 @@ Route::group(['middleware' => ['auth', 'role:owner']], function() {
 
 // ** Route for users
 Route::group(['middleware' => ['auth', 'role:user']], function() {
-
+    Route::resource('tour-registration', TourRegistrationController::class);
+    Route::resource('your-tickets', TicketsController::class);
+    Route::get('property/register-tour/{id}',  [TourRegistrationController::class, 'registerTour'])->name('register.tour');
+    Route::get('thank-you-for-registration/{id}',  [TourRegistrationController::class, 'thankYouForRegistrationPage'])->name('thankyou.for.registration');
 });
 
 

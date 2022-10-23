@@ -70,7 +70,7 @@
                             </p>
                             @endif
                             {{-- reviews --}}
-                            <div class="mt-6">
+                            {{-- <div class="mt-6">
                                 <h3 class="sr-only">Reviews</h3>
                                 <div class="flex items-center">
                                     <div class="flex items-center">
@@ -143,12 +143,17 @@
                                 </div>
                             </div>
 
-                            @include('pages.listing.guest-dropdown')
+                            @include('pages.listing.guest-dropdown') --}}
 
+                            <a href="{{ route('register.tour', $listing) }}"
+                                class="transform active:scale-[.98] mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-700 py-3 px-8 text-base font-medium text-white hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-offset-2">
+                                Register a tour
+                            </a>
                             <a href="{{ route('messages.create', $listing->id) }}"
-                                class="transform active:scale-[.98] mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#DE3151] py-3 px-8 text-base font-medium text-white hover:bg-[#d22544] focus:outline-none focus:ring-2 focus:ring-[#DE3151] focus:ring-offset-2">
+                                class="transform active:scale-[.98] mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-[#DE3151] py-3 px-8 text-base font-medium text-white hover:bg-[#d22544] focus:outline-none focus:ring-2 focus:ring-[#DE3151] focus:ring-offset-2">
                                 Message
                             </a>
+
                         </div>
 
 

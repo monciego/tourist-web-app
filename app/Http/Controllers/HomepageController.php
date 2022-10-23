@@ -90,10 +90,10 @@ class HomepageController extends Controller
     {
         $users = User::where('id', '!=', Auth::id())->get();
 
-        /*
-        $lat = 16.1149123;
-		$lon = 119.9683174;
-         */
+    /*
+            $lat = 16.1149123;
+            $lon = 119.9683174; */
+
         $property_id = OwnerProperties::where('id', $id)->first('property_id');
         // dd($property_id);
 
