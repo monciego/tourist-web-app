@@ -39,6 +39,8 @@ class RedirectLoginController extends Controller
              );
         } elseif (Auth::user()->hasRole('owner')) {
             return view('owner.dashboard.index');
+        } elseif (Auth::user()->hasRole('staff')) {
+            return view('staff.dashboard.index');
         }
     }
 }

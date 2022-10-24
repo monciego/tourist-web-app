@@ -34,6 +34,16 @@ class RegisteredUserController extends Controller
     }
 
     /**
+     * Display the registration of owner account view.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function registerStaff()
+    {
+        return view('superadmin.staff.register');
+    }
+
+    /**
      * Handle an incoming registration request.
      *
      * @param  \Illuminate\Http\Request  $request

@@ -12,6 +12,7 @@ use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RedirectLoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\TourRegistrationController;
 
@@ -31,13 +32,14 @@ Route::get('/listing', [ListingController::class, 'index'])->name('listing.index
 Route::get('/listing/{id}', [HomepageController::class, 'show'])->name('listing.show');
 
 // ** Route for owner and superadministrator
-Route::group(['middleware' => ['auth', 'role:owner|superadministrator']], function() {
+Route::group(['middleware' => ['auth', 'role:owner|superadministrator|staff']], function() {
     Route::get('/dashboard', RedirectLoginController::class)->name('dashboard');
 });
 
 // ** Route for superadministrator
 Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('/register-owner-account',[RegisteredUserController::class, 'register'])->name('register-owner-account');
+    Route::get('/register-staff-account',[RegisteredUserController::class, 'registerStaff'])->name('register.staff');
     // owner account (user)
     Route::get('businesses/{businesses}/properties', [BusinessOwnersController::class, 'show'])->name('businesses.properties');
     Route::resource('businesses', BusinessOwnersController::class);
@@ -92,6 +94,11 @@ Route::group(['middleware' => ['auth', 'role:user']], function() {
     Route::resource('your-tickets', TicketsController::class);
     Route::get('property/register-tour/{id}',  [TourRegistrationController::class, 'registerTour'])->name('register.tour');
     Route::get('thank-you-for-registration/{id}',  [TourRegistrationController::class, 'thankYouForRegistrationPage'])->name('thankyou.for.registration');
+});
+
+// ** Route for staff
+Route::group(['middleware' => ['auth', 'role:staff']], function() {
+    Route::resource('staff', StaffController::class);
 });
 
 

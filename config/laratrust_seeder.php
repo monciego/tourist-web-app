@@ -24,6 +24,10 @@ return [
         'user' => [
             'profile' => 'r,u',
         ],
+        'staff' => [
+            'users' => 'c,r,u,d',
+            'profile' => 'r,u'
+        ],
     ],
 
     'permissions_map' => [

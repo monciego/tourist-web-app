@@ -38,6 +38,9 @@
         @if (Auth::user()->hasRole('superadministrator'))
         <a class="text-sm" href="{{ route('dashboard') }}">Dashboard</a>
         @endif
+        @if (Auth::user()->hasRole('staff'))
+        <a class="text-sm" href="{{ route('dashboard') }}">Verify Tickets</a>
+        @endif
         @endauth
     </div>
 
