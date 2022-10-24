@@ -31,4 +31,15 @@ class TourRegistration extends Model
     public function property() {
         return $this->belongsTo(Properties::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        if($filters['search'] ?? false) {
+              $query->where('tour_code', request('search'));
+        }
+
+     /*    if($filters['tag'] ?? false) {
+
+        } */
+    }
 }

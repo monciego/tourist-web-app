@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TourRegistration;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,9 @@ class RedirectLoginController extends Controller
         } elseif (Auth::user()->hasRole('owner')) {
             return view('owner.dashboard.index');
         } elseif (Auth::user()->hasRole('staff')) {
-            return view('staff.dashboard.index');
+            $keyword = $request->get('search');
+            $tickets = TourRegistration::with('user', 'property')->latest()->filter(request(['search']))->get();
+            return view('staff.dashboard.index', compact('tickets', 'keyword'));
         }
     }
 }
