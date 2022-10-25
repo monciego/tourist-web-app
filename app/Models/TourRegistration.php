@@ -22,6 +22,7 @@ class TourRegistration extends Model
         'number_of_children',
         'number_of_infants',
         'tour_message',
+        'verified',
     ];
 
     public function user() {

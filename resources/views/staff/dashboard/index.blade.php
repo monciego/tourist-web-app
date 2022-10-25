@@ -26,9 +26,28 @@
         </button>
     </form>
 
-
     @forelse ($tickets as $ticket)
     @if ($keyword === $ticket->tour_code )
+    <form method="POST" action="{{ route('verify.ticket') }}">
+        @csrf
+        <input name="tour_code" type="hidden" value="{{ $ticket->tour_code }}">
+        <div class="flex mt-4 items-start">
+            <div class="flex h-5 items-center">
+                <input @if ($ticket->verified===1)
+                checked
+                @endif id="verified" name="verified" type="checkbox"
+                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+            </div>
+            <div class="ml-3 text-sm">
+                <label for="verified" class="font-medium text-gray-700">Verify</label>
+                <p class="text-gray-500">Check this checkbox to verify this ticket.</p>
+            </div>
+
+        </div>
+        <x-button class="mt-4">
+            Save
+        </x-button>
+    </form>
     <div class="mt-8 relative">
         <h1
             class="absolute uppercase text-7xl text-black/10 text-center w-full flex items-center justify-center font-bold top-[50%] left-[50%] transform -translate-x-2/4 -translate-y-2/4">

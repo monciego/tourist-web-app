@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth', 'role:user']], function() {
 // ** Route for staff
 Route::group(['middleware' => ['auth', 'role:staff']], function() {
     Route::resource('staff', StaffController::class);
+    Route::post('/verify-ticket', [StaffController::class, 'verify'])->name('verify.ticket');
 });
 
 
