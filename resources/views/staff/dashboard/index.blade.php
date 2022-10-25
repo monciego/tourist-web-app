@@ -194,7 +194,7 @@
     @empty
     <div class="flex-col mt-16 flex items-center justify-center">
         <div>
-            <img src="{{ asset('assets/images/no match found.svg') }}" alt="There are currently no listed medicines.">
+            <img src="{{ asset('assets/images/no match found.svg') }}" alt="No Match Found.">
         </div>
         <div>
             <h1 class="text-center font-bold text-xl mt-8 uppercase">

@@ -52,7 +52,15 @@
                     {{ \Carbon\Carbon::parse($ticket->tour_date)->isoFormat('MMM D YYYY')}}
                 </td>
                 <td class="p-2 ">
-                    {{-- Still on the place --}}
+                    @if ($ticket->status === 'still_in_the_area' || $ticket->status === null)
+                    <span class="bg-green-600 text-white px-4 py-2 rounded">
+                        Still in the area
+                    </span>
+                    @elseif ($ticket->status === 'already_left')
+                    <span class="bg-red-600 text-white px-4 py-2 rounded">
+                        Already Left
+                    </span>
+                    @endif
                 </td>
             </tr>
             @endforeach

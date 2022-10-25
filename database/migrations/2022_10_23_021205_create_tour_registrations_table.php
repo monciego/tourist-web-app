@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('number_of_infants')->nullable(); // under 2
             $table->string('tour_message')->nullable(); // optional
             $table->boolean('verified')->default(0)->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

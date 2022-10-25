@@ -94,6 +94,7 @@ Route::group(['middleware' => ['auth', 'role:user']], function() {
     Route::resource('your-tickets', TicketsController::class);
     Route::get('property/register-tour/{id}',  [TourRegistrationController::class, 'registerTour'])->name('register.tour');
     Route::get('thank-you-for-registration/{id}',  [TourRegistrationController::class, 'thankYouForRegistrationPage'])->name('thankyou.for.registration');
+    Route::post('/update-status',  [TourRegistrationController::class, 'updateStatus'])->name('update.status');
 });
 
 // ** Route for staff

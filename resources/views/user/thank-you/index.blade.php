@@ -1,7 +1,32 @@
 <x-app-layout>
     @section('title', 'Dasol Tourism - Register Tour')
     <div class="py-0 sm:py-12">
-        <div class="mt-10 sm:mt-0">
+        <div class="mt-10 sm:mt-0 relative">
+            @if ($registrationData->verified === 1)
+            <h1
+                class="absolute uppercase text-7xl text-black/10 text-center w-full flex items-center justify-center font-bold top-[50%] left-[50%] transform -translate-x-2/4 -translate-y-2/4">
+                VERIFIED
+            </h1>
+            <form action="{{ route('update.status') }}" method="POST" class="px-8">
+                @csrf
+                <input type="hidden" name="tour_code" value="{{ $registrationData->tour_code }}">
+                <div class="md:gap-6 mb-2">
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                        <select id="status" name="status" autocomplete="status"
+                            class="mt-1 block w-full rounded-md border border-gray-900 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                            <option @if ($registrationData->status === 'still_in_the_area')
+                                selected
+                                @endif id="still_in_the_area" value="still_in_the_area">Still in the area</option>
+                            <option @if ($registrationData->status === 'already_left')
+                                selected
+                                @endif id="already_left" value="already_left">Already left</option>
+                        </select>
+                    </div>
+                </div>
+                <x-button class="mb-4">Save Changes</x-button>
+            </form>
+            @endif
             <div class="md:grid md:grid-cols-3 md:gap-6 px-8">
                 <div class="md:col-span-1">
                     <div class="sm:px-0 bg-[#F3F1C9] border-black border-2  h-full rounded-[10px]">

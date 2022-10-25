@@ -26,9 +26,6 @@ class TourRegistrationController extends Controller
      */
     public function thankYouForRegistrationPage($id)
     {
-
-
-
         $registrationData = TourRegistration::where('user_id', auth()->id())->with('user', 'property')->findOrFail($id);
         return view('user.thank-you.index', compact('registrationData'));
     }
@@ -37,10 +34,15 @@ class TourRegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function statusForm()
+    public function updateStatus(Request $request)
     {
-        return view('user.status-form.index');
+          TourRegistration::where('tour_code', $request->tour_code)->update([
+                'status' => $request->status,
+          ]);
+
+          return redirect(route('your-tickets.index'));
     }
+
     /**
      * Register a tour.
      *
