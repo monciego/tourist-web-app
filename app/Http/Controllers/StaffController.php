@@ -14,7 +14,8 @@ class StaffController extends Controller
      */
     public function index()
     {
-
+        $tickets = TourRegistration::where('verified', 1)->with('user', 'property')->latest()->paginate(5);
+        return view('staff.verified-tickets.index', compact('tickets'));
     }
 
     /**
