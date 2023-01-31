@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BusinessLegalDocumentsController;
 use App\Http\Controllers\BusinessOwnersController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\EmergencyHotlineController;
 use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ListingController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\TourRegistrationController;
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 Route::get('/listing', [ListingController::class, 'index'])->name('listing.index');
 Route::get('/listing/{id}', [HomepageController::class, 'show'])->name('listing.show');
+Route::resource('/emergency-hotline', EmergencyHotlineController::class);
 
 // ** Route for owner and superadministrator
 Route::group(['middleware' => ['auth', 'role:owner|superadministrator|staff']], function() {

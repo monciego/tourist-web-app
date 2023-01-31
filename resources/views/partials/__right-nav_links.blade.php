@@ -66,6 +66,9 @@
         </x-slot>
 
         <x-slot name="content">
+            <x-dropdown-link class="font-bold" :href="route('emergency-hotline.index')">
+                {{ __('Emergency Hotlines') }}
+            </x-dropdown-link>
             @guest
             <x-dropdown-link class="font-bold" :href="route('register')">
                 {{ __('Sign up') }}
