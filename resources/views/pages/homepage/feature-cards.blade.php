@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center px-6 lg:px-8">
-    <div class="pb-5 pt-5 grid grid-cols-12 gap-3 w-full">
+    <div class="pb-5 grid grid-cols-12 gap-3 w-full">
         @foreach ($properties as $property)
         @if (!empty($property->properties_details->property_id))
         <a href="{{ route('listing.show', $property->properties_details->property_id) }}"

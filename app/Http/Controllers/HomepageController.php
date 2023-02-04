@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Stevebauman\Location\Facades\Location;
 class HomepageController extends Controller
 {
@@ -22,7 +23,14 @@ class HomepageController extends Controller
         // gets random data
         $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->inRandomOrder()->limit(4)->get();
         $homepage_datas = Homepage::get();
-        return view('pages.homepage.index', compact('properties', 'homepage_datas'));
+
+        // weather
+        $location = 'Dasol';
+        $apiKey = '698070466b3afdc7587e714df356d6a3';
+        $response = Http::get("https://api.openweathermap.org/data/2.5/weather?q={$location}&appid={$apiKey}&units=metric");
+        $currentWeather = $response->json();
+
+        return view('pages.homepage.index', compact('properties', 'homepage_datas', 'currentWeather'));
     }
 
     /**
