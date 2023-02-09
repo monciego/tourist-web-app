@@ -148,9 +148,11 @@ return [
     |
     */
 
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+            'regex:/[A-Z]/' =>  'must contain at least one uppercase letter',
         ],
     ],
 
