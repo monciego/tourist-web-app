@@ -240,4 +240,55 @@
             minDate:new Date(),
         });
     });
+
+
+    // image lightbox
+    const lightbox = document.createElement("div");
+    lightbox.id = "lightbox";
+    document.body.appendChild(lightbox);
+
+    const images = document.querySelectorAll("img");
+    images.forEach((image) => {
+    image.addEventListener("click", (e) => {
+    lightbox.classList.add("active");
+    const img = document.createElement("img");
+    img.src = image.src;
+    while (lightbox.firstChild) {
+    lightbox.removeChild(lightbox.firstChild);
+    }
+    lightbox.appendChild(img);
+    });
+    });
+
+    lightbox.addEventListener("click", (e) => {
+    if (e.target !== e.currentTarget) return;
+    lightbox.classList.remove("active");
+    });
 </script>
+
+<style>
+    #lightbox {
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none;
+    }
+
+    #lightbox.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #lightbox img {
+        width: 90%;
+        object-fit: cover;
+        max-height: 30rem;
+        padding: 2px;
+        border-radius: 10px;
+
+    }
+</style>
