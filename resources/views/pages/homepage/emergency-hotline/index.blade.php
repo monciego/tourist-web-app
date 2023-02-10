@@ -150,6 +150,71 @@
                     </div>
                 </dl>
             </div>
+            <div id="map" class="w-full my-16 rounded-md h-[400px]"></div>
         </div>
     </div>
+
+
+    <script type="text/javascript">
+        function initMap() {
+                const myLatLng = { lat: 15.962587, lng: 119.904659 };
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 11,
+                    center: myLatLng,
+                });
+
+                var locations = {{ Js::from($locations) }};
+
+                var infowindow = new google.maps.InfoWindow();
+
+                var marker, i;
+
+                for (i = 0; i < locations.length; i++) {
+                      marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        map: map
+                      });
+
+                      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                        return function() {
+                          infowindow.setContent(locations[i][0]);
+                          infowindow.open(map, marker);
+                        }
+                      })(marker, i));
+
+                }
+            }
+
+            window.initMap = initMap;
+    </script>
+    {{-- <script>
+        let map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 15.962587, lng: 119.904659 },
+        zoom: 8,
+        scrollwheel: true,
+    });
+        const uluru = { lat: 15.962587, lng: 119.904659 };
+        let marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+            draggable: true,
+        });
+        google.maps.event.addListener(marker, "position_changed", function () {
+            let lat = marker.position.lat();
+            let lng = marker.position.lng();
+            $("#latitude").val(lat);
+            $("#longitude").val(lng);
+        });
+        google.maps.event.addListener(map, "click", function (event) {
+            pos = event.latLng;
+            marker.setPosition(pos);
+        });
+    }
+    </script> --}}
+
+    <script async defer type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
+
 </x-app-layout>

@@ -13,7 +13,14 @@ class EmergencyHotlineController extends Controller
      */
     public function index()
     {
-        return view('pages.homepage.emergency-hotline.index');
+         $locations = [
+            ['Dasol Public Market', 15.98871, 119.87610],
+            ['Dasol Police Station', 15.99109, 119.88069],
+            ['Dasol Fire Station', 15.99302, 119.87952],
+            ['Dasol Public Hospital', 16.00650, 119.87476],
+        ];
+
+        return view('pages.homepage.emergency-hotline.index', compact('locations'));
     }
 
     /**
