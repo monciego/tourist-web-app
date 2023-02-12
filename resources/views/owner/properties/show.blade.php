@@ -114,6 +114,7 @@
                         </div>
                     </div>
                 </div>
+                @include('owner.properties.faqs.index')
             </div>
             @include('owner.properties.location.add-location')
         </div>

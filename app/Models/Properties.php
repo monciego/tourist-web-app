@@ -46,4 +46,8 @@ class Properties extends Model
         // hasOne, hasMany, belongsTo, belongsToMany
         return $this->belongsTo(Categories::class);
     }
+
+    public function frequently_questions() {
+        return $this->hasMany(FrequentlyQuestion::class, 'property_id');
+    }
 }

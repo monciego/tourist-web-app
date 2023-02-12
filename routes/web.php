@@ -6,6 +6,8 @@ use App\Http\Controllers\BusinessOwnersController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\EmergencyHotlineController;
 use App\Http\Controllers\FallbackController;
+use App\Http\Controllers\FrequentlyAnswerController;
+use App\Http\Controllers\FrequentlyQuestionController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\OwnerPropertiesController;
@@ -64,6 +66,10 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
 // ** Route for owner
 Route::group(['middleware' => ['auth', 'role:owner']], function() {
     Route::resource('owner-properties', OwnerPropertiesController::class);
+    Route::resource('frequently-asked-questions', FrequentlyQuestionController::class);
+    Route::get('/frequently-asked-questions/create-question/{properties}', [FrequentlyQuestionController::class, 'createQuestions'])->name('create.question');
+    Route::resource('faq-answers', FrequentlyAnswerController::class);
+    Route::get('/frequently-asked-questions/answers/{frequentlyQuestion}', [FrequentlyAnswerController::class, 'createAnswers'])->name('create.answers');
     // owner properties storing data
     Route::post('/store-breadcrumbs-description', [OwnerPropertiesController::class, 'storeBreadcrumbs'])->name('store-breadcrumbs');
     Route::post('/store-description', [OwnerPropertiesController::class, 'storeDescription'])->name('store-description');
@@ -88,6 +94,7 @@ Route::group(['middleware' => ['auth', 'role:owner']], function() {
     Route::post('/remove-image-three/{id}', [OwnerPropertiesController::class, 'removeImageThree'])->name('remove.image_three');
     Route::post('/remove-image-four/{id}', [OwnerPropertiesController::class, 'removeImageFour'])->name('remove.image_four');
     Route::post('/remove-featurer/{id}', [OwnerPropertiesController::class, 'removeFeature'])->name('remove.feature');
+
 });
 
 // ** Route for users

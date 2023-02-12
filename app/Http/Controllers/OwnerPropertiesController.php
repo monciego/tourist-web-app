@@ -205,7 +205,7 @@ class OwnerPropertiesController extends Controller
      */
     public function show($id)
     {
-            $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->findOrFail($id); // add the properties details rlationship
+            $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details', 'frequently_questions')->findOrFail($id); // add the properties details rlationship
            if($properties->user_id != auth()->id()) {
              abort(403, 'Unauthorized Action');
             }

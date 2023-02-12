@@ -215,11 +215,9 @@
                     </div>
                 </div>
             </div>
-
-
-            {{-- --}}
         </div>
     </div>
+    @include('pages.listing.chatbot.chatbot')
 </x-app-layout>
 
 
