@@ -3,7 +3,9 @@
         <div
             class="bg-gray-200 flex items-center justify-between sticky top-0 right-0 left-0 text-gray-700 text-lg font-medium px-6 py-4">
             <span>
-                La Manila Beach Bistro
+                {{
+                $listing->property_name
+                }}
             </span>
             <svg x-cloak x-on:click="open = false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer">
