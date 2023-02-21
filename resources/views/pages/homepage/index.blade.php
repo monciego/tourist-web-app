@@ -17,13 +17,6 @@
             @endif
             @endauth
         </div>
-        <div class="px-6 pt-5">
-            {{-- <img src="http://openweathermap.org/img/wn/{{ $currentWeather['weather'][0]['icon'] }}@2x.png"
-                alt="icon"> --}}
-            <p>Dasol Weather: {{ round($currentWeather['main']['temp']) }}&#176;C</p>
-            <p>Feels like: {{ round($currentWeather['main']['feels_like']) }}&#176;C</p>
-            <p>Description: {{ ucfirst($currentWeather['weather'][0]['description']) }}</p>
-        </div>
     </div>
     @include('pages.homepage.feature-cards')
 

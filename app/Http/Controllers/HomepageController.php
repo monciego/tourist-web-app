@@ -24,13 +24,7 @@ class HomepageController extends Controller
         $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->inRandomOrder()->limit(4)->get();
         $homepage_datas = Homepage::get();
 
-        // weather
-        $location = 'Dasol';
-        $apiKey = '698070466b3afdc7587e714df356d6a3';
-        $response = Http::get("https://api.openweathermap.org/data/2.5/weather?q={$location}&appid={$apiKey}&units=metric");
-        $currentWeather = $response->json();
-
-        return view('pages.homepage.index', compact('properties', 'homepage_datas', 'currentWeather'));
+        return view('pages.homepage.index', compact('properties', 'homepage_datas'));
     }
 
     /**
