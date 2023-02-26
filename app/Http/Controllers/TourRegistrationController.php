@@ -40,7 +40,7 @@ class TourRegistrationController extends Controller
                 'status' => $request->status,
           ]);
 
-          return redirect(route('your-tickets.index'));
+          return redirect()->back()->with('success-message', 'Status saved successfully');
     }
 
     /**

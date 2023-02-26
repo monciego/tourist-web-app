@@ -35,6 +35,10 @@
 
         <!-- Page Content -->
         <main class="pt-14">
+            <div class="mt-8">
+                <x-success-message />
+                <x-danger-message />
+            </div>
             {{ $slot }}
         </main>
     </div>

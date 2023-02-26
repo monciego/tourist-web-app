@@ -53,7 +53,7 @@ class OwnerPropertiesController extends Controller
                 $data->property_est = $request->property_est;
                 $data->property_address = $request->property_address;
                   $data->save();
-        return redirect(route('owner-properties.index'));
+        return redirect()->back()->with('success-message', 'Data Saved Successfully!');
     }
     /*
         Adding Store Description
@@ -63,7 +63,7 @@ class OwnerPropertiesController extends Controller
                 $data->property_id = $request->property_id;
                 $data->property_description = $request->property_description;
                   $data->save();
-        return redirect(route('owner-properties.index'));
+             return redirect()->back()->with('success-message', 'Description Saved Successfully!');
     }
     /*
         Adding Store Details
@@ -73,7 +73,7 @@ class OwnerPropertiesController extends Controller
                 $data->property_id = $request->property_id;
                 $data->property_details = $request->property_details;
                 $data->save();
-        return redirect(route('owner-properties.index'));
+              return redirect()->back()->with('success-message', 'Details Saved Successfully!');
     }
     /*
         Adding Price
@@ -83,7 +83,7 @@ class OwnerPropertiesController extends Controller
                 $data->property_id = $request->property_id;
                 $data->property_price = $request->property_price;
                 $data->save();
-        return redirect(route('owner-properties.index'));
+              return redirect()->back()->with('success-message', 'Price Saved Successfully!');
     }
     /*
         Adding Price
@@ -94,7 +94,7 @@ class OwnerPropertiesController extends Controller
                 $data->latitude = $request->latitude;
                 $data->longitude = $request->longitude;
                 $data->save();
-        return redirect(route('owner-properties.index'));
+             return redirect()->back()->with('success-message', 'Location Saved Successfully!');
     }
     /*
         Adding Offers
@@ -104,7 +104,7 @@ class OwnerPropertiesController extends Controller
                 $data->property_id = $request->property_id;
                 $data->property_offers = $request->property_offers;
                 $data->save();
-        return redirect(route('owner-properties.index'));
+              return redirect()->back()->with('success-message', 'Offers Saved Successfully!');
     }
     /*
         Adding Image One
@@ -122,7 +122,7 @@ class OwnerPropertiesController extends Controller
                 }
                 $data->image_one = $imagePath;
                  $data->save();
-        return redirect(route('owner-properties.index'));
+        return redirect()->back()->with('success-message', 'Image Saved Successfully!');
     }
     /*
         Adding Image Two
@@ -140,7 +140,7 @@ class OwnerPropertiesController extends Controller
                 }
                 $data->image_two = $imagePath;
                  $data->save();
-        return redirect(route('owner-properties.index'));
+           return redirect()->back()->with('success-message', 'Image Saved Successfully!');
     }
     /*
         Adding Image three
@@ -158,7 +158,7 @@ class OwnerPropertiesController extends Controller
                 }
                 $data->image_three = $imagePath;
                  $data->save();
-        return redirect(route('owner-properties.index'));
+         return redirect()->back()->with('success-message', 'Image Saved Successfully!');
     }
     /*
         Adding Image Four
@@ -176,7 +176,7 @@ class OwnerPropertiesController extends Controller
                 }
                 $data->image_four = $imagePath;
                  $data->save();
-        return redirect(route('owner-properties.index'));
+        return redirect()->back()->with('success-message', 'Image Saved Successfully!');
     }
     /*
         Adding Image Four
@@ -194,7 +194,7 @@ class OwnerPropertiesController extends Controller
                 }
                 $data->feature = $imagePath;
                  $data->save();
-        return redirect(route('owner-properties.index'));
+         return redirect()->back()->with('success-message', 'Image Saved Successfully!');
     }
 
     /**
@@ -249,7 +249,7 @@ class OwnerPropertiesController extends Controller
             'property_address' => null
 
         ]);
-     return redirect(route('owner-properties.index'));
+       return redirect()->back()->with('danger-message', 'Data Deleted Successfully!');
     }
     /*
         remove description
@@ -259,7 +259,7 @@ class OwnerPropertiesController extends Controller
          OwnerProperties::where('property_id', $id)->update([
             'property_description' => null,
         ]);
-     return redirect(route('owner-properties.index'));
+       return redirect()->back()->with('danger-message', 'Description Deleted Successfully!');
     }
     /*
         remove offers
@@ -269,7 +269,7 @@ class OwnerPropertiesController extends Controller
          OwnerProperties::where('property_id', $id)->update([
             'property_offers' => null,
         ]);
-     return redirect(route('owner-properties.index'));
+       return redirect()->back()->with('danger-message', 'Offers Deleted Successfully!');
     }
     /*
         remove details
@@ -279,7 +279,7 @@ class OwnerPropertiesController extends Controller
          OwnerProperties::where('property_id', $id)->update([
             'property_details' => null,
         ]);
-     return redirect(route('owner-properties.index'));
+       return redirect()->back()->with('danger-message', 'Details Deleted Successfully!');
     }
     /*
         remove details
@@ -289,7 +289,7 @@ class OwnerPropertiesController extends Controller
          OwnerProperties::where('property_id', $id)->update([
             'property_price' => null,
         ]);
-     return redirect(route('owner-properties.index'));
+       return redirect()->back()->with('danger-message', 'Price Deleted Successfully!');
     }
     /*
         remove image one
@@ -298,7 +298,7 @@ class OwnerPropertiesController extends Controller
          OwnerProperties::where('property_id', $id)->update([
             'image_one' => null,
         ]);
-     return redirect(route('owner-properties.index'));
+         return redirect()->back()->with('danger-message', 'Image Deleted Successfully!');
     }
     /*
         remove image two
@@ -307,7 +307,7 @@ class OwnerPropertiesController extends Controller
          OwnerProperties::where('property_id', $id)->update([
             'image_two' => null,
         ]);
-     return redirect(route('owner-properties.index'));
+       return redirect()->back()->with('danger-message', 'Image Deleted Successfully!');
     }
     /*
         remove image three
@@ -316,7 +316,7 @@ class OwnerPropertiesController extends Controller
          OwnerProperties::where('property_id', $id)->update([
             'image_three' => null,
         ]);
-     return redirect(route('owner-properties.index'));
+        return redirect()->back()->with('danger-message', 'Image Deleted Successfully!');
     }
     /*
         remove image four
@@ -325,7 +325,7 @@ class OwnerPropertiesController extends Controller
          OwnerProperties::where('property_id', $id)->update([
             'image_four' => null,
         ]);
-     return redirect(route('owner-properties.index'));
+       return redirect()->back()->with('danger-message', 'Image Deleted Successfully!');
     }
     /*
         remove feature
@@ -334,6 +334,6 @@ class OwnerPropertiesController extends Controller
          OwnerProperties::where('property_id', $id)->update([
             'feature' => null,
         ]);
-     return redirect(route('owner-properties.index'));
+       return redirect()->back()->with('danger-message', 'Image Deleted Successfully!');
     }
 }

@@ -49,7 +49,7 @@ class PropertiesController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        return redirect(route('businesses.index'));
+        return redirect()->back()->with('success-message', 'Property Saved Successfully!');
     }
 
     /**

@@ -48,7 +48,7 @@ class CategoriesController extends Controller
             'category_name' => $request->category_name,
         ]);
 
-        return redirect(route('categories.index'));
+        return redirect()->back()->with('success-message', 'Category Saved Successfully!');
     }
 
     /**

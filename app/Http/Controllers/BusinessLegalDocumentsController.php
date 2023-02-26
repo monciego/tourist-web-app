@@ -34,7 +34,7 @@ class BusinessLegalDocumentsController extends Controller
             'legal_document_file' => $this->storeFile($request),
         ]);
 
-        return redirect(route('businesses.index'));
+        return redirect()->back()->with('success-message', 'Document Saved Successfully!');
     }
 
     private function storeFile($request) {

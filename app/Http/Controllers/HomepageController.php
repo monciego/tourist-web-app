@@ -44,7 +44,7 @@ class HomepageController extends Controller
                 $data->id = Auth::user()->id;
                 $data->homepage_image = $imagePath;
                  $data->save();
-        return redirect(route('homepage'));
+        return redirect(route('homepage'))->with('success-message', 'Image Saved Successfully!');
     }
 
     /**
@@ -58,7 +58,7 @@ class HomepageController extends Controller
             $data->id = Auth::user()->id;
             $data->homepage_tagline = $request->homepage_tagline;
             $data->save();
-        return redirect(route('homepage'));
+        return redirect(route('homepage'))->with('success-message', 'Tagline Saved Successfully!');
     }
 
     /**

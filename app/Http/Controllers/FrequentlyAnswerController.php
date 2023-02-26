@@ -59,7 +59,7 @@ class FrequentlyAnswerController extends Controller
             'faq_answers' => $request->faq_answers,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success-message', 'Answers Saved Successfully!');
     }
 
     /**

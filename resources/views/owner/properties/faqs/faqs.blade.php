@@ -1,6 +1,6 @@
-<div class="flex justify-center gap-4 items-center mt-4">
+<div class="grid grid-cols-12 gap-4 items-center mt-4">
     @foreach ($owner_properties->frequently_questions as $item)
-    <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
+    <div class="col-span-full sm:col-span-6 xl:col-span-4 block p-6 rounded-lg shadow-lg bg-white w-full">
         <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">{{ $item->faq_questions }}</h5>
         @if (!empty($item->frequently_answer->faq_answers))
         <p class="text-gray-700 text-base mb-4">
