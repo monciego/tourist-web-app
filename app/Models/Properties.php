@@ -50,4 +50,8 @@ class Properties extends Model
     public function frequently_questions() {
         return $this->hasMany(FrequentlyQuestion::class, 'property_id');
     }
+
+    public function tour_registration() {
+        return $this->hasOne(TourRegistration::class, 'property_id' );
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Properties;
 use App\Models\TourRegistration;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,6 +20,31 @@ class RedirectLoginController extends Controller
     public function __invoke(Request $request)
     {
         if (Auth::user()->hasRole('superadministrator')) {
+
+        // total number of tourist per year
+        $total_tourists_per_year = DB::table('tour_registrations')->select('tour_date',
+                  DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
+                  DB::raw( 'SUM(number_of_children) as total_number_of_children'),
+                  DB::raw( 'SUM(number_of_infants) as total_number_of_infants')
+                  )
+                  ->where('status', 'already_left')
+                  ->groupBy('tour_date')
+                  ->get();
+
+            // number of tourists
+            $adults = TourRegistration::where('status', 'already_left')->pluck('number_of_adults')->toArray();
+            $children = TourRegistration::where('status', 'already_left')->pluck('number_of_children')->toArray();
+            $infants = TourRegistration::where('status', 'already_left')->pluck('number_of_infants')->toArray();
+            $total_of_adults = array_sum($adults);
+            $total_of_children = array_sum($children);
+            $total_of_infants = array_sum($infants);
+            $totalTourists = $total_of_adults + $total_of_children + $total_of_infants;
+
+            // day tourists
+            $day_tourists = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->count();
+            $night_tourists = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->count();
+
+
             //  $users = User::count();
             // $users = DB::table('role_user')->where('role_id', 3)->get();
             $usersJanuary = User::whereRoleIs('user')->whereMonth('created_at', 1)->count();
@@ -36,7 +62,7 @@ class RedirectLoginController extends Controller
             return view('superadmin.dashboard.index', compact(
                 'usersJanuary', 'usersFebruary','usersMarch', 'usersApril', 'usersMay',
                 'usersJune', 'usersJuly', 'usersAugust', 'usersSeptember', 'usersOctober',
-                'usersNovember', 'usersDecember' )
+                'usersNovember', 'usersDecember', 'totalTourists', 'day_tourists', 'night_tourists', 'total_tourists_per_year' )
              );
         } elseif (Auth::user()->hasRole('owner')) {
             return view('owner.dashboard.index');
