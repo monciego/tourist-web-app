@@ -76,32 +76,16 @@
             </div>
         </div>
 
-        <div class="flex items-center justify-center mt-4">
-            <div x-show="searchOpen" x-cloak class="inline-flex rounded-md gap-4" role="group">
-                <div class="col-span-12 w-full   bg-rose-700 rounded-xl pb-4">
-                    <img src="https://a0.muscache.com/im/pictures/a433b4d0-8183-4523-b4c5-99b81c5729c1.jpg?im_w=320"
-                        class="rounded-t-xl object-cover max-h-32 w-full" />
-                    <p class="text-base md:text-3xl text-gray-50 pt-5 pl-3"> Beaches </p>
+        <div class=" mt-4">
+            <div x-show="searchOpen" x-cloak class=" rounded-md gap-4" role="group">
+                <div class="w-full rounded-xl relative">
+                    <img src="https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        class="rounded-xl object-cover max-h-72 w-full" />
+                    <a href="{{ route('listing.index') }}"
+                        class="uppercase rounded-md hover:bg-green-700 text-bold absolute bottom-4 right-4 px-6 py-2 text-white bg-green-600">Begin
+                        your
+                        journey</a>
                 </div>
-
-                {{-- <div class="col-span-12 w-full   bg-rose-700 rounded-xl pb-4">
-                    <img src="https://a0.muscache.com/im/pictures/a433b4d0-8183-4523-b4c5-99b81c5729c1.jpg?im_w=320"
-                        class="rounded-t-xl object-cover max-h-32 w-full" />
-                    <p class="text-base md:text-3xl text-gray-50 pt-5 pl-3"> Beaches </p>
-                </div>
-
-                <div class="col-span-12 w-full   bg-rose-700 rounded-xl pb-4">
-                    <img src="https://a0.muscache.com/im/pictures/a433b4d0-8183-4523-b4c5-99b81c5729c1.jpg?im_w=320"
-                        class="rounded-t-xl object-cover max-h-32 w-full" />
-                    <p class="text-base md:text-3xl text-gray-50 pt-5 pl-3"> Beaches </p>
-                </div>
-
-                <div class="col-span-12 w-full   bg-rose-700 rounded-xl pb-4">
-                    <img src="https://a0.muscache.com/im/pictures/a433b4d0-8183-4523-b4c5-99b81c5729c1.jpg?im_w=320"
-                        class="rounded-t-xl object-cover max-h-32 w-full" />
-                    <p class="text-base md:text-3xl text-gray-50 pt-5 pl-3"> Beaches </p>
-                </div>
-                --}}
             </div>
         </div>
     </div>
