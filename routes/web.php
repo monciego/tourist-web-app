@@ -5,6 +5,7 @@ use App\Http\Controllers\BusinessLegalDocumentsController;
 use App\Http\Controllers\BusinessOwnersController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\EmergencyHotlineController;
+use App\Http\Controllers\ExportDocuments;
 use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\FrequentlyAnswerController;
 use App\Http\Controllers\FrequentlyQuestionController;
@@ -61,6 +62,12 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     // add homepage image
    Route::post('/store-homepage-image', [HomepageController::class, 'storeHomepageImage'])->name('store.homepage_image');
    Route::post('/store-homepage-tag-line', [HomepageController::class, 'storeHomepageTagLine'])->name('store.homepage_tagline');
+
+    // export word
+    Route::get('document/export-arrival-per-year', [ExportDocuments::class, 'arrivalPerYear'])->name('export.arrival-per-year');
+    Route::get('document/export-tourists', [ExportDocuments::class, 'numberOfTourists'])->name('export.tourists');
+    Route::get('document/export-day-tourists', [ExportDocuments::class, 'dayTourist'])->name('export.day-tourists');
+    Route::get('document/export-night-tourists', [ExportDocuments::class, 'nightTourist'])->name('export.night-tourists');
 });
 
 // ** Route for owner
