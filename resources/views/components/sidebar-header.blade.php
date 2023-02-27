@@ -1,21 +1,12 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-slate-200 z-30">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-end h-16">
-            {{-- <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                    </a>
-                </div>
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-            </div> --}}
+        <div class="flex justify-between lg:justify-end h-16">
+            <div class="shrink-0 flex items-center">
+                <a href="{{ route('dashboard') }}">
+                    <x-application-logo class="lg:hidden block h-10 w-auto fill-current text-gray-600" />
+                </a>
+            </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden lg:block mt-6">
@@ -70,11 +61,45 @@
     <div :class="{'block': open, 'hidden': ! open}" class="lg:hidden fixed left-0 right-0 z-50 bg-white shadow">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                @if (Auth::user()->hasRole('owner|superadministrator'))
                 {{ __('Dashboard') }}
+                @endif
+                @if (Auth::user()->hasRole('staff'))
+                {{ __('Verify Tickets') }}
+                @endif
             </x-responsive-nav-link>
+            {{-- superadmin --}}
             @if (Auth::user()->hasRole('superadministrator'))
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Superadmin') }}
+            <x-responsive-nav-link :href="route('register-owner-account')"
+                :active="request()->routeIs('register-owner-account')">
+                {{ __('Create Owner Account') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('businesses.index')" :active="request()->routeIs('businesses.index')">
+                {{ __('Business Owners') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                {{ __('Categories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('register.staff')" :active="request()->routeIs('register.staff')">
+                {{ __('Create Staff Account') }}
+            </x-responsive-nav-link>
+            @endif
+
+            {{-- owner --}}
+            @if (Auth::user()->hasRole('owner'))
+            <x-responsive-nav-link :href="route('owner-properties.index')"
+                :active="request()->routeIs('owner-properties.index')">
+                {{ __('Properties') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('messages')" :active="request()->routeIs('messages')">
+                {{ __('Messages') }}
+            </x-responsive-nav-link>
+            @endif
+
+            {{-- staff --}}
+            @if (Auth::user()->hasRole('staff'))
+            <x-responsive-nav-link :href="route('staff.index')" :active="request()->routeIs('staff.index')">
+                {{ __('Verified Tickets') }}
             </x-responsive-nav-link>
             @endif
         </div>
