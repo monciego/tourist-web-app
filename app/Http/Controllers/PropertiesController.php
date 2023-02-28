@@ -70,9 +70,11 @@ class PropertiesController extends Controller
      * @param  \App\Models\Properties  $properties
      * @return \Illuminate\Http\Response
      */
-    public function show(Properties $properties)
+    public function show($id)
     {
-        //
+        $property = Properties::with('business_legal_documents', 'properties_details', 'frequently_questions')->findOrFail($id); // add the properties details rlationship
+
+        return view('superadmin.business-owners.property-information', compact('property'));
     }
 
     /**
