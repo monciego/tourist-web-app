@@ -45,6 +45,8 @@ class PropertiesController extends Controller
             'property_description' => 'nullable',
             'property_address' => 'nullable',
             'date_of_registration' => 'nullable',
+            'date_of_app' => 'nullable',
+            'app_number' => 'nullable',
          ]);
 
          Properties::create([
@@ -55,6 +57,8 @@ class PropertiesController extends Controller
             'property_address' => $request->property_address,
             'date_of_registration' => $request->date_of_registration,
             'category_id' => $request->category_id,
+            'date_of_app' => $request->date_of_app,
+            'app_number' => $request->app_number,
         ]);
 
         return redirect()->back()->with('success-message', 'Property Saved Successfully!');

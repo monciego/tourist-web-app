@@ -30,6 +30,18 @@
                 <input type="hidden" name="user_id" value="{{ $business->id }}">
 
                 <div>
+                    <x-label for="date_of_app" :value="__('Date of Application')" />
+                    <x-input id="date_of_app" class="block mt-1 w-full" type="date" name="date_of_app"
+                        :value="old('date_of_app')" required autofocus />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="app_number" :value="__('App #')" />
+                    <x-input id="app_number" class="block mt-1 w-full" type="text" name="app_number"
+                        :value="old('app_number')" required autofocus />
+                </div>
+
+                <div class="mt-4">
                     <x-label for="permit_number" :value="__('Permit Number')" />
                     <x-input id="permit_number" class="block mt-1 w-full" type="text" name="permit_number"
                         :value="old('permit_number')" required autofocus />

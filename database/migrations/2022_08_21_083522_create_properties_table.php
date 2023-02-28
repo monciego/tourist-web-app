@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreignId('category_id');
+            $table->date('date_of_app')->nullable();
+            $table->string('app_number')->nullable();
             $table->string('permit_number')->nullable();
             $table->string('property_name');
             $table->longText('property_description')->nullable();

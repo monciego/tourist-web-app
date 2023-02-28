@@ -17,6 +17,8 @@ class Properties extends Model
         'property_description',
         'property_address',
         'date_of_registration',
+        'date_of_app',
+        'app_number',
     ];
 
 
