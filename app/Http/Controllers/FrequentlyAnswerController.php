@@ -36,7 +36,6 @@ class FrequentlyAnswerController extends Controller
      */
     public function createAnswers(FrequentlyQuestion $frequentlyQuestion)
     {
-        // $owner_properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details', 'frequently_questions')->findOrFail($properties->id);
         $question = FrequentlyQuestion::with('frequently_answer')->findOrFail($frequentlyQuestion->id);
         return view('owner.properties.faqs.create-answer', compact('question'));
     }
