@@ -12,7 +12,11 @@ class Properties extends Model
     protected $fillable = [
         'user_id',
         'category_id',
+        'permit_number',
         'property_name',
+        'property_description',
+        'property_address',
+        'date_of_registration',
     ];
 
 

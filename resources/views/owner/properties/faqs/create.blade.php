@@ -16,7 +16,7 @@
                             <x-label class="mb-2" for="faq_questions" :value="__('Questions')" />
 
                             <textarea id="faq_questions" name="faq_questions"
-                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ old('activity_instruction') }}</textarea>
+                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ old('faq_questions') }}</textarea>
                         </div>
 
                         <div class="flex items-center justify-center mt-4">

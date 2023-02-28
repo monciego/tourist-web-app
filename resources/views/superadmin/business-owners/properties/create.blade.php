@@ -13,10 +13,11 @@
 
     {{-- create modal --}}
     <div x-show="open" x-cloak>
-        <div class="absolute bg-slate-50 shadow-md rounded-md top-2/4 left-2/4 w-3/4 -translate-y-2/4 -translate-x-2/4"
+        <div class="h-3/4  overflow-y-scroll absolute bg-slate-50 shadow-md rounded-md top-2/4 left-2/4 w-3/4 -translate-y-2/4 -translate-x-2/4"
             style="z-index: 501;">
 
-            <header class="flex justify-between items-center  p-4 border rounded-md border-b-1 border-gray-200">
+            <header
+                class="sticky left-0 top-0 right-0 flex justify-between items-center  p-4 border rounded-md border-b-1 bg-slate-50 border-gray-200">
                 <h2 class="font-medium">Add Property</h2>
                 <svg x-on:click="open = false" class="h-4 w-4 cursor-pointer" viewBox="0 0 16 16" fill="gray">
                     <path
@@ -29,6 +30,12 @@
                 <input type="hidden" name="user_id" value="{{ $business->id }}">
 
                 <div>
+                    <x-label for="permit_number" :value="__('Permit Number')" />
+                    <x-input id="permit_number" class="block mt-1 w-full" type="text" name="permit_number"
+                        :value="old('permit_number')" required autofocus />
+                </div>
+
+                <div class="mt-4">
                     <x-label for="property_name" :value="__('Property Name')" />
                     <x-input id="property_name" class="block mt-1 w-full" type="text" name="property_name"
                         :value="old('property_name')" required autofocus />
@@ -58,6 +65,25 @@
                     </select>
                 </div>
                 @endif
+
+                <div class="mt-4">
+                    <x-label class="mb-2" for="property_description" :value="__('Property Description')" />
+
+                    <textarea id="property_description" name="property_description"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ old('property_description') }}</textarea>
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="property_address" :value="__('Property Address')" />
+                    <x-input id="property_address" class="block mt-1 w-full" type="text" name="property_address"
+                        :value="old('property_address')" autofocus />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="date_of_registration" :value="__('Property Address')" />
+                    <x-input id="date_of_registration" class="block mt-1 w-full" type="date" name="date_of_registration"
+                        :value="old('date_of_registration')" autofocus />
+                </div>
 
                 <button
                     class="mt-4 bg-indigo-500 hover:bg-indigo-600 inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest  active:bg-indigo-900 focus:outline-none focus:border-v-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">

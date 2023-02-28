@@ -41,11 +41,19 @@ class PropertiesController extends Controller
             'user_id' => 'required',
             'category_id' =>  'required',
             'property_name' => 'required',
+            'permit_number' => 'nullable',
+            'property_description' => 'nullable',
+            'property_address' => 'nullable',
+            'date_of_registration' => 'nullable',
          ]);
 
          Properties::create([
             'user_id' => $request->user_id,
+            'permit_number' => $request->permit_number,
             'property_name' => $request->property_name,
+            'property_description' => $request->property_description,
+            'property_address' => $request->property_address,
+            'date_of_registration' => $request->date_of_registration,
             'category_id' => $request->category_id,
         ]);
 
