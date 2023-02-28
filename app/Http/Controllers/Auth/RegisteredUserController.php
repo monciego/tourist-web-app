@@ -73,8 +73,15 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+
+        if($request->role_id == 'owner') {
+            return redirect()->back()->with('success-message', 'Owner Account Registered!');
+        } elseif($request->role_id == 'staff') {
+            return redirect()->back()->with('success-message', 'Staff Account Registered!');
+        } else {
+            Auth::login($user);
+            return redirect(RouteServiceProvider::HOME);
+        }
     }
 }
