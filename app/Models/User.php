@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->hasMany(Properties::class);
     }
 
+    public function business_owner() {
+        return $this->hasOne(BusinessOwners::class);
+    }
+
+
     /**
      * The attributes that should be cast.
      *

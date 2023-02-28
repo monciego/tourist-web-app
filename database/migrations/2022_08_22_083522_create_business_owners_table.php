@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('business_owners', function (Blueprint $table) { // property information
             $table->id();
-            $table->unsignedBigInteger('property_id');
-            $table->longText('business_description')->nullable();
-            $table->integer('business_year_founded')->nullable();
-            $table->string('business_tags')->nullable(); // e.g amusement park
-            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->string('name_of_registrant')->nullable();
+            $table->string('owner_address')->nullable();
+            $table->string('owner_gender')->nullable();
+            $table->date('owner_date_of_birth')->nullable();
+            $table->string('owner_contact_number')->nullable();
+                    $table->foreign('user_id')->references('id')->on('users')
+                    ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

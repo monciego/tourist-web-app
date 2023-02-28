@@ -10,10 +10,16 @@ class BusinessOwners extends Model
     use HasFactory;
 
     protected $fillable = [
-        'property_id',
-        'business_description',
-        'business_year_founded',
-        'business_file',
-        'business_tags'
+        'user_id',
+        'name_of_registrant',
+        'owner_address',
+        'owner_gender',
+        'owner_date_of_birth',
+        'owner_contact_number',
     ];
+
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

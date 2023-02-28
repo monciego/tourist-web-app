@@ -30,10 +30,6 @@ class Properties extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function business_owner() { // property information / business information
-        return $this->hasOne(BusinessOwners::class, 'property_id');
-    }
-
     public function business_legal_documents() {
         return $this->hasMany(BusinessLegalDocuments::class, 'property_id');
     }
