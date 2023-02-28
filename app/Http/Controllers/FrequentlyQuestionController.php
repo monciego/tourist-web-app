@@ -36,10 +36,7 @@ class FrequentlyQuestionController extends Controller
      */
     public function createQuestions(Properties $properties)
     {
-        // $owner_properties = Properties::with('business_owner', 'business_legal_documents',
-        // 'properties_details', 'frequently_questions')->findOrFail($properties->id);
-
-        $owner_properties = Properties::with('business_owner', 'business_legal_documents',
+        $owner_properties = Properties::with('business_legal_documents',
         'properties_details', 'frequently_questions', 'frequently_questions.frequently_answer')->findOrFail($properties->id);
 
         // dd($owner_properties);

@@ -113,7 +113,7 @@ class HomepageController extends Controller
                 ->where('owner_properties.property_id', $id)
 		        ->get();
 
-        $listing = Properties::with('business_owner', 'business_legal_documents', 'properties_details', 'frequently_questions', 'frequently_questions.frequently_answer')->findOrFail($id); // add the properties details rlationship
+        $listing = Properties::with('business_legal_documents', 'properties_details', 'frequently_questions', 'frequently_questions.frequently_answer')->findOrFail($id); // add the properties details rlationship
 
          if(empty($listing->properties_details->property_tag)) {
              return abort(404);

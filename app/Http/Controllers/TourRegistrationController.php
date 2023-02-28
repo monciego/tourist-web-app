@@ -50,7 +50,7 @@ class TourRegistrationController extends Controller
      */
     public function registerTour($id)
     {
-       $property = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->findOrFail($id);
+       $property = Properties::with('business_legal_documents', 'properties_details')->findOrFail($id);
        $date = Carbon::now()->format('Y-m-d');
        return view('user.tour-registration.register', compact('property', 'date'));
     }

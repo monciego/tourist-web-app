@@ -54,7 +54,7 @@ class MessagesController extends Controller
     public function create($id)
     {
         $users = User::where('id', '!=', Auth::id())->get();
-        $properties = Properties::with('business_owner', 'business_legal_documents', 'properties_details')->findOrFail($id);
+        $properties = Properties::with('business_legal_documents', 'properties_details')->findOrFail($id);
         return view('messenger.create', compact('users', 'properties'));
     }
 

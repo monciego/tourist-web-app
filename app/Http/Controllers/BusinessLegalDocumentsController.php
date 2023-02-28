@@ -17,7 +17,7 @@ class BusinessLegalDocumentsController extends Controller
 
     public function show($id)
     {
-        $properties = Properties::with('business_owner', 'business_legal_documents')->findOrFail($id);
+        $properties = Properties::with('business_legal_documents')->findOrFail($id);
         return view('superadmin.business-owners.properties.legal-documents.index', compact('properties'));
     }
 
