@@ -65,7 +65,8 @@ class RedirectLoginController extends Controller
                 'usersNovember', 'usersDecember', 'totalTourists', 'day_tourists', 'night_tourists', 'total_tourists_per_year' )
              );
         } elseif (Auth::user()->hasRole('owner')) {
-            return view('owner.dashboard.index');
+             $business = User::whereRoleIs('owner')->with('properties', 'business_owner')->findOrFail(auth()->id());
+            return view('owner.dashboard.index', compact('business'));
         } elseif (Auth::user()->hasRole('staff')) {
             $keyword = $request->get('search');
             $tickets = TourRegistration::with('user', 'property')->latest()->filter(request(['search']))->get();
