@@ -1,5 +1,8 @@
 <x-app-sidebar-layout>
     @section('title', 'Business Owners')
+    <header class="pb-4 text-lg border-b border-slate-100 flex justify-between items-center">
+        <h2 class="font-semibold text-slate-800">Business Owners</h2>
+    </header>
     <div class="grid grid-cols-6 gap-2">
         @foreach ($businesses as $business )
         <div class="col-span-6 lg:col-span-2 p-6 w-full rounded-lg border shadow-md bg-gray-800 border-gray-700">
@@ -10,14 +13,10 @@
                 </path>
             </svg>
             <a href="{{ route('businesses.show', $business) }}">
-                <h5 class="mb-2 text-2xl font-semibold tracking-tight  text-white">{{ $business->name }}
+                <h5 class="mb-2 text-2xl font-semibold tracking-tight  text-white">
+                    {{ $business->name }}
                 </h5>
             </a>
-            <p class="mb-3 font-normal text-gray-400">
-                {{-- {{ $business->business_owner->business_description ?? 'The description of this property is not
-                filled
-                yet.'}} --}}
-            </p>
             <a href="{{ route('businesses.properties', $business) }}"
                 class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 Read more
