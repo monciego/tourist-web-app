@@ -79,7 +79,7 @@
         <div class=" mt-4">
             <div x-show="searchOpen" x-cloak class=" rounded-md gap-4" role="group">
                 <div class="w-full rounded-xl relative">
-                    <img src="https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    <img src="{{ asset('assets/images/navigation-image.jpeg') }}"
                         class="rounded-xl object-cover max-h-72 w-full" />
                     <a href="{{ route('listing.index') }}"
                         class="uppercase rounded-md hover:bg-green-700 text-bold absolute bottom-4 right-4 px-6 py-2 text-white bg-green-600">Begin

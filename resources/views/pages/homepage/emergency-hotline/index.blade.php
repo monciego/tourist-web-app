@@ -16,8 +16,7 @@
                     <div class="relative pl-16">
                         <dt class="text-base font-semibold leading-7 text-gray-900">
                             <div class="absolute top-0 left-0 flex h-12 w-12 items-center justify-center">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Bureau_of_Fire_Protection.png/210px-Bureau_of_Fire_Protection.png"
-                                    alt="BFP">
+                                <img src="{{ asset('assets/images/bfp-logo.png') }}" alt="BFP">
                             </div>
                             Bureau of Fire Protection
                         </dt>
