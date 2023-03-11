@@ -17,9 +17,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(LaratrustSeeder::class);
         $this->call(CategoriesSeeder::class);
-        // \App\Models\User::factory(10)->create();
+        $this->call(BusinessOwnersSeeder::class);
+        $this->call(PropertiesSeeder::class);
+        $this->call(OwnerPropertiesSeeder::class);
+        //  \App\Models\User::factory(50)->create();
 
       $user = \App\Models\User::factory()->create([
+            'id' => 1,
             'name' => 'Office',
             'email' => 'municipalityofdasol@gmail.com',
             'password' => Hash::make('password'),
