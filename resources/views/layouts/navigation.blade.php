@@ -1,3 +1,23 @@
+<?php
+  $location = 'Dasol';
+  $apiKey = '698070466b3afdc7587e714df356d6a3';
+  $googleAPIURL = "https://api.openweathermap.org/data/2.5/weather?q={$location}&appid={$apiKey}&units=metric";
+  $ch = curl_init();
+
+  curl_setopt($ch, CURLOPT_HEADER, 0);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_URL, $googleAPIURL);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+  curl_setopt($ch, CURLOPT_VERBOSE, 0);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+  $response = curl_exec($ch);
+
+  curl_close($ch);
+   $data = json_decode($response);
+?>
+
+
 <nav x-data="{ open: false, searchOpen: false }"
     class="bg-white border-b fixed left-0 right-0 top-0 border-gray-100 z-[999]">
     <div x-show="searchOpen" x-cloak x-on:click="searchOpen = false"
