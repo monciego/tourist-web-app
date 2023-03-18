@@ -42,7 +42,7 @@
         @endauth
     </div>
 
-    <x-dropdown align="right" width="48">
+    <x-dropdown align="right" width="">
         <x-slot name="trigger">
             <button
                 class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
@@ -64,9 +64,6 @@
         </x-slot>
 
         <x-slot name="content">
-            <x-dropdown-link class="font-bold" :href="route('emergency-hotline.index')">
-                {{ __('Emergency Hotlines') }}
-            </x-dropdown-link>
             @guest
             <x-dropdown-link class="font-bold" :href="route('register')">
                 {{ __('Sign up') }}
@@ -75,7 +72,64 @@
             <x-dropdown-link :href="route('login')">
                 {{ __('Log in') }}
             </x-dropdown-link>
+            <hr>
             @endguest
+            {{-- About --}}
+            <span
+                class="block font-bold px-4 py-2 text-sm leading-5 text-gray-700  focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                About
+            </span>
+            <x-dropdown-link class="font-medium ml-4" :href="route('tagline')">
+                {{ __('Tagline') }}
+            </x-dropdown-link>
+            <x-dropdown-link class="font-medium ml-4" :href="route('municipalSeal')">
+                {{ __('Municipal Seal') }}
+            </x-dropdown-link>
+            <x-dropdown-link class="font-medium ml-4" :href="route('historyOfDasol')">
+                {{ __('History of Dasol') }}
+            </x-dropdown-link>
+            <x-dropdown-link class="font-medium ml-4" :href="route('aboutDasol')">
+                {{ __('About Dasol') }}
+            </x-dropdown-link>
+            <hr>
+            {{-- Product --}}
+            <span
+                class="block font-bold px-4 py-2 text-sm leading-5 text-gray-700  focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                Product
+            </span>
+            <x-dropdown-link class="font-medium ml-4" :href="route('saltProductionAndProcessing')">
+                {{ __('Salt Production and Processing') }}
+            </x-dropdown-link>
+            <x-dropdown-link class="font-medium ml-4" :href="route('dasolSaltIndustry')">
+                {{ __('Dasol Salt Industry') }}
+            </x-dropdown-link>
+            <hr>
+            {{-- Municipal Tourism and Cultural Affairs Office --}}
+            <span
+                class="block font-bold px-4 py-2 text-sm leading-5 text-gray-700  focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                Municipal Tourism and Cultural Affairs Office
+            </span>
+            <x-dropdown-link class="font-medium ml-4" :href="route('safetyGuidelines')">
+                {{ __('Safety Guidelines') }}
+            </x-dropdown-link>
+            <x-dropdown-link class="font-medium ml-4" :href="route('asinFestivalBackStory')">
+                {{ __('Asin Festival Back Story') }}
+            </x-dropdown-link>
+            <x-dropdown-link class="font-medium ml-4" :href="route('missDasol')">
+                {{ __('Miss Dasol & Asin Festival History') }}
+            </x-dropdown-link>
+            <hr>
+            <x-dropdown-link class="font-bold" :href="route('listing.index')">
+                {{ __('Destinations') }}
+            </x-dropdown-link>
+            <hr>
+            <x-dropdown-link class="font-bold" :href="route('emergency-hotline.index')">
+                {{ __('Emergency Hotlines') }}
+            </x-dropdown-link>
+            <hr>
+            <x-dropdown-link class="font-bold" :href="route('contact.index')">
+                {{ __('Contact Us') }}
+            </x-dropdown-link>
             @auth
             <div
                 class="block italic border-b border-gray-200 px-4 py-2 text-sm leading-5 text-gray-700  focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">

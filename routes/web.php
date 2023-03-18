@@ -16,6 +16,7 @@ use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RedirectLoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\TourRegistrationController;
@@ -35,6 +36,16 @@ Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 Route::get('/listing', [ListingController::class, 'index'])->name('listing.index');
 Route::get('/listing/{id}', [HomepageController::class, 'show'])->name('listing.show');
 Route::resource('/emergency-hotline', EmergencyHotlineController::class);
+Route::get('/tagline', [PagesController::class, 'tagline'])->name('tagline');
+Route::get('/municipal-seal', [PagesController::class, 'municipalSeal'])->name('municipalSeal');
+Route::get('/history-of-dasol', [PagesController::class, 'historyOfDasol'])->name('historyOfDasol');
+Route::get('/about-dasol', [PagesController::class, 'aboutDasol'])->name('aboutDasol');
+Route::get('/salt-production-and-processing', [PagesController::class, 'saltProductionAndProcessing'])->name('saltProductionAndProcessing');
+Route::get('/dasol-salt-industry', [PagesController::class, 'dasolSaltIndustry'])->name('dasolSaltIndustry');
+Route::get('/safety-guidelines', [PagesController::class, 'safetyGuidelines'])->name('safetyGuidelines');
+Route::get('/asin-festival-back-story', [PagesController::class, 'asinFestivalBackStory'])->name('asinFestivalBackStory');
+Route::get('/miss-dasol-and-asin-festival-history', [PagesController::class, 'missDasol'])->name('missDasol');
+Route::get('/contact-us', [PagesController::class, 'contact'])->name('contact.index');
 
 // ** Route for owner and superadministrator
 Route::group(['middleware' => ['auth', 'role:owner|superadministrator|staff']], function() {
