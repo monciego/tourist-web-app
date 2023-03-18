@@ -28,6 +28,8 @@
 
     @forelse ($tickets as $ticket)
     @if ($keyword === $ticket->tour_code )
+
+    @if ($ticket->cancel === 0)
     <form method="POST" action="{{ route('verify.ticket') }}">
         @csrf
         <input name="tour_code" type="hidden" value="{{ $ticket->tour_code }}">
@@ -38,6 +40,7 @@
                 @endif id="verified" name="verified" type="checkbox"
                 class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
             </div>
+            <input type="hidden" value="{{ Auth::user()->name }}" name="verified_by">
             <div class="ml-3 text-sm">
                 <label for="verified" class="font-medium text-gray-700">Verify</label>
                 <p class="text-gray-500">Check this checkbox to verify this ticket.</p>
@@ -48,10 +51,18 @@
             Save
         </x-button>
     </form>
+    @endif
     <div class="mt-8 relative">
+        @if ($ticket->cancel === 1)
+        <h1
+            class="absolute uppercase text-7xl text-black/10 text-center w-full flex items-center justify-center font-bold top-[50%] left-[50%] transform -translate-x-2/4 -translate-y-2/4">
+            CANCELLED</h1>
+        @else
         <h1
             class="absolute uppercase text-7xl text-black/10 text-center w-full flex items-center justify-center font-bold top-[50%] left-[50%] transform -translate-x-2/4 -translate-y-2/4">
             TICKET MATCH</h1>
+        @endif
+
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
                 <div class="sm:px-0 bg-[#F3F1C9] border-black border-2  h-full rounded-[10px]">

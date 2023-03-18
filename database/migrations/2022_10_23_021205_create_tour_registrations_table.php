@@ -30,6 +30,7 @@ return new class extends Migration
             $table->boolean('verified')->default(0)->nullable();
             $table->boolean('cancel')->default(0)->nullable();
             $table->string('status')->nullable();
+            $table->string('verified_by')->nullable();
             $table->timestamps();
         });
     }

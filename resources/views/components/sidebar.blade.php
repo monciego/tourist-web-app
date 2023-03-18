@@ -146,17 +146,30 @@
                 </div>
             </x-sidebar-nav-link>
             @endif
-
+            {{-- staff --}}
             @if (Auth::user()->hasRole('staff'))
             <x-sidebar-nav-link class="mt-2" :href="route('staff.index')" :active="request()->routeIs('staff.index')">
                 <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="text-gray-400 w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                            d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
                     </svg>
                     <span class="text-sm font-medium ml-3 lg:opacity-100 2xl:opacity-100 duration-200">
                         {{ __('Verified Tickets') }}
+                    </span>
+                </div>
+            </x-sidebar-nav-link>
+            <x-sidebar-nav-link class="mt-2" :href="route('cancelled.ticket.index')"
+                :active="request()->routeIs('cancelled.ticket.index')">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="text-gray-400 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
+                    </svg>
+                    <span class="text-sm font-medium ml-3 lg:opacity-100 2xl:opacity-100 duration-200">
+                        {{ __('Cancelled Tickets') }}
                     </span>
                 </div>
             </x-sidebar-nav-link>

@@ -24,7 +24,8 @@ class TourRegistration extends Model
         'tour_message',
         'verified',
         'cancel',
-        'status'
+        'status',
+        'verified_by'
     ];
 
     public function user() {

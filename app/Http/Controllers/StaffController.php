@@ -17,6 +17,16 @@ class StaffController extends Controller
         $tickets = TourRegistration::where('verified', 1)->with('user', 'property')->latest()->paginate(5);
         return view('staff.verified-tickets.index', compact('tickets'));
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cancelledTickets()
+    {
+        $tickets = TourRegistration::where('cancel', 1)->with('user', 'property')->latest()->paginate(5);
+        return view('staff.cancelled-tickets.index', compact('tickets'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -49,6 +59,7 @@ class StaffController extends Controller
     {
           TourRegistration::where('tour_code', $request->tour_code)->update([
                 'verified' => $request->verified === 'on',
+                'verified_by' => $request->verified_by,
           ]);
 
           return redirect(route('dashboard'))->with('success-message', 'Ticket Verified!');
