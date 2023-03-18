@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BusinessLegalDocumentsController;
 use App\Http\Controllers\BusinessOwnersController;
@@ -46,6 +47,8 @@ Route::get('/safety-guidelines', [PagesController::class, 'safetyGuidelines'])->
 Route::get('/asin-festival-back-story', [PagesController::class, 'asinFestivalBackStory'])->name('asinFestivalBackStory');
 Route::get('/miss-dasol-and-asin-festival-history', [PagesController::class, 'missDasol'])->name('missDasol');
 Route::get('/contact-us', [PagesController::class, 'contact'])->name('contact.index');
+Route::get('/announcements-and-news/{announcement}', [HomepageController::class, 'showAnnouncement'])->name('announcements.and.news');
+
 
 // ** Route for owner and superadministrator
 Route::group(['middleware' => ['auth', 'role:owner|superadministrator|staff']], function() {
@@ -73,6 +76,9 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     // add homepage image
    Route::post('/store-homepage-image', [HomepageController::class, 'storeHomepageImage'])->name('store.homepage_image');
    Route::post('/store-homepage-tag-line', [HomepageController::class, 'storeHomepageTagLine'])->name('store.homepage_tagline');
+
+    // article
+    Route::resource('announcements', AnnouncementController::class);
 
     // export word
     Route::get('document/export-arrival-per-year', [ExportDocuments::class, 'arrivalPerYear'])->name('export.arrival-per-year');

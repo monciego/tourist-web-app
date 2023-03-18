@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\Homepage;
 use App\Models\OwnerProperties;
 use App\Models\Properties;
@@ -23,9 +24,23 @@ class HomepageController extends Controller
         // gets random data
         $properties = Properties::with('business_legal_documents', 'properties_details')->inRandomOrder()->limit(4)->get();
         $homepage_datas = Homepage::get();
-
-        return view('pages.homepage.index', compact('properties', 'homepage_datas'));
+        $announcements = Announcement::latest()->get();
+        return view('pages.homepage.index', compact('properties', 'homepage_datas', 'announcements'));
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Announcement  $announcement
+     * @return \Illuminate\Http\Response
+     */
+    public function showAnnouncement(Announcement $announcement)
+    {
+        return view('pages.homepage.announcement', [
+            'announcement' => $announcement
+        ]);
+    }
+
 
     /**
      * Adding homepage image

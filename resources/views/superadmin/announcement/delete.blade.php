@@ -1,0 +1,46 @@
+<div x-data="{open:false}" class="inline">
+    <button x-on:click="open = true"
+        class="flex items-center gap-2 justify-center active:scale-[.98] text-sm rounded text-right text-white bg-red-600 hover:bg-red-800 px-4 py-1.5">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+        </svg>
+        Delete
+    </button>
+    <div x-show="open" x-cloak x-on:click="open = false"
+        class="bg-black/40 z-[500] fixed top-0 bottom-0 right-0 left-0">
+    </div>
+    {{-- delete modal --}}
+    <div x-show="open" x-cloak>
+        <div class="fixed top-2/4 left-2/4" style="z-index: 501; transform: translate(-50%, -50%)">
+            <div class="p-4 text-left bg-white shadow-lg rounded-lg" style="width: 35rem">
+                <header class="text-sm text-gray-800 font-bold mb-2">
+                    Are you sure?
+                </header>
+                <p class="text-sm">
+                    This action will permanently remove announcement.
+                    This cannot be undone.
+                </p>
+                <div class="flex justify-end gap-2 mt-4">
+                    {{-- <div
+                        class=" py-1 px-4 text-sm cursor-pointer text-gray-600 border border-gray-400 bg-gray-50 hover:border-gray-600 rounded-md">
+                        Cancel
+                    </div> --}}
+                    <button x-on:click="open = false" type="submit"
+                        class="text-slate-700 bg-white hover:bg-white focus:ring-4 border-2 focus:outline-none focus:ring-white font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                        Cancel
+                    </button>
+                    <form method="POST" action="{{ route('announcements.destroy', $announcement) }}" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button data-modal-toggle="popup-modal" type="submit"
+                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                            Yes, I'm sure
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

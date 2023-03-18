@@ -74,6 +74,22 @@
             </x-dropdown-link>
             <hr>
             @endguest
+            @auth
+            <div
+                class="block italic border-b border-gray-200 px-4 py-2 text-sm leading-5 text-gray-700  focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                {{ Auth::user()->name }}
+            </div>
+            <!-- Authentication -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                    onclick="event.preventDefault();
+                                                                                                                                this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-dropdown-link>
+            </form>
+            @endauth
             {{-- About --}}
             <span
                 class="block font-bold px-4 py-2 text-sm leading-5 text-gray-700  focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
@@ -130,22 +146,6 @@
             <x-dropdown-link class="font-bold" :href="route('contact.index')">
                 {{ __('Contact Us') }}
             </x-dropdown-link>
-            @auth
-            <div
-                class="block italic border-b border-gray-200 px-4 py-2 text-sm leading-5 text-gray-700  focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
-                {{ Auth::user()->name }}
-            </div>
-            <!-- Authentication -->
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <x-dropdown-link :href="route('logout')"
-                    onclick="event.preventDefault();
-                                                                                                        this.closest('form').submit();">
-                    {{ __('Log Out') }}
-                </x-dropdown-link>
-            </form>
-            @endauth
         </x-slot>
     </x-dropdown>
 </div>
