@@ -61,7 +61,9 @@
                     @endif
                 </td>
                 <td class="p-2 ">
-                    <a href="" class="hover:underline text-indigo-700">More Details</a>
+                    <a href="{{ route('verified.tickets.details', $ticket) }}"
+                        class="hover:underline text-indigo-700">More
+                        Details</a>
                 </td>
             </tr>
             @endforeach

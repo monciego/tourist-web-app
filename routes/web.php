@@ -136,6 +136,7 @@ Route::group(['middleware' => ['auth', 'role:staff']], function() {
     Route::resource('staff', StaffController::class);
     Route::post('/verify-ticket', [StaffController::class, 'verify'])->name('verify.ticket');
     Route::get('/cancelled-tickets', [StaffController::class, 'cancelledTickets'])->name('cancelled.ticket.index');
+    Route::get('/verified-tickets/{tourRegistration}', [StaffController::class, 'showVerifiedTicketsDetails'])->name('verified.tickets.details');
 });
 
 

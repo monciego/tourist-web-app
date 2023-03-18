@@ -76,6 +76,13 @@ class StaffController extends Controller
         //
     }
 
+    public function showVerifiedTicketsDetails(TourRegistration $tourRegistration)
+    {
+       return view('staff.verified-tickets.show', [
+            'ticket' => $tourRegistration
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
