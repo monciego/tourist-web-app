@@ -38,6 +38,7 @@
             <div class="mt-8">
                 <x-success-message />
                 <x-danger-message />
+                <x-cancelled-message />
             </div>
             {{ $slot }}
         </main>

@@ -43,6 +43,23 @@ class TourRegistrationController extends Controller
           return redirect()->back()->with('success-message', 'Status saved successfully');
     }
 
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function cancel(Request $request)
+    {
+          TourRegistration::where('tour_code', $request->tour_code)->update([
+                'cancel' => $request->cancel === 'on',
+          ]);
+
+          return redirect()->back()->with('cancel-message', 'You\'ve cancelled your registration, you want to explore other destination?');
+    }
+
+
     /**
      * Register a tour.
      *

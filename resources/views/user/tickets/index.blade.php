@@ -7,7 +7,12 @@
                 {{-- --}}
                 @foreach($tickets as $ticket)
                 <div
-                    class="col-span-12 bg-slate-900 p-6 sm:col-span-6 lg:col-span-4  w-full border-gray-300 hover:shadow-md transition-all ease-in-out rounded-md pb-3">
+                    class="relative col-span-12 @if ($ticket->cancel === 1) border-red-600   @endif bg-slate-900 border-2  p-6 sm:col-span-6 lg:col-span-4  w-full hover:shadow-md transition-all ease-in-out rounded-md pb-3">
+                    @if ($ticket->cancel === 1)
+                    <h1
+                        class="absolute uppercase text-3xl text-white/30 text-center w-full flex items-center justify-center font-bold top-[50%] left-[50%] transform -translate-x-2/4 -translate-y-2/4">
+                        CANCELLED</h1>
+                    @endif
                     <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">
                         {{ $ticket->property->property_name }}
                     </h5>

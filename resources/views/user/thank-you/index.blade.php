@@ -1,6 +1,6 @@
 <x-app-layout>
     @section('title', 'Dasol Tourism - Register Tour')
-    <div class="py-0 sm:py-12">
+    <div class="py-0 sm:py-6">
         <div class="mt-10 sm:mt-0 relative">
             @if ($registrationData->verified === 1)
             <h1
@@ -27,9 +27,14 @@
                 <x-button class="mb-4">Save Changes</x-button>
             </form>
             @endif
-            <div class="md:grid md:grid-cols-3 md:gap-6 px-8">
+            <div class="md:grid relative md:grid-cols-3 md:gap-6 px-8">
                 <div class="md:col-span-1">
-                    <div class="sm:px-0 bg-[#F3F1C9] border-black border-2  h-full rounded-[10px]">
+                    <div class="sm:px-0  bg-[#F3F1C9] border-black border-2  h-full rounded-[10px]">
+                        @if ($registrationData->cancel === 1)
+                        <h1
+                            class="absolute uppercase text-7xl text-black/10 text-center w-full flex items-center justify-center font-bold top-[50%] left-[50%] transform -translate-x-2/4 -translate-y-2/4">
+                            CANCELLED</h1>
+                        @endif
                         <div class="p-6 sm:col-span-6 lg:col-span-4 w-full pb-3">
                             <div class="border-b-2 border-black border-dashed">
                                 <h5 class="mb-2 text-2xl font-extrabold tracking-tight text-black">
@@ -159,5 +164,22 @@
                 </div>
             </div>
         </div>
+
+        @if ($registrationData->cancel === 0)
+        <form method="POST" action="{{ route('cancel.registration') }}" class="px-8 flex justify-end ">
+            @csrf
+            <input name="tour_code" type="hidden" value="{{ $registrationData->tour_code }}">
+            <div class="flex items-start">
+                <div class="flex h-5 items-center">
+                    <input id="cancel" name="cancel" type="checkbox"
+                        class="h-4 w-4 hidden rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" checked>
+                </div>
+            </div>
+            <button type="submit"
+                class="inline-flex mt-4 items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring ring-red-300 disabled:opacity-25 transition ease-in-out duration-150">
+                Cancel Registration
+            </button>
+        </form>
+        @endif
     </div>
 </x-app-layout>
