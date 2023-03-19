@@ -39,6 +39,8 @@
                 <x-success-message />
                 <x-danger-message />
                 <x-cancelled-message />
+                {{--
+                <x-review-message /> --}}
             </div>
             {{ $slot }}
         </main>

@@ -40,7 +40,7 @@ class TourRegistrationController extends Controller
                 'status' => $request->status,
           ]);
 
-          return redirect()->back()->with('success-message', 'Status saved successfully');
+          return redirect()->back()->with('review-message', 'How\'s your tour? We\'d love if you left us a review!');
     }
 
 

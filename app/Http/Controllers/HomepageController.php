@@ -6,6 +6,7 @@ use App\Models\Announcement;
 use App\Models\Homepage;
 use App\Models\OwnerProperties;
 use App\Models\Properties;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -128,13 +129,15 @@ class HomepageController extends Controller
                 ->where('owner_properties.property_id', $id)
 		        ->get();
 
-        $listing = Properties::with('business_legal_documents', 'properties_details', 'frequently_questions', 'frequently_questions.frequently_answer')->findOrFail($id); // add the properties details rlationship
+        $listing = Properties::with('business_legal_documents', 'reviews', 'properties_details', 'frequently_questions', 'frequently_questions.frequently_answer')->findOrFail($id); // add the properties details rlationship
 
-         if(empty($listing->properties_details->property_tag)) {
+        if(empty($listing->properties_details->property_tag)) {
              return abort(404);
          }
 
-        return view('pages.listing.show', compact('listing', 'users', 'distance'));
+         $reviews = Review::with('user', 'properties')->where('property_id', $id)->get();
+
+        return view('pages.listing.show', compact('listing', 'users', 'distance', 'reviews'));
     }
 
     /**

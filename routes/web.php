@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RegisterUnclassifiedTouristController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\TourRegistrationController;
@@ -130,6 +131,8 @@ Route::group(['middleware' => ['auth', 'role:user']], function() {
     Route::get('thank-you-for-registration/{id}',  [TourRegistrationController::class, 'thankYouForRegistrationPage'])->name('thankyou.for.registration');
     Route::post('/update-status',  [TourRegistrationController::class, 'updateStatus'])->name('update.status');
     Route::post('/cancel-registration', [TourRegistrationController::class, 'cancel'])->name('cancel.registration');
+    Route::resource('reviews', ReviewController::class);
+     Route::get('review/{id}', [ReviewController::class, 'review'])->name('review.properties');
 });
 
 // ** Route for staff

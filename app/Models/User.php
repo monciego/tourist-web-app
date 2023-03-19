@@ -39,6 +39,10 @@ class User extends Authenticatable
         return $this->hasMany(Properties::class);
     }
 
+    public function review() {
+        return $this->belongsTo(Review::class);
+    }
+
     public function business_owner() {
         return $this->hasOne(BusinessOwners::class);
     }

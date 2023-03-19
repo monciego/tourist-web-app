@@ -56,4 +56,9 @@ class Properties extends Model
     public function tour_registration() {
         return $this->hasOne(TourRegistration::class, 'property_id' );
     }
+
+        public function reviews() {
+        return $this->hasMany(Review::class, 'property_id');
+    }
+
 }
