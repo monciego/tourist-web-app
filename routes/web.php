@@ -18,6 +18,7 @@ use App\Http\Controllers\RedirectLoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\RegisterUnclassifiedTouristController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\TourRegistrationController;
@@ -137,6 +138,7 @@ Route::group(['middleware' => ['auth', 'role:staff']], function() {
     Route::post('/verify-ticket', [StaffController::class, 'verify'])->name('verify.ticket');
     Route::get('/cancelled-tickets', [StaffController::class, 'cancelledTickets'])->name('cancelled.ticket.index');
     Route::get('/verified-tickets/{tourRegistration}', [StaffController::class, 'showVerifiedTicketsDetails'])->name('verified.tickets.details');
+    Route::resource('/register-a-tour', RegisterUnclassifiedTouristController::class);
 });
 
 

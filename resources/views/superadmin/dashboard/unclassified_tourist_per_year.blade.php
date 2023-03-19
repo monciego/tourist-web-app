@@ -1,4 +1,4 @@
-@foreach ($total_tourists_per_year as $total_tourist_per_year)
+@foreach ($total_unclassified_tourists_per_year as $total_tourist_per_year)
 
 <?php
    $total_of_tourist = $total_tourist_per_year->total_number_of_adults + $total_tourist_per_year->total_number_of_children + $total_tourist_per_year->total_number_of_infants
@@ -16,10 +16,10 @@
             </svg>
         </header>
         <h2 class="text-base font-semibold text-slate-600">
-            Classified Tourists for year
+            Unclassified Tourists for year
         </h2>
         <h2 class="text-lg font-semibold text-slate-800 mb-2">
-            {{ \Carbon\Carbon::parse($total_tourist_per_year->tour_date)->isoFormat('
+            {{ \Carbon\Carbon::parse($total_tourist_per_year->created_at)->isoFormat('
             YYYY')}}
         </h2>
         <div class="flex items-start">

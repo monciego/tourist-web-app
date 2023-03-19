@@ -1,4 +1,4 @@
-<div class="mt-4">
+{{-- <div class="mt-4">
     <canvas id="touristsPerYear" width="400" height="100"></canvas>
 </div>
 
@@ -6,10 +6,10 @@
     let data = @json($total_tourists_per_year);
     let newLabel = [];
     let newData = [];
-        data.forEach(element => {
+    data.forEach(element => {
         newLabel.push(element.tour_date.slice(0, 4));
-       let total = element.total_number_of_adults + element.total_number_of_children + element.total_number_of_infants;
-       newData.push(total);
+        let total = element.total_number_of_adults + element.total_number_of_children + element.total_number_of_infants;
+        newData.push(total);
     })
     const ctxTouristPerYear = document.getElementById('touristsPerYear');
             const chartTouristPerYear = new Chart(ctxTouristPerYear, {
@@ -18,7 +18,7 @@
             labels: newLabel,
             datasets: [{
             label: 'Number of Tourists Per Year',
-            data: newData,
+            data: [{{ (int)$total_unclassified_tourists }} + parseInt(newData)],
             backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -42,4 +42,4 @@
             beginAtZero: true
             }}}
             });
-</script>
+</script> --}}
