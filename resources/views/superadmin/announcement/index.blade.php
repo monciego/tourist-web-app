@@ -10,5 +10,8 @@
             @include('superadmin.announcement.partials.announcement')
             @endforeach
         </div>
+        <div class="mt-4">
+            {{ $announcements->links() }}
+        </div>
     </div>
 </x-app-sidebar-layout>

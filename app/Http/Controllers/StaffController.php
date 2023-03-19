@@ -14,7 +14,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $tickets = TourRegistration::where('verified', 1)->with('user', 'property')->latest()->paginate(5);
+        $tickets = TourRegistration::where('verified', 1)->with('user', 'property')->latest()->paginate(8);
         return view('staff.verified-tickets.index', compact('tickets'));
     }
     /**
@@ -24,7 +24,7 @@ class StaffController extends Controller
      */
     public function cancelledTickets()
     {
-        $tickets = TourRegistration::where('cancel', 1)->with('user', 'property')->latest()->paginate(5);
+        $tickets = TourRegistration::where('cancel', 1)->with('user', 'property')->latest()->paginate(8);
         return view('staff.cancelled-tickets.index', compact('tickets'));
     }
 
