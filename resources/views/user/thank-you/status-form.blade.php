@@ -1,3 +1,6 @@
+@if ($registrationData->status === 'already_left')
+@else
+
 <form action="{{ route('update.status') }}" method="POST" class="px-8">
     @csrf
     <input type="hidden" name="tour_code" value="{{ $registrationData->tour_code }}">
@@ -18,3 +21,5 @@
     </div>
     <x-button class="mb-4">Left the area</x-button>
 </form>
+
+@endif
