@@ -3,7 +3,7 @@
     <div class=" flex flex-col justify-center py-12  sm:px-6 lg:px-8">
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                <h2 class="font-bold">{{ $property->properties_details->property_name }}</h2>
+                <h2 class="font-bold">{{ $property->property_name }}</h2>
                 <form class="space-y-6" action="{{ route('reviews.store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="property_id" value="{{ $property->id }}">
