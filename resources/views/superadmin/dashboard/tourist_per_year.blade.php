@@ -16,7 +16,7 @@
             </svg>
         </header>
         <h2 class="text-base font-semibold text-slate-600">
-            Classified Tourists for year
+            Tourists for year
         </h2>
         <h2 class="text-lg font-semibold text-slate-800 mb-2">
             {{ \Carbon\Carbon::parse($total_tourist_per_year->tour_date)->isoFormat('
