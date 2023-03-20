@@ -31,7 +31,7 @@ class PagesController extends Controller
  }
 
  public function safetyGuidelines() {
-    return view('pages.homepage.menu-list.safety-guidelines');
+    return view('pages.homepage.menu-list.municipal-tourism-and-cultural-affairs');
  }
 
  public function asinFestivalBackStory() {

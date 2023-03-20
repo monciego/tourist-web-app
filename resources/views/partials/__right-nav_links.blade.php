@@ -126,7 +126,7 @@
                 Municipal Tourism and Cultural Affairs Office
             </span>
             <x-dropdown-link class="font-medium ml-4" :href="route('safetyGuidelines')">
-                {{ __('Safety Guidelines') }}
+                {{ __('Municipal Tourism and Cultural Affairs Office') }}
             </x-dropdown-link>
             <x-dropdown-link class="font-medium ml-4" :href="route('asinFestivalBackStory')">
                 {{ __('Asin Festival Back Story') }}

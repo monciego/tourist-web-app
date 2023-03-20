@@ -45,7 +45,7 @@ Route::get('/history-of-dasol', [PagesController::class, 'historyOfDasol'])->nam
 Route::get('/about-dasol', [PagesController::class, 'aboutDasol'])->name('aboutDasol');
 Route::get('/salt-production-and-processing', [PagesController::class, 'saltProductionAndProcessing'])->name('saltProductionAndProcessing');
 Route::get('/dasol-salt-industry', [PagesController::class, 'dasolSaltIndustry'])->name('dasolSaltIndustry');
-Route::get('/safety-guidelines', [PagesController::class, 'safetyGuidelines'])->name('safetyGuidelines');
+Route::get('/municipal-tourism-and-cultural-affairs', [PagesController::class, 'safetyGuidelines'])->name('safetyGuidelines');
 Route::get('/asin-festival-back-story', [PagesController::class, 'asinFestivalBackStory'])->name('asinFestivalBackStory');
 Route::get('/miss-dasol-and-asin-festival-history', [PagesController::class, 'missDasol'])->name('missDasol');
 Route::get('/contact-us', [PagesController::class, 'contact'])->name('contact.index');
