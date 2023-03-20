@@ -102,7 +102,7 @@ focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounde
                         <li class="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9"
                             id="listbox-option-0" role="option">
                             <span class="font-bold text-base ml-3 block truncate">Children</span>
-                            <span class="font-normal ml-3 block truncate text-sm">Ages 2-2</span>
+                            <span class="font-normal ml-3 block truncate text-sm">Ages 2-12</span>
                             <div class="absolute inset-y-0 right-0 flex  items-center pr-4">
                                 <!-- Heroicon name: mini/check -->
                                 <button type="button" class="h-10  rounded-full w-10 border border-gray-400"
