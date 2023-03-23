@@ -124,7 +124,7 @@ Route::group(['middleware' => ['auth', 'role:owner']], function() {
 });
 
 // ** Route for users
-Route::group(['middleware' => ['auth', 'role:user']], function() {
+Route::group(['middleware' => ['auth', 'verified', 'role:user']], function() {
     Route::resource('tour-registration', TourRegistrationController::class);
     Route::resource('your-tickets', TicketsController::class);
     Route::get('property/register-tour/{id}',  [TourRegistrationController::class, 'registerTour'])->name('register.tour');
