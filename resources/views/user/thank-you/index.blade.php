@@ -110,7 +110,7 @@
                                         @endif
                                     </p>
                                 </div>
-                                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                                <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                                     <h3 class="block text-sm font-medium text-gray-700">
                                         Adults Guest (Age 13+)
                                     </h3>
@@ -118,7 +118,7 @@
                                         class="mt-1 block w-full rounded-md border p-2 border-gray-300 shadow-sm sm:text-sm">
                                         {{ $registrationData->number_of_adults }}</p>
                                 </div>
-                                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                                <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                                     <h3 class="block text-sm font-medium text-gray-700">
                                         Children Guest (Age 2-12)
                                     </h3>
@@ -126,13 +126,21 @@
                                         class="mt-1 block w-full rounded-md border p-2 border-gray-300 shadow-sm sm:text-sm">
                                         {{ $registrationData->number_of_children }}</p>
                                 </div>
-                                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                                <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                                     <h3 class="block text-sm font-medium text-gray-700">
                                         Infants Guest (Under 2)
                                     </h3>
                                     <p
                                         class="mt-1 block w-full rounded-md border p-2 border-gray-300 shadow-sm sm:text-sm">
                                         {{ $registrationData->number_of_infants }}</p>
+                                </div>
+                                <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                                    <h3 class="block text-sm font-medium text-gray-700">
+                                        Foreigners
+                                    </h3>
+                                    <p
+                                        class="mt-1 block w-full rounded-md border p-2 border-gray-300 shadow-sm sm:text-sm">
+                                        {{ $registrationData->number_of_foreigner }}</p>
                                 </div>
 
                                 <div class="col-span-6">

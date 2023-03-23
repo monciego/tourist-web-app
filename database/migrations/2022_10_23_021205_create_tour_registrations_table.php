@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('number_of_adults')->nullable(); // 13 above
             $table->string('number_of_children')->nullable(); // 2 - 12 below
             $table->string('number_of_infants')->nullable(); // under 2
+            $table->string('number_of_foreigner')->nullable(); // under 2
             $table->string('tour_message')->nullable(); // optional
             $table->boolean('verified')->default(0)->nullable();
             $table->boolean('cancel')->default(0)->nullable();

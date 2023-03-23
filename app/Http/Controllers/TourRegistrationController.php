@@ -116,6 +116,7 @@ class TourRegistrationController extends Controller
             'number_of_adults' => $request->number_of_adults,
             'number_of_children' => $request->number_of_children,
             'number_of_infants' => $request->number_of_infants,
+            'number_of_foreigner' => $request->number_of_infants,
             'tour_message' => $request->tour_message,
         ]);
 

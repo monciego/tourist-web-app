@@ -43,8 +43,10 @@
                 <select name="tour_type" required class="mt-1 focus:ring-indigo-500
 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     <option selected disabled hidden>Type of tour</option>
-                    <option id="day_tour" value="day_tour">Day Tour</option>
-                    <option id="overnight" value="overnight">Overnight</option>
+                    <option id="day_tour" {{ old('tour_type')=='day_tour' ? 'selected' : '' }} value="day_tour">Day Tour
+                    </option>
+                    <option id="overnight" {{ old('tour_type')=='overnight' ? 'selected' : '' }} value="overnight">
+                        Overnight</option>
                 </select>
             </div>
 
@@ -92,8 +94,8 @@ focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounde
                                     id="adultsBtnDecrement">-</button>
                                 <input
                                     class="count text-lg flex items-center  w-14 text-center border-none outline-none"
-                                    type="number" name="number_of_adults" id="number_of_adults" value="0" min="0"
-                                    readonly>
+                                    type="number" name="number_of_adults" id="number_of_adults"
+                                    value="{{ old('number_of_adults') }}" min="0" readonly>
                                 <button type="button" class="h-10 rounded-full w-10 border border-gray-400"
                                     id="adultsBtnIncrement">+</button>
                             </div>
@@ -109,8 +111,8 @@ focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounde
                                     id="childrenBtnDecrement">-</button>
                                 <input
                                     class="count text-lg flex items-center  w-14 text-center border-none outline-none"
-                                    type="number" name="number_of_children" id="number_of_children" value="0" min="0"
-                                    readonly>
+                                    type="number" name="number_of_children" id="number_of_children"
+                                    value="{{ old('number_of_children') }}" min="0" readonly>
                                 <button type="button" class="h-10 rounded-full w-10 border border-gray-400"
                                     id="childrenBtnIncrement">+</button>
                             </div>
@@ -126,10 +128,26 @@ focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounde
                                     id="infantsBtnDecrement">-</button>
                                 <input
                                     class="count text-lg flex items-center  w-14 text-center border-none outline-none"
-                                    type="number" name="number_of_infants" id="number_of_infants" value="0" min="0"
-                                    readonly>
+                                    type="number" name="number_of_infants" id="number_of_infants"
+                                    value="{{ old('number_of_infants') }}" min="0" readonly>
                                 <button type="button" class="h-10 rounded-full w-10 border border-gray-400"
                                     id="infantsBtnIncrement">+</button>
+                            </div>
+                        </li>
+
+                        <li class="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9"
+                            id="listbox-option-0" role="option">
+                            <span class="font-bold text-base ml-3 block truncate">Foreigners</span>
+                            <div class="absolute inset-y-0 right-0 flex  items-center pr-4">
+                                <!-- Heroicon name: mini/check -->
+                                <button type="button" class="h-10  rounded-full w-10 border border-gray-400"
+                                    id="foreignersBtnDecrement">-</button>
+                                <input
+                                    class="count text-lg flex items-center  w-14 text-center border-none outline-none"
+                                    type="number" name="number_of_foreigner" id="number_of_foreigner"
+                                    value="{{ old('number_of_foreigner') }}" min="0" readonly>
+                                <button type="button" class="h-10 rounded-full w-10 border border-gray-400"
+                                    id="foreignersBtnIncrement">+</button>
                             </div>
                         </li>
                     </ul>
@@ -186,6 +204,20 @@ focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounde
             }
             infantsBtnIncrement.addEventListener("click", infantsHandleIncrement);
            infantsBtnDecrement.addEventListener("click", infantsHandleDecrement);
+
+        //    foreigners
+            const foreignersBtnIncrement = document.querySelector('#foreignersBtnIncrement');
+            const foreignersBtnDecrement = document.querySelector('#foreignersBtnDecrement');
+            let foreignersCount = document.getElementById('number_of_foreigner');
+            function foreignersHandleIncrement() {
+                foreignersCount.stepUp();
+            }
+            function foreignersHandleDecrement() {
+                foreignersCount.stepDown();
+            }
+
+            foreignersBtnIncrement.addEventListener("click", foreignersHandleIncrement);
+            foreignersBtnDecrement.addEventListener("click", foreignersHandleDecrement);
     </script>
 
     <style>
