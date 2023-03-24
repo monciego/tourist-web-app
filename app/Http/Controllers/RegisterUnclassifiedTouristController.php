@@ -46,6 +46,7 @@ class RegisterUnclassifiedTouristController extends Controller
             'number_of_children' => 'nullable',
             'number_of_adults' => 'nullable',
             'number_of_infants' => 'nullable',
+            'number_of_foreigners' => 'nullable',
         ]);
 
 
@@ -60,6 +61,7 @@ class RegisterUnclassifiedTouristController extends Controller
             'number_of_children' => $request->number_of_children,
             'number_of_adults' => $request->number_of_adults,
             'number_of_infants' => $request->number_of_infants,
+            'number_of_foreigners' => $request->number_of_foreigners,
         ]);
 
         return redirect(route('register-a-tour.index'))->with('success-message', 'Registered successfully!');

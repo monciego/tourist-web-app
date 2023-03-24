@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('number_of_children')->nullable();
             $table->string('number_of_adults')->nullable();
             $table->string('number_of_infants')->nullable();
+            $table->string('number_of_foreigners')->nullable();
             $table->timestamps();
         });
     }
