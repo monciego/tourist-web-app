@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RegisterUnclassifiedTourist;
 use App\Models\TourRegistration;
 use Exception;
 use PhpOffice\PhpWord\TemplateProcessor;
@@ -71,10 +72,21 @@ class ExportDocuments extends Controller
             $adults = TourRegistration::where('status', 'already_left')->pluck('number_of_adults')->toArray();
             $children = TourRegistration::where('status', 'already_left')->pluck('number_of_children')->toArray();
             $infants = TourRegistration::where('status', 'already_left')->pluck('number_of_infants')->toArray();
+            $foreigners = TourRegistration::where('status', 'already_left')->pluck('number_of_foreigner')->toArray();
+            $infants_unclassified = RegisterUnclassifiedTourist::pluck('number_of_adults')->toArray();
+            $children_unclassified = RegisterUnclassifiedTourist::pluck('number_of_children')->toArray();
+            $adults_unclassified = RegisterUnclassifiedTourist::pluck('number_of_infants')->toArray();
+            $foreigners_unclassified = RegisterUnclassifiedTourist::pluck('number_of_foreigners')->toArray();
             $total_of_adults = array_sum($adults);
             $total_of_children = array_sum($children);
             $total_of_infants = array_sum($infants);
-            $totalTourists = $total_of_adults + $total_of_children + $total_of_infants;
+            $total_of_foreigner = array_sum($foreigners);
+            $total_of_infants_unclassified = array_sum($infants_unclassified);
+            $total_of_children_unclassified = array_sum($children_unclassified);
+            $total_of_adults_unclassified = array_sum($adults_unclassified);
+            $total_of_foreigners_unclassified = array_sum($foreigners_unclassified);
+            $totalTourists =  $total_of_adults + $total_of_children + $total_of_infants +
+            $total_of_infants_unclassified + $total_of_adults_unclassified + $total_of_children_unclassified + $total_of_foreigner + $total_of_foreigners_unclassified;
 
                     $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection(array('orientation' => 'landscape'));
