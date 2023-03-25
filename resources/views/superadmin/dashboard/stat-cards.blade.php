@@ -49,7 +49,7 @@
     </div>
 </div>
 
-<div
+{{-- <div
     class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-sm rounded-sm border border-slate-200">
     <div class="px-5 py-5">
         <header class="flex justify-between items-start mb-2">
@@ -64,7 +64,7 @@
             <div class="text-3xl font-bold text-slate-800 mr-2">{{ $total_unclassified_tourists }}</div>
         </div>
     </div>
-</div>
+</div> --}}
 
 @include('superadmin.dashboard.tourist_per_year')
 

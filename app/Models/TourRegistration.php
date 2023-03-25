@@ -9,6 +9,14 @@ class TourRegistration extends Model
 {
     use HasFactory;
 
+    public function getDates()
+{
+    //define the datetime table column names as below in an array, and you will get the
+    //carbon objects for these fields in model objects.
+
+    return array('tour_date');
+}
+
     protected $fillable = [
         'property_id',
         'user_id',
