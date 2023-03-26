@@ -34,7 +34,13 @@ class TourRegistration extends Model
         'verified',
         'cancel',
         'status',
-        'verified_by'
+        'verified_by',
+        // unclassified
+        'property_name',
+        'time_in',
+        'time_out',
+        'environment_fee',
+        'entrance_fee',
     ];
 
     public function user() {

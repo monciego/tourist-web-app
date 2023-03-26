@@ -4,6 +4,8 @@
     <div class="mt-4 sm:mt-0">
         <div class="md:grid  md:grid-cols-3 w-full mx-auto md:w-3/4 md:gap-6">
             <div class="mt-5 md:col-span-3 md:mt-0">
+                <!-- Validation Errors -->
+                <x-auth-validation-errors class="mb-4 sm:px-6 lg:px-8" :errors="$errors" />
                 <form action="{{ route('register-a-tour.store') }}" method="POST">
                     @csrf
                     <div class="overflow-hidden shadow sm:rounded-md">
@@ -21,20 +23,19 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="contact_person"
+                                    <label for="tour_contact_person"
                                         class="block text-sm font-medium leading-6 text-gray-900">
                                         Contact Person
                                     </label>
-                                    <input type="text" name="contact_person" id="contact_person"
+                                    <input type="text" name="tour_contact_person" id="tour_contact_person"
                                         class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="date_registered"
-                                        class="block text-sm font-medium leading-6 text-gray-900">
+                                    <label for="tour_date" class="block text-sm font-medium leading-6 text-gray-900">
                                         Date of Registration
                                     </label>
-                                    <input type="date" name="date_registered" id="date_registered"
+                                    <input type="date" name="tour_date" id="tour_date"
                                         class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
 
@@ -55,10 +56,10 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="entance_fee" class="block text-sm font-medium leading-6 text-gray-900">
+                                    <label for="entrance_fee" class="block text-sm font-medium leading-6 text-gray-900">
                                         Entrance Fee (if any)
                                     </label>
-                                    <input type="text" name="entance_fee" id="entance_fee"
+                                    <input type="text" name="entrance_fee" id="entrance_fee"
                                         class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
 
@@ -97,10 +98,10 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-3">
-                                    <label for="number_of_foreigners"
+                                    <label for="number_of_foreigner"
                                         class="block text-sm font-medium leading-6 text-gray-900">Number of Foreigners
                                     </label>
-                                    <input type="number" min="0" name="number_of_foreigners" id="number_of_foreigners"
+                                    <input type="number" min="0" name="number_of_foreigner" id="number_of_foreigner"
                                         class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
 

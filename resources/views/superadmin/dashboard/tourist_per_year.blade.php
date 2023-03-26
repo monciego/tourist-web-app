@@ -1,7 +1,10 @@
 @foreach ($total_tourists_per_year as $total_tourist_per_year)
 
 <?php
-   $total_of_tourist = $total_tourist_per_year->total_number_of_adults + $total_tourist_per_year->total_number_of_children + $total_tourist_per_year->total_number_of_infants + $total_tourist_per_year->total_number_of_foreigner
+   $total_of_tourist = $total_tourist_per_year->total_number_of_adults + $total_tourist_per_year->total_number_of_children + $total_tourist_per_year->total_number_of_infants + $total_tourist_per_year->total_number_of_foreigner;
+
+    $year = Carbon\Carbon::parse($total_tourist_per_year->tour_date)->isoFormat('
+    YYYY');
 ?>
 
 
