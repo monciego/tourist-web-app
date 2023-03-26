@@ -16,7 +16,8 @@ class ExportDocuments extends Controller
         $total_tourists_per_year = DB::table('tour_registrations')->select('tour_date',
                   DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
                   DB::raw( 'SUM(number_of_children) as total_number_of_children'),
-                  DB::raw( 'SUM(number_of_infants) as total_number_of_infants')
+                  DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
+                  DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
                   )
                   ->where('status', 'already_left')
                   ->groupBy('tour_date')
@@ -49,7 +50,7 @@ class ExportDocuments extends Controller
         $table->addCell(1750)->addText(htmlspecialchars("TOURIST NUMBER"), $sizeTableHeader);
 
         foreach($total_tourists_per_year as $total_tourist_per_year) {
-            $total_of_tourist = $total_tourist_per_year->total_number_of_adults + $total_tourist_per_year->total_number_of_children + $total_tourist_per_year->total_number_of_infants;
+            $total_of_tourist = $total_tourist_per_year->total_number_of_adults + $total_tourist_per_year->total_number_of_children + $total_tourist_per_year->total_number_of_infants +$total_tourist_per_year->total_number_of_foreigner;
             $tour_year = \Carbon\Carbon::parse($total_tourist_per_year->tour_date)->isoFormat('YYYY');
 
               $table->addRow();
@@ -73,20 +74,11 @@ class ExportDocuments extends Controller
             $children = TourRegistration::where('status', 'already_left')->pluck('number_of_children')->toArray();
             $infants = TourRegistration::where('status', 'already_left')->pluck('number_of_infants')->toArray();
             $foreigners = TourRegistration::where('status', 'already_left')->pluck('number_of_foreigner')->toArray();
-            $infants_unclassified = RegisterUnclassifiedTourist::pluck('number_of_adults')->toArray();
-            $children_unclassified = RegisterUnclassifiedTourist::pluck('number_of_children')->toArray();
-            $adults_unclassified = RegisterUnclassifiedTourist::pluck('number_of_infants')->toArray();
-            $foreigners_unclassified = RegisterUnclassifiedTourist::pluck('number_of_foreigners')->toArray();
             $total_of_adults = array_sum($adults);
             $total_of_children = array_sum($children);
             $total_of_infants = array_sum($infants);
             $total_of_foreigner = array_sum($foreigners);
-            $total_of_infants_unclassified = array_sum($infants_unclassified);
-            $total_of_children_unclassified = array_sum($children_unclassified);
-            $total_of_adults_unclassified = array_sum($adults_unclassified);
-            $total_of_foreigners_unclassified = array_sum($foreigners_unclassified);
-            $totalTourists =  $total_of_adults + $total_of_children + $total_of_infants +
-            $total_of_infants_unclassified + $total_of_adults_unclassified + $total_of_children_unclassified + $total_of_foreigner + $total_of_foreigners_unclassified;
+            $totalTourists =  $total_of_adults + $total_of_children + $total_of_infants + $total_of_foreigner;
 
                     $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection(array('orientation' => 'landscape'));
@@ -104,7 +96,7 @@ class ExportDocuments extends Controller
           'marginTop' => 20,
         );
 
-         $section->addText('TOURIST ARRIVAL BY YEAR', $styleTitle);
+         $section->addText('NUMBER OF TOURISTS', $styleTitle);
          $section->addText($totalTourists, $content);
 
 
