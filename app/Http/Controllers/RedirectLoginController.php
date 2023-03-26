@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class RedirectLoginController extends Controller
 {
@@ -24,15 +25,33 @@ class RedirectLoginController extends Controller
         if (Auth::user()->hasRole('superadministrator')) {
 
         // total number of tourist per year
-        $total_tourists_per_year = DB::table('tour_registrations')->select('tour_date',
+        $total_tourists_per_year = DB::table('tour_registrations')->select(
+                DB::raw("DATE_FORMAT(tour_date, '%Y') as year"),
                   DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
                   DB::raw( 'SUM(number_of_children) as total_number_of_children'),
                   DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
-                  DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
+                  DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner'),
                   )
                   ->where('status', 'already_left')
-                  ->groupBy('tour_date')
+                  ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%Y')"))
                   ->get();
+
+                //   dd($total_tourists_per_year);
+
+
+
+/*  $datas = ($total_tourists_per_year)->map(function ($data) use ($total_tourists_per_year) {
+
+    print_r($data);
+    })->toArray(); */
+
+
+
+          /*         foreach($total_tourists_per_year as $x) {
+
+                    $year = new Carbon( $x->tour_date );
+                } */
+
 
 
             // number of tourists

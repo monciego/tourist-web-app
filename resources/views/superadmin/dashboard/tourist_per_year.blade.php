@@ -3,10 +3,9 @@
 <?php
    $total_of_tourist = $total_tourist_per_year->total_number_of_adults + $total_tourist_per_year->total_number_of_children + $total_tourist_per_year->total_number_of_infants + $total_tourist_per_year->total_number_of_foreigner;
 
-    $year = Carbon\Carbon::parse($total_tourist_per_year->tour_date)->isoFormat('
-    YYYY');
+   /*  $year = Carbon\Carbon::parse($total_tourist_per_year->tour_date)->isoFormat('
+    YYYY'); */
 ?>
-
 
 <div
     class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-sm rounded-sm border border-slate-200">
@@ -20,10 +19,10 @@
         </header>
         <h2 class="text-base font-semibold text-slate-600">
             Tourists for year
+
         </h2>
         <h2 class="text-lg font-semibold text-slate-800 mb-2">
-            {{ \Carbon\Carbon::parse($total_tourist_per_year->tour_date)->isoFormat('
-            YYYY')}}
+            {{ $total_tourist_per_year->year }}
         </h2>
         <div class="flex items-start">
             <div class="text-3xl font-bold text-slate-800 mr-2">{{ $total_of_tourist }}</div>
