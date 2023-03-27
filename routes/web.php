@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('document/export-tourists', [ExportDocuments::class, 'numberOfTourists'])->name('export.tourists');
     Route::get('document/export-day-tourists', [ExportDocuments::class, 'dayTourist'])->name('export.day-tourists');
     Route::get('document/export-night-tourists', [ExportDocuments::class, 'nightTourist'])->name('export.night-tourists');
+    Route::get('document/export-moth', [ExportDocuments::class, 'numberofArrivalmonthOfYear'])->name('export.month');
 });
 
 // ** Route for owner

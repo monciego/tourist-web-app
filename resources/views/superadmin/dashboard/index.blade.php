@@ -28,6 +28,10 @@
                             class="z-[600] max-h-60 overflow-y-scroll absolute right-0  mt-2 w-72 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="category-button" tabindex="-1">
                             <a class="text-gray-700 block px-4 py-3 text-sm hover:bg-slate-100"
+                                href="{{ route('export.month') }}">
+                                Export Arrival Per Month
+                            </a>
+                            <a class="text-gray-700 block px-4 py-3 text-sm hover:bg-slate-100"
                                 href="{{ route('export.arrival-per-year') }}">
                                 Export Arrival Per Year
                             </a>
