@@ -68,6 +68,7 @@ class ExportDocuments extends Controller
         return response()->download(storage_path('TouristArrivalPerYear.docx'))->deleteFileAfterSend(true);
      }
 
+    //  month
      public function numberofArrivalmonthOfYear() {
                 // every month of every year
                 $month_of_year = DB::table('tour_registrations')->select(
@@ -125,6 +126,67 @@ class ExportDocuments extends Controller
           return redirect('/dashboard')->with('danger-message', 'Error!');
         }
         return response()->download(storage_path('TouristArrivalPerMonth.docx'))->deleteFileAfterSend(true);
+     }
+
+    //  day
+     public function numberofArrivalPerDay() {
+                // every day
+                //  every day
+                 $arrival_per_day = DB::table('tour_registrations')->select(
+                  DB::raw("DATE_FORMAT(tour_date, '%M-%d-%Y') as day"),
+                  DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
+                  DB::raw( 'SUM(number_of_children) as total_number_of_children'),
+                  DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
+                  DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
+                  )
+                  ->where('status', 'already_left')
+                  ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%M-%d-%Y')"))
+                  ->get();
+
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection(array('orientation' => 'landscape'));
+
+        $styleTitle = array(
+            'allCaps' => 'true',
+            'size' => 42,
+            'alignment' => 'center',
+            'orientation' => 'landscape',
+            'marginTop' => 30,
+        );
+
+        $sizeTableHeader = array(
+              'size' => 36,
+        );
+
+        $size = array(
+              'size' => 32,
+        );
+        $section->addText('TOURIST ARRIVAL PER DAY', $styleTitle);
+
+        $table = array('borderColor'=>'black', 'borderSize'=> 1, 'cellMargin'=>50, 'valign'=>'center');
+        $phpWord->addTableStyle('table', $table);
+        $table = $section->addTable('table');
+        $table->addRow();
+        $table->addCell(1750)->addText(htmlspecialchars("DATE"), $sizeTableHeader);
+        $table->addCell(1750)->addText(htmlspecialchars("TOURIST NUMBER"), $sizeTableHeader);
+
+        foreach($arrival_per_day as $per_day) {
+            $total_of_tourist = $per_day->total_number_of_adults + $per_day->total_number_of_children + $per_day->total_number_of_infants +$per_day->total_number_of_foreigner;
+            $date = $per_day->day;
+
+              $table->addRow();
+            $table->addCell(8000)->addText($date, $size);
+            $table->addCell(8000)->addText($total_of_tourist, $size);
+            }
+
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        try {
+            $objWriter->save(storage_path('TouristArrivalPerDay.docx'));
+        } catch (Exception $e) {
+          return redirect('/dashboard')->with('danger-message', 'Error!');
+        }
+        return response()->download(storage_path('TouristArrivalPerDay.docx'))->deleteFileAfterSend(true);
      }
 
     //  number of tourist
