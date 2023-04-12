@@ -8,7 +8,7 @@
         </svg>
     </button>
     {{-- logo --}}
-    <a href="{{ route('dashboard') }}" class="block">
+    <a href="/" class="block">
         <x-application-logo-light class="block h-12 " />
     </a>
 </header>
