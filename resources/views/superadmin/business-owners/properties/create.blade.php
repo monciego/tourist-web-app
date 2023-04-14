@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="date_of_registration" :value="__('Property Address')" />
+                    <x-label for="date_of_registration" :value="__('Date of Registration')" />
                     <x-input id="date_of_registration" class="block mt-1 w-full" type="date" name="date_of_registration"
                         :value="old('date_of_registration')" autofocus />
                 </div>

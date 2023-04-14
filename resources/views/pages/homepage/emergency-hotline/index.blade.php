@@ -40,7 +40,7 @@
                     <div class="relative pl-16">
                         <dt class="text-base font-semibold leading-7 text-gray-900">
                             <div class="absolute top-0 left-0 flex h-12 w-12 items-center justify-center">
-                                <img src="{{ asset('assets/images/logo.png') }}" alt="Municipal Tourism Office">
+                                <img src="{{ asset('assets/images/dasol-logo.jpg') }}" alt="Municipal Tourism Office">
                             </div>
                             Municipal Tourism Office
                         </dt>
@@ -134,7 +134,7 @@
                         <a href="tel:09985985100"
                             class="mt-2 text-base leading-7 text-indigo-600 underline">09985985100</a>
                         <div class="flex mt-2 gap-3">
-                            <a target="__blank" href="https://www.facebook.com/dasolmytownyourtown">
+                            <a target="__blank" href="https://www.facebook.com/dasol.ps.9">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
