@@ -8,9 +8,10 @@
                     fill="#2E3A59"></path>
             </svg>
         </header>
-        <h2 class="text-lg font-semibold text-slate-800 mb-2">Number of Tourists</h2>
+        <h2 class="text-lg font-semibold text-slate-800 mb-2">Number of Tourists <br> <span class="text-base">
+                as of {{ $today }}</span></h2>
         <div class="flex items-start">
-            <div class="text-3xl font-bold text-slate-800 mr-2">{{ $totalTourists }}</div>
+            <div class="text-3xl font-bold text-slate-800 mr-2">{{ $totalTouristsAsOfNow }}</div>
         </div>
     </div>
 </div>
@@ -25,9 +26,10 @@
                     fill="#2E3A59"></path>
             </svg>
         </header>
-        <h2 class="text-lg font-semibold text-slate-800 mb-2">Day Tourists</h2>
+        <h2 class="text-lg font-semibold text-slate-800 mb-2">Day Tourists as <br> <span class="text-base">
+                as of {{ $today }}</span></h2>
         <div class="flex items-start">
-            <div class="text-3xl font-bold text-slate-800 mr-2">{{ $day_tourists }}</div>
+            <div class="text-3xl font-bold text-slate-800 mr-2">{{ $dayoTuristsAsOfNow }}</div>
         </div>
     </div>
 </div>
@@ -42,9 +44,10 @@
                     fill="#2E3A59"></path>
             </svg>
         </header>
-        <h2 class="text-lg font-semibold text-slate-800 mb-2">Night Tourists</h2>
+        <h2 class="text-lg font-semibold text-slate-800 mb-2">Night Tourists<br> <span class="text-base">
+                as of {{ $today }}</span></h2>
         <div class="flex items-start">
-            <div class="text-3xl font-bold text-slate-800 mr-2">{{ $night_tourists }}</div>
+            <div class="text-3xl font-bold text-slate-800 mr-2">{{ $nightTouristsAsOfNow }}</div>
         </div>
     </div>
 </div>
