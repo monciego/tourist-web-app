@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BusinessLegalDocumentsController;
 use App\Http\Controllers\BusinessOwnersController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DataTouristController;
 use App\Http\Controllers\EmergencyHotlineController;
 use App\Http\Controllers\ExportDocuments;
 use App\Http\Controllers\FallbackController;
@@ -60,6 +61,9 @@ Route::group(['middleware' => ['auth', 'role:owner|superadministrator|staff']], 
 
 // ** Route for superadministrator
 Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
+    Route::get('/number-of-tourists',[DataTouristController::class, 'numberOfTourists'])->name('number-of-tourists');
+    Route::get('/number-of-day-tourists',[DataTouristController::class, 'numberOfDayTourists'])->name('number-of-day-tourists');
+    Route::get('/number-of-night-tourists',[DataTouristController::class, 'numberOfNightTourists'])->name('number-of-night-tourists');
     Route::get('/register-owner-account',[RegisteredUserController::class, 'register'])->name('register-owner-account');
     Route::get('/register-staff-account',[RegisteredUserController::class, 'registerStaff'])->name('register.staff');
     // owner account (user)

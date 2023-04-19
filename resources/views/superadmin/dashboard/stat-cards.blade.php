@@ -1,5 +1,5 @@
-<div
-    class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-sm rounded-sm border border-slate-200">
+<a href="{{ route('number-of-tourists') }}"
+    class="flex flex-col hover:shadow-md col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-sm rounded-sm border border-slate-200">
     <div class="px-5 py-5">
         <header class="flex justify-between items-start mb-2">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,10 +14,10 @@
             <div class="text-3xl font-bold text-slate-800 mr-2">{{ $totalTouristsAsOfNow }}</div>
         </div>
     </div>
-</div>
+</a>
 
-<div
-    class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-sm rounded-sm border border-slate-200">
+<a href="{{ route('number-of-day-tourists') }}"
+    class="flex flex-col hover:shadow-md col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-sm rounded-sm border border-slate-200">
     <div class="px-5 py-5">
         <header class="flex justify-between items-start mb-2">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,10 +32,10 @@
             <div class="text-3xl font-bold text-slate-800 mr-2">{{ $dayoTuristsAsOfNow }}</div>
         </div>
     </div>
-</div>
+</a>
 
-<div
-    class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-sm rounded-sm border border-slate-200">
+<a href="{{ route('number-of-night-tourists') }}"
+    class="flex flex-col hover:shadow-md col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-sm rounded-sm border border-slate-200">
     <div class="px-5 py-5">
         <header class="flex justify-between items-start mb-2">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,6 +50,6 @@
             <div class="text-3xl font-bold text-slate-800 mr-2">{{ $nightTouristsAsOfNow }}</div>
         </div>
     </div>
-</div>
+</a>
 
 @include('superadmin.dashboard.tourist_per_year')
