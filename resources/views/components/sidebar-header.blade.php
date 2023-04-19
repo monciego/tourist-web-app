@@ -139,6 +139,10 @@
             <x-responsive-nav-link :href="route('register.staff')" :active="request()->routeIs('register.staff')">
                 {{ __('Create Staff Account') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('review-and-rating.index')"
+                :active="request()->routeIs('review-and-rating.index')">
+                {{ __('Review and Rating') }}
+            </x-responsive-nav-link>
             @endif
 
             {{-- owner --}}

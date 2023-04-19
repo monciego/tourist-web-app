@@ -16,11 +16,9 @@ class Review extends Model
         'rating',
     ];
 
-
     public function properties() {
-        return $this->belongsTo(Review::class);
+        return $this->belongsTo(Properties::class, 'property_id');
     }
-
 
     public function user() {
         return $this->belongsTo(User::class);

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RegisterUnclassifiedTouristController;
+use App\Http\Controllers\ReviewAndRatingController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TicketsController;
@@ -65,8 +66,8 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('businesses/{businesses}/properties', [BusinessOwnersController::class, 'show'])->name('businesses.properties');
     Route::resource('businesses', BusinessOwnersController::class);
     // Properties of owner
-     Route::resource('properties', PropertiesController::class);
-     // legal documents
+    Route::resource('properties', PropertiesController::class);
+    // legal documents
     Route::get('businesses/{businesses}/properties/legal-documents', [BusinessLegalDocumentsController::class, 'show'])->name('legal-documents');
     Route::get('businesses/{properties}/properties/legal-documents/create', [BusinessLegalDocumentsController::class, 'create'])->name('create-legal-documents');
     // upload legal document
@@ -76,9 +77,11 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     // categories
     Route::resource('categories', CategoriesController::class);
     // add homepage image
-   Route::post('/store-homepage-image', [HomepageController::class, 'storeHomepageImage'])->name('store.homepage_image');
-   Route::post('/store-homepage-tag-line', [HomepageController::class, 'storeHomepageTagLine'])->name('store.homepage_tagline');
+    Route::post('/store-homepage-image', [HomepageController::class, 'storeHomepageImage'])->name('store.homepage_image');
+    Route::post('/store-homepage-tag-line', [HomepageController::class, 'storeHomepageTagLine'])->name('store.homepage_tagline');
 
+    Route::get('/review-and-rating',[ReviewAndRatingController::class, 'index'])->name('review-and-rating.index');
+    Route::get('/review-and-rating/{id}',[ReviewAndRatingController::class, 'show'])->name('review-and-rating.show');
     // article
     Route::resource('announcements', AnnouncementController::class);
 
