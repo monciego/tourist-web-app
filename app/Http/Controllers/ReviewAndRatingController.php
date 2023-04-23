@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Properties;
 use App\Models\Review;
+use App\Models\TourRegistration;
 use Illuminate\Support\Facades\DB;
 
 class ReviewAndRatingController extends Controller
@@ -30,5 +31,11 @@ class ReviewAndRatingController extends Controller
         $reviews = Review::with('user', 'properties')->where('property_id', $id)->get();
 
         return view('superadmin.review-and-rating.show', compact('reviews'));
+    }
+
+    public function showMostVisitedPlace($id) {
+        $mostVisitedPlaces = TourRegistration::with('property')->where('property_id', $id)->get();
+
+        return view('superadmin.review-and-rating.show-most-visited-place', compact('mostVisitedPlaces'));
     }
 }

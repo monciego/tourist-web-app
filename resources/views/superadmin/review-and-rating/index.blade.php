@@ -33,7 +33,7 @@
 
     <div class="grid grid-cols-6 gap-2">
         @foreach ($most_visited_places as $most_visited_place )
-        <a href=""
+        <a href="{{ route('most-visited-place.show', $most_visited_place->property_id) }}"
             class="relative col-span-6 lg:col-span-3 p-6 w-full rounded-lg border shadow-md bg-gray-800 border-gray-700">
             @if ($loop->first)
             <div class="text-white absolute top-4 right-4 bg-indigo-700 px-4 py-1 rounded">

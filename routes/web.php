@@ -86,6 +86,7 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
 
     Route::get('/review-and-rating',[ReviewAndRatingController::class, 'index'])->name('review-and-rating.index');
     Route::get('/review-and-rating/{id}',[ReviewAndRatingController::class, 'show'])->name('review-and-rating.show');
+    Route::get('/most-visited-place/{id}',[ReviewAndRatingController::class, 'showMostVisitedPlace'])->name('most-visited-place.show');
     // article
     Route::resource('announcements', AnnouncementController::class);
 
