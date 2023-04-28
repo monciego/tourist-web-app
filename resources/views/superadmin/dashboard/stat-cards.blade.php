@@ -52,4 +52,4 @@
     </div>
 </a>
 
-@include('superadmin.dashboard.tourist_per_year')
+{{-- @include('superadmin.dashboard.tourist_per_year') --}}
