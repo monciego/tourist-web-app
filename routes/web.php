@@ -105,6 +105,7 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('tourist-arrival-per-month', [ReportGenerationController::class, 'arrivalPerMonth'])->name('tourist-arrival-per-month.show');
     Route::get('tourist-arrival-per-year', [ReportGenerationController::class, 'arrivalPerYear'])->name('tourist-arrival-per-year.show');
     Route::get('all-tourist-arrival', [ReportGenerationController::class, 'allTouristArrival'])->name('all-tourist-arrival.show');
+    Route::get('night-tourist-arrival', [ReportGenerationController::class, 'nightTouristArrival'])->name('night-tourist-arrival.show');
 });
 
 // ** Route for owner
