@@ -8,6 +8,7 @@
         @include('superadmin.report-generation.reports.arrival-per-day.index')
         @include('superadmin.report-generation.reports.arrival-per-month.index')
         @include('superadmin.report-generation.reports.arrival-per-year.index')
+        @include('superadmin.report-generation.reports.all-tourist-arrival.index')
     </div>
 
 

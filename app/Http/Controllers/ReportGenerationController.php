@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TourRegistration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -57,6 +58,19 @@ class ReportGenerationController extends Controller
         ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%Y')"))
         ->get();
         return view('superadmin.report-generation.reports.arrival-per-year.show', compact('arrivals_per_year'));
+    }
+
+    public function allTouristArrival() {
+        $adults = TourRegistration::where('status', 'already_left')->pluck('number_of_adults')->toArray();
+        $children = TourRegistration::where('status', 'already_left')->pluck('number_of_children')->toArray();
+        $infants = TourRegistration::where('status', 'already_left')->pluck('number_of_infants')->toArray();
+        $foreigners = TourRegistration::where('status', 'already_left')->pluck('number_of_foreigner')->toArray();
+        $total_of_adults = array_sum($adults);
+        $total_of_children = array_sum($children);
+        $total_of_infants = array_sum($infants);
+        $total_of_foreigner = array_sum($foreigners);
+        $totalTourists =  $total_of_adults + $total_of_children + $total_of_infants + $total_of_foreigner;
+        return view('superadmin.report-generation.reports.all-tourist-arrival.show', compact('totalTourists'));
     }
 
     /**
