@@ -8,21 +8,22 @@ use Exception;
 use PhpOffice\PhpWord\TemplateProcessor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpWord\Settings;
 
 class ExportDocuments extends Controller
 {
      public function arrivalPerYear() {
                 // total number of tourist per year
         $total_tourists_per_year = DB::table('tour_registrations')->select(
-                  DB::raw("DATE_FORMAT(tour_date, '%Y') as year"),
-                  DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
-                  DB::raw( 'SUM(number_of_children) as total_number_of_children'),
-                  DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
-                  DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
-                  )
-                  ->where('status', 'already_left')
-                  ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%Y')"))
-                  ->get();
+            DB::raw("DATE_FORMAT(tour_date, '%Y') as year"),
+            DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
+            DB::raw( 'SUM(number_of_children) as total_number_of_children'),
+            DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
+            DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
+        )
+        ->where('status', 'already_left')
+        ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%Y')"))
+        ->get();
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection(array('orientation' => 'landscape'));
 
@@ -58,6 +59,8 @@ class ExportDocuments extends Controller
             $table->addCell(8000)->addText($tour_year, $size);
             $table->addCell(8000)->addText($total_of_tourist, $size);
             }
+
+        \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
 
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         try {
@@ -118,6 +121,8 @@ class ExportDocuments extends Controller
             $table->addCell(8000)->addText($month, $size);
             $table->addCell(8000)->addText($total_of_tourist, $size);
             }
+
+        \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
 
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         try {
@@ -180,6 +185,8 @@ class ExportDocuments extends Controller
             $table->addCell(8000)->addText($total_of_tourist, $size);
             }
 
+        \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
+
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         try {
             $objWriter->save(storage_path('TouristArrivalPerDay.docx'));
@@ -221,6 +228,8 @@ class ExportDocuments extends Controller
          $section->addText('NUMBER OF TOURISTS', $styleTitle);
          $section->addText($totalTourists, $content);
 
+        \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
+
 
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         try {
@@ -233,12 +242,20 @@ class ExportDocuments extends Controller
 
     //  number of day tourist
     public function dayTourist() {
-   $day_tourists = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->count();
+        $adults_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_adults')->toArray();
+        $children_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_children')->toArray();
+        $infants_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_infants')->toArray();
+        $foreigners_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_foreigner')->toArray();
+        $total_of_adults_day_tour = array_sum($adults_day_tourist);
+        $total_of_children_day_tour = array_sum($children_day_tourist);
+        $total_of_infants_day_tour = array_sum($infants_day_tourist);
+        $total_of_foreigner_day_tour = array_sum($foreigners_day_tourist);
+        $day_tourists = $total_of_adults_day_tour + $total_of_children_day_tour + $total_of_infants_day_tour + $total_of_foreigner_day_tour;
 
                     $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection(array('orientation' => 'landscape'));
 
-       $styleTitle = array(
+        $styleTitle = array(
             'allCaps' => 'true',
             'size' => 35,
             'alignment' => 'center',
@@ -254,7 +271,7 @@ class ExportDocuments extends Controller
          $section->addText('NUMBER OF DAY TOURISTS', $styleTitle);
          $section->addText($day_tourists, $content);
 
-
+        \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         try {
             $objWriter->save(storage_path('NumberOfDayTourists.docx'));
@@ -266,12 +283,20 @@ class ExportDocuments extends Controller
 
     //  number of night tourist
     public function nightTourist() {
-   $night_tourists = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->count();
+        $adults_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_adults')->toArray();
+        $children_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_children')->toArray();
+        $infants_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_infants')->toArray();
+        $foreigners_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_foreigner')->toArray();
+        $total_of_adults_night_tour = array_sum($adults_night_tourist);
+        $total_of_children_night_tour = array_sum($children_night_tourist);
+        $total_of_infants_night_tour = array_sum($infants_night_tourist);
+        $total_of_foreigner_night_tour = array_sum($foreigners_night_tourist);
+        $night_tourists = $total_of_adults_night_tour + $total_of_children_night_tour + $total_of_infants_night_tour + $total_of_foreigner_night_tour;
 
-                    $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection(array('orientation' => 'landscape'));
 
-       $styleTitle = array(
+        $styleTitle = array(
             'allCaps' => 'true',
             'size' => 35,
             'alignment' => 'center',
@@ -287,7 +312,7 @@ class ExportDocuments extends Controller
          $section->addText('NUMBER OF NIGHT TOURISTS', $styleTitle);
          $section->addText($night_tourists, $content);
 
-
+        \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         try {
             $objWriter->save(storage_path('NumberOfNightTourists.docx'));

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RegisterUnclassifiedTouristController;
+use App\Http\Controllers\ReportGenerationController;
 use App\Http\Controllers\ReviewAndRatingController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\StaffController;
@@ -97,6 +98,9 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('document/export-night-tourists', [ExportDocuments::class, 'nightTourist'])->name('export.night-tourists');
     Route::get('document/export-moth', [ExportDocuments::class, 'numberofArrivalmonthOfYear'])->name('export.month');
     Route::get('document/export-per-day', [ExportDocuments::class, 'numberofArrivalPerDay'])->name('export.per.day');
+
+    // Report Generation
+    Route::resource('report-generation', ReportGenerationController::class);
 });
 
 // ** Route for owner
