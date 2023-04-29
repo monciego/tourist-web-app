@@ -4,5 +4,9 @@
         <h2 class="text-md font-medium">Report Generation</h2>
     </header>
 
+    <div class="grid grid-cols-12 gap-4">
+        @include('superadmin.report-generation.reports.arrival-per-day.index')
+    </div>
+
 
 </x-app-sidebar-layout>

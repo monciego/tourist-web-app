@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReportGenerationController extends Controller
 {
@@ -14,6 +15,20 @@ class ReportGenerationController extends Controller
     public function index()
     {
         return view('superadmin.report-generation.index');
+    }
+
+    public function arrivalPerDay() {
+        $arrivals_per_day = DB::table('tour_registrations')->select(
+        DB::raw("DATE_FORMAT(tour_date, '%M %d %Y') as day"),
+        DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
+        DB::raw( 'SUM(number_of_children) as total_number_of_children'),
+        DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
+        DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
+        )
+        ->where('status', 'already_left')
+        ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%M %d %Y')"))
+        ->get();
+        return view('superadmin.report-generation.reports.arrival-per-day.show', compact('arrivals_per_day'));
     }
 
     /**

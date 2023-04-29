@@ -101,6 +101,7 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
 
     // Report Generation
     Route::resource('report-generation', ReportGenerationController::class);
+    Route::get('tourist-arrival-per-day', [ReportGenerationController::class, 'arrivalPerDay'])->name('tourist-arrival-per-day.show');
 });
 
 // ** Route for owner
