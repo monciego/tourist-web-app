@@ -86,6 +86,19 @@ class ReportGenerationController extends Controller
         return view('superadmin.report-generation.reports.arrival-night-tourist.show', compact('night_tourists'));
     }
 
+    public function dayTouristArrival() {
+        $adults_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_adults')->toArray();
+        $children_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_children')->toArray();
+        $infants_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_infants')->toArray();
+        $foreigners_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_foreigner')->toArray();
+        $total_of_adults_day_tour = array_sum($adults_day_tourist);
+        $total_of_children_day_tour = array_sum($children_day_tourist);
+        $total_of_infants_day_tour = array_sum($infants_day_tourist);
+        $total_of_foreigner_day_tour = array_sum($foreigners_day_tourist);
+        $day_tourists = $total_of_adults_day_tour + $total_of_children_day_tour + $total_of_infants_day_tour + $total_of_foreigner_day_tour;
+        return view('superadmin.report-generation.reports.arrival-day-tourist.show', compact('day_tourists'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
