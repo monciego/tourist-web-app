@@ -6,6 +6,7 @@
 
     <div class="grid grid-cols-12 gap-4">
         @include('superadmin.report-generation.reports.arrival-per-day.index')
+        @include('superadmin.report-generation.reports.arrival-per-month.index')
     </div>
 
 

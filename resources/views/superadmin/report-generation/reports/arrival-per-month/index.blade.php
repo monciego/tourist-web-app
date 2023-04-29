@@ -1,4 +1,4 @@
-<a href="{{ route('tourist-arrival-per-day.show') }}"
+<a href="{{ route('tourist-arrival-per-month.show') }}"
     class="flex flex-col hover:shadow-md col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-sm rounded-sm border border-slate-200">
     <div class="px-5 py-5">
         <header class="flex justify-between items-start mb-2">
@@ -8,6 +8,6 @@
                     fill="#2E3A59"></path>
             </svg>
         </header>
-        <h2 class="text-lg font-semibold text-slate-800 mb-2">Tourist Arrival per day</h2>
+        <h2 class="text-lg font-semibold text-slate-800 mb-2">Tourist Arrival per month</h2>
     </div>
 </a>
