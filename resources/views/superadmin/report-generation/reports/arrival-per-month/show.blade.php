@@ -2,7 +2,7 @@
     @section('title', 'Report Generation')
     <header class="flex items-center mb-4 justify-between">
         <h2 class="text-md font-medium">Arrival Per Month</h2>
-        <a href="{{ route('export.per.day') }}"
+        <a href="{{ route('export.month') }}"
             class="inline-flex justify-center rounded-md border border-gray-300 bg-indigo-600 text-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
             id="menu-button" aria-expanded="true" aria-haspopup="true">
             Export to word
