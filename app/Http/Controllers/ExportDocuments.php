@@ -86,10 +86,6 @@ class ExportDocuments extends Controller
         ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%Y')"))
         ->get();
 
-
-        // dd($year);
-        // dd($total_tourists_per_specific_year);
-
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection(array('orientation' => 'landscape'));
 
@@ -101,61 +97,45 @@ class ExportDocuments extends Controller
             'marginTop' => 30,
         );
 
-
-
-
        $content = array(
             'size' => 50,
           'marginTop' => 20,
         );
 
         $section->addText('TOURIST ARRIVAL BY YEAR', $styleTitle);
-/*
-        $table = array('borderColor'=>'black', 'borderSize'=> 1, 'cellMargin'=>50, 'valign'=>'center');
-        $phpWord->addTableStyle('table', $table);
-        $table = $section->addTable('table');
-        $table->addRow();
-        $table->addCell(1750)->addText(htmlspecialchars("YEAR"), $sizeTableHeader);
-        $table->addCell(1750)->addText(htmlspecialchars("TOURIST NUMBER"), $sizeTableHeader); */
 
         foreach($total_tourists_per_specific_year as $total_tourist_per_year) {
             $total_of_tourist = $total_tourist_per_year->total_number_of_adults + $total_tourist_per_year->total_number_of_children + $total_tourist_per_year->total_number_of_infants +$total_tourist_per_year->total_number_of_foreigner;
             $tour_year = $total_tourist_per_year->year;
 
-         $section->addText($tour_year, $content);
-         $section->addText($total_of_tourist, $content);
-
-/*
-              $table->addRow();
-            $table->addCell(8000)->addText($tour_year, $size);
-            $table->addCell(8000)->addText($total_of_tourist, $size); */
-            }
+            $section->addText($tour_year, $content);
+            $section->addText($total_of_tourist, $content);
+        }
 
         \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
 
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         try {
-            $objWriter->save(storage_path('TouristArrivalPerYear.docx'));
+            $objWriter->save(storage_path('TouristArrivalPerSpecificYear.docx'));
         } catch (Exception $e) {
           return redirect('/dashboard')->with('danger-message', 'Error!');
         }
-        return response()->download(storage_path('TouristArrivalPerYear.docx'))->deleteFileAfterSend(true);
+        return response()->download(storage_path('TouristArrivalPerSpecificYear.docx'))->deleteFileAfterSend(true);
      }
 
     //  month
      public function numberofArrivalmonthOfYear() {
-                // every month of every year
-                $month_of_year = DB::table('tour_registrations')->select(
-                  DB::raw("DATE_FORMAT(tour_date, '%M-%Y') as month"),
-                  DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
-                  DB::raw( 'SUM(number_of_children) as total_number_of_children'),
-                  DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
-                  DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
-                  )
-                  ->where('status', 'already_left')
-                  ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%M-%Y')"))
-                  ->get();
-
+        // every month of every year
+        $month_of_year = DB::table('tour_registrations')->select(
+            DB::raw("DATE_FORMAT(tour_date, '%M-%Y') as month"),
+            DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
+            DB::raw( 'SUM(number_of_children) as total_number_of_children'),
+            DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
+            DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
+        )
+        ->where('status', 'already_left')
+        ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%M-%Y')"))
+        ->get();
 
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection(array('orientation' => 'landscape'));
@@ -203,6 +183,63 @@ class ExportDocuments extends Controller
         }
         return response()->download(storage_path('TouristArrivalPerMonth.docx'))->deleteFileAfterSend(true);
      }
+
+    //  specifc month
+     public function arrivalPerSpecificMonth($month) {
+        // total number of tourist per specific month
+        $total_tourists_for_specific_month = DB::table('tour_registrations')->select(
+            DB::raw("DATE_FORMAT(tour_date, '%m-%Y') as month"),
+            // DB::raw("tour_date"),
+            DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
+            DB::raw( 'SUM(number_of_children) as total_number_of_children'),
+            DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
+            DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
+        )
+        ->where('status', 'already_left')
+        ->whereMonth('tour_date', $month)
+        ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%m-%Y')"))
+        ->get();
+
+        // dd($month);
+        dd($total_tourists_for_specific_month);
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection(array('orientation' => 'landscape'));
+
+        $styleTitle = array(
+            'allCaps' => 'true',
+            'size' => 42,
+            'alignment' => 'center',
+            'orientation' => 'landscape',
+            'marginTop' => 30,
+        );
+
+       $content = array(
+            'size' => 50,
+          'marginTop' => 20,
+        );
+
+        $section->addText('TOURIST ARRIVAL BY MONTH', $styleTitle);
+
+        foreach($total_tourists_for_specific_month as $total_tourist_per_month) {
+            $total_of_tourist = $total_tourist_per_month->total_number_of_adults + $total_tourist_per_month->total_number_of_children + $total_tourist_per_month->total_number_of_infants +$total_tourist_per_month->total_number_of_foreigner;
+            $tour_month = $total_tourist_per_month->month;
+
+            $section->addText($tour_month, $content);
+            $section->addText($total_of_tourist, $content);
+        }
+
+        \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
+
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        try {
+            $objWriter->save(storage_path('TouristArrivalPerSpecificMonth.docx'));
+        } catch (Exception $e) {
+          return redirect('/dashboard')->with('danger-message', 'Error!');
+        }
+        return response()->download(storage_path('TouristArrivalPerSpecificMonth.docx'))->deleteFileAfterSend(true);
+     }
+
 
     //  day
      public function numberofArrivalPerDay() {

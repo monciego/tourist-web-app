@@ -34,14 +34,14 @@ class ReportGenerationController extends Controller
 
     public function arrivalPerMonth() {
         $arrivals_per_month = DB::table('tour_registrations')->select(
-            DB::raw("DATE_FORMAT(tour_date, '%M %Y') as month"),
+            DB::raw("DATE_FORMAT(tour_date, '%m-%Y') as month"),
             DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
             DB::raw( 'SUM(number_of_children) as total_number_of_children'),
             DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
             DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
         )
         ->where('status', 'already_left')
-        ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%M %Y')"))
+        ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%m-%Y')"))
         ->get();
         return view('superadmin.report-generation.reports.arrival-per-month.show', compact('arrivals_per_month'));
     }

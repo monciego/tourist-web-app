@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('document/export-moth', [ExportDocuments::class, 'numberofArrivalmonthOfYear'])->name('export.month');
     Route::get('document/export-per-day', [ExportDocuments::class, 'numberofArrivalPerDay'])->name('export.per.day');
     Route::get('document/export-per-specific-year/{year}', [ExportDocuments::class, 'arrivalPerSpecificYear'])->name('export.per.specific.year');
+    Route::get('document/export-per-specific-month/{month}', [ExportDocuments::class, 'arrivalPerSpecificMonth'])->name('export.per.specific.month');
 
     // Report Generation
     Route::resource('report-generation', ReportGenerationController::class);
