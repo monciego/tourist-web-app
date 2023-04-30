@@ -201,7 +201,7 @@ class ExportDocuments extends Controller
         ->get();
 
         // dd($month);
-        dd($total_tourists_for_specific_month);
+        // dd($total_tourists_for_specific_month);
 
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection(array('orientation' => 'landscape'));
