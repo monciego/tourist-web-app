@@ -429,4 +429,65 @@ class ExportDocuments extends Controller
         }
         return response()->download(storage_path('NumberOfNightTourists.docx'))->deleteFileAfterSend(true);
     }
+
+
+    // highest tourist arrival
+    public function exportHighestTouristArrival() {
+        $most_visited_places = DB::table('tour_registrations')
+            ->join('properties', 'tour_registrations.property_id','=','properties.id')
+            ->select('tour_registrations.property_id','properties.property_name',
+                DB::raw('SUM(number_of_adults) as total_number_of_adults', ),
+                DB::raw('SUM(number_of_children) as total_number_of_children'),
+                DB::raw('SUM(number_of_infants) as total_number_of_infants'),
+                DB::raw('SUM(number_of_foreigner) as total_number_of_foreigner'))
+            ->where('status', 'already_left')
+            ->groupBy('tour_registrations.property_id', 'properties.property_name')
+            ->orderBy(DB::raw("`number_of_adults` + `number_of_children` + `number_of_infants` + `number_of_foreigner`"), 'desc')
+            ->get();
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection(array('orientation' => 'landscape'));
+
+        $styleTitle = array(
+            'allCaps' => 'true',
+            'size' => 42,
+            'alignment' => 'center',
+            'orientation' => 'landscape',
+            'marginTop' => 30,
+        );
+
+        $sizeTableHeader = array(
+              'size' => 36,
+        );
+
+        $size = array(
+              'size' => 32,
+        );
+        $section->addText('Highest Tourist Arrival', $styleTitle);
+
+        $table = array('borderColor'=>'black', 'borderSize'=> 1, 'cellMargin'=>50, 'valign'=>'center');
+        $phpWord->addTableStyle('table', $table);
+        $table = $section->addTable('table');
+        $table->addRow();
+        $table->addCell(1750)->addText(htmlspecialchars("PROPERTY NAME"), $sizeTableHeader);
+        $table->addCell(1750)->addText(htmlspecialchars("TOURIST NUMBER"), $sizeTableHeader);
+
+        foreach($most_visited_places as $most_visited_place) {
+            $total_of_tourist = $most_visited_place->total_number_of_adults + $most_visited_place->total_number_of_children + $most_visited_place->total_number_of_infants +$most_visited_place->total_number_of_foreigner;
+            $property_name = $most_visited_place->property_name;
+
+              $table->addRow();
+            $table->addCell(8000)->addText($property_name, $size);
+            $table->addCell(8000)->addText($total_of_tourist, $size);
+            }
+
+        \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
+
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        try {
+            $objWriter->save(storage_path('HighestTouristArrival.docx'));
+        } catch (Exception $e) {
+          return redirect('/dashboard')->with('danger-message', 'Error!');
+        }
+        return response()->download(storage_path('HighestTouristArrival.docx'))->deleteFileAfterSend(true);
+     }
 }

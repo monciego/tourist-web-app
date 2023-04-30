@@ -99,6 +99,21 @@ class ReportGenerationController extends Controller
         return view('superadmin.report-generation.reports.arrival-day-tourist.show', compact('day_tourists'));
     }
 
+    public function highestTouristArrival() {
+        $most_visited_places = DB::table('tour_registrations')
+            ->join('properties', 'tour_registrations.property_id','=','properties.id')
+            ->select('tour_registrations.property_id','properties.property_name',
+                DB::raw('SUM(number_of_adults) as total_number_of_adults', ),
+                DB::raw('SUM(number_of_children) as total_number_of_children'),
+                DB::raw('SUM(number_of_infants) as total_number_of_infants'),
+                DB::raw('SUM(number_of_foreigner) as total_number_of_foreigner'))
+            ->where('status', 'already_left')
+            ->groupBy('tour_registrations.property_id', 'properties.property_name')
+            ->orderBy(DB::raw("`number_of_adults` + `number_of_children` + `number_of_infants` + `number_of_foreigner`"), 'desc')
+            ->get();
+        return view('superadmin.report-generation.reports.highest-tourist-arrival.show', compact('most_visited_places'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
