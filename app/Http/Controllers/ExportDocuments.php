@@ -71,6 +71,77 @@ class ExportDocuments extends Controller
         return response()->download(storage_path('TouristArrivalPerYear.docx'))->deleteFileAfterSend(true);
      }
 
+    //  specific year
+     public function arrivalPerSpecificYear($year) {
+        // total number of tourist per year
+        $total_tourists_per_specific_year = DB::table('tour_registrations')->select(
+            DB::raw("DATE_FORMAT(tour_date, '%Y') as year"),
+            DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
+            DB::raw( 'SUM(number_of_children) as total_number_of_children'),
+            DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
+            DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
+        )
+        ->where('status', 'already_left')
+        ->whereYear('tour_date', $year)
+        ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%Y')"))
+        ->get();
+
+
+        // dd($year);
+        // dd($total_tourists_per_specific_year);
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection(array('orientation' => 'landscape'));
+
+        $styleTitle = array(
+            'allCaps' => 'true',
+            'size' => 42,
+            'alignment' => 'center',
+            'orientation' => 'landscape',
+            'marginTop' => 30,
+        );
+
+
+
+
+       $content = array(
+            'size' => 50,
+          'marginTop' => 20,
+        );
+
+        $section->addText('TOURIST ARRIVAL BY YEAR', $styleTitle);
+/*
+        $table = array('borderColor'=>'black', 'borderSize'=> 1, 'cellMargin'=>50, 'valign'=>'center');
+        $phpWord->addTableStyle('table', $table);
+        $table = $section->addTable('table');
+        $table->addRow();
+        $table->addCell(1750)->addText(htmlspecialchars("YEAR"), $sizeTableHeader);
+        $table->addCell(1750)->addText(htmlspecialchars("TOURIST NUMBER"), $sizeTableHeader); */
+
+        foreach($total_tourists_per_specific_year as $total_tourist_per_year) {
+            $total_of_tourist = $total_tourist_per_year->total_number_of_adults + $total_tourist_per_year->total_number_of_children + $total_tourist_per_year->total_number_of_infants +$total_tourist_per_year->total_number_of_foreigner;
+            $tour_year = $total_tourist_per_year->year;
+
+         $section->addText($tour_year, $content);
+         $section->addText($total_of_tourist, $content);
+
+/*
+              $table->addRow();
+            $table->addCell(8000)->addText($tour_year, $size);
+            $table->addCell(8000)->addText($total_of_tourist, $size); */
+            }
+
+        \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
+
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        try {
+            $objWriter->save(storage_path('TouristArrivalPerYear.docx'));
+        } catch (Exception $e) {
+          return redirect('/dashboard')->with('danger-message', 'Error!');
+        }
+        return response()->download(storage_path('TouristArrivalPerYear.docx'))->deleteFileAfterSend(true);
+     }
+
     //  month
      public function numberofArrivalmonthOfYear() {
                 // every month of every year
