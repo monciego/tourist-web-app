@@ -119,12 +119,25 @@ class RedirectLoginController extends Controller
             $usersNovember = User::whereRoleIs('user')->whereMonth('created_at', 11)->count();
             $usersDecember = User::whereRoleIs('user')->whereMonth('created_at', 12)->count();
 
+            // analytics
+
+            $total_tourists_per_specific_year = DB::table('tour_registrations')->select(
+                DB::raw("DATE_FORMAT(tour_date, '%Y') as year"),
+                DB::raw( 'SUM(number_of_adults) as total_number_of_adults'),
+                DB::raw( 'SUM(number_of_children) as total_number_of_children'),
+                DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
+                DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
+            )
+            ->where('status', 'already_left')
+            ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%Y')"))
+            ->get();
+
             return view('superadmin.dashboard.index', compact(
                 'usersJanuary', 'usersFebruary','usersMarch', 'usersApril', 'usersMay',
                 'usersJune', 'usersJuly', 'usersAugust', 'usersSeptember', 'usersOctober',
                 'usersNovember', 'usersDecember', 'totalTourists', 'day_tourists', 'night_tourists',
                 'total_tourists_per_year', 'today', 'totalTouristsAsOfNow', 'dayoTuristsAsOfNow',
-                'nightTouristsAsOfNow')
+                'nightTouristsAsOfNow', 'total_tourists_per_specific_year')
              );
         } elseif (Auth::user()->hasRole('owner')) {
              $business = User::whereRoleIs('owner')->with('properties', 'business_owner')->findOrFail(auth()->id());

@@ -1,24 +1,29 @@
-{{-- <div class="mt-4">
+<div class="mt-4">
     <canvas id="touristsPerYear" width="400" height="100"></canvas>
 </div>
 
 <script>
-    let data = @json($total_tourists_per_year);
+    let data = @json($total_tourists_per_specific_year);
     let newLabel = [];
     let newData = [];
     data.forEach(element => {
-        newLabel.push(element.tour_date.slice(0, 4));
-        let total = element.total_number_of_adults + element.total_number_of_children + element.total_number_of_infants;
+        newLabel.push(element.year.slice(0, 4));
+        let total = parseInt(element.total_number_of_adults || 0) + parseInt(element.total_number_of_children || 0) +  parseInt(element.total_number_of_infants || 0)  + parseInt(element.total_number_of_foreigner || 0);
         newData.push(total);
     })
+
+    console.log(newData)
+    // console.log(parseInt(newData))
+
+    console.log(data)
     const ctxTouristPerYear = document.getElementById('touristsPerYear');
             const chartTouristPerYear = new Chart(ctxTouristPerYear, {
             type: 'bar',
             data: {
             labels: newLabel,
             datasets: [{
-            label: 'Number of Tourists Per Year',
-            data: [{{ (int)$total_unclassified_tourists }} + parseInt(newData)],
+            label: 'Number of Registered Tour Per Year',
+            data: newData,
             backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -42,4 +47,4 @@
             beginAtZero: true
             }}}
             });
-</script> --}}
+</script>

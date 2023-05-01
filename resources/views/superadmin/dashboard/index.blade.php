@@ -64,5 +64,5 @@
     <h2 class="text-md font-medium my-4">Analytics</h2>
 
     @include('superadmin.dashboard.analytics.registered-users')
-    @include('superadmin.dashboard.analytics.tourist-per-year')
+    @include('superadmin.dashboard.analytics.registered-tours')
 </x-app-sidebar-layout>
