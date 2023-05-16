@@ -47,10 +47,10 @@
                     @include('pages.listing.image-grid')
 
                     <div class="flex items-end justify-end my-4 mx-8">
-                        <button
+                   <!--      <button
                             class="flex items-center gap-2 justify-center active:scale-[.98] text-sm rounded text-right text-white bg-indigo-600 hover:bg-indigo-800 px-4 py-2">
                             View more photos
-                        </button>
+                        </button> -->
                     </div>
                     <!-- More info -->
                     <div
