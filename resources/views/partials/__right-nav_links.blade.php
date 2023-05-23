@@ -1,12 +1,10 @@
 <div class="flex gap-4 items-center">
     <div class="flex gap-2 items-center cursor-pointer underline font-medium">
-        @guest
         <div title="{{ ucfirst($data->weather[0]->description) }}"
             class="bg-slate-900 flex items-center justify-center gap-2 px-4 rounded text-white">
             <img class="h-8 w-8" src="http://openweathermap.org/img/wn/{{ $data->weather[0]->icon }}@2x.png" alt="icon">
             <p class="no-underline cursor-auto">Dasol Weather: {{ round($data->main->temp) }}&#176;C</p>
         </div>
-        @endguest
         @auth
         @if (Auth::user()->hasRole('user'))
         <div class="flex items-center gap-4">
