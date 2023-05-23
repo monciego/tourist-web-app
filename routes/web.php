@@ -101,6 +101,7 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('document/export-per-specific-year/{year}', [ExportDocuments::class, 'arrivalPerSpecificYear'])->name('export.per.specific.year');
     Route::get('document/export-per-specific-month/{month}', [ExportDocuments::class, 'arrivalPerSpecificMonth'])->name('export.per.specific.month');
     Route::get('document/export-highest-tourist-arrival', [ExportDocuments::class, 'exportHighestTouristArrival'])->name('export.highest.tourist.arrival');
+    Route::get('document/export-review-and-rating', [ExportDocuments::class, 'exportReviewAndRating'])->name('export.review.and.rating');
 
     // Report Generation
     Route::resource('report-generation', ReportGenerationController::class);
@@ -111,6 +112,7 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('night-tourist-arrival', [ReportGenerationController::class, 'nightTouristArrival'])->name('night-tourist-arrival.show');
     Route::get('day-tourist-arrival', [ReportGenerationController::class, 'dayTouristArrival'])->name('day-tourist-arrival.show');
     Route::get('highest-tourist-arrival', [ReportGenerationController::class, 'highestTouristArrival'])->name('highest-tourist-arrival.show');
+    Route::get('review-and-rating-report', [ReportGenerationController::class, 'reviewAndRating'])->name('review-and-rating-report.show');
 });
 
 // ** Route for owner

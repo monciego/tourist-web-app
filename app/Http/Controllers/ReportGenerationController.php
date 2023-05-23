@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Properties;
 use App\Models\TourRegistration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -112,6 +113,26 @@ class ReportGenerationController extends Controller
             ->orderBy(DB::raw("`number_of_adults` + `number_of_children` + `number_of_infants` + `number_of_foreigner`"), 'desc')
             ->get();
         return view('superadmin.report-generation.reports.highest-tourist-arrival.show', compact('most_visited_places'));
+    }
+
+    public function reviewAndRating() {
+        $most_visited_places = DB::table('tour_registrations')
+        ->join('properties', 'tour_registrations.property_id','=','properties.id')
+        ->select('tour_registrations.property_id','properties.property_name',
+            DB::raw('SUM(number_of_adults) as total_number_of_adults', ),
+            DB::raw('SUM(number_of_children) as total_number_of_children'),
+            DB::raw('SUM(number_of_infants) as total_number_of_infants'),
+            DB::raw('SUM(number_of_foreigner) as total_number_of_foreigner'))
+        ->where('status', 'already_left')
+        ->groupBy('tour_registrations.property_id', 'properties.property_name')
+        ->orderBy(DB::raw("`number_of_adults` + `number_of_children` + `number_of_infants` + `number_of_foreigner`"), 'desc')
+        ->get();
+
+    // review and rating
+     $properties = Properties::with('business_legal_documents', 'properties_details', 'frequently_questions', 'frequently_questions.frequently_answer', 'reviews')->has('reviews')->withCount('reviews')->orderBy('reviews_count', 'desc')->get();
+
+
+        return view('superadmin.report-generation.reports.review-and-rating.show', compact('most_visited_places', 'properties'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Properties;
 use App\Models\RegisterUnclassifiedTourist;
 use App\Models\TourRegistration;
 use Exception;
@@ -489,5 +490,57 @@ class ExportDocuments extends Controller
           return redirect('/dashboard')->with('danger-message', 'Error!');
         }
         return response()->download(storage_path('HighestTouristArrival.docx'))->deleteFileAfterSend(true);
+     }
+
+    //  review and rating
+    public function exportReviewAndRating() {
+            // review and rating
+     $properties = Properties::with('business_legal_documents', 'properties_details', 'frequently_questions', 'frequently_questions.frequently_answer', 'reviews')->has('reviews')->withCount('reviews')->orderBy('reviews_count', 'desc')->get();
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection(array('orientation' => 'landscape'));
+
+        $styleTitle = array(
+            'allCaps' => 'true',
+            'size' => 42,
+            'alignment' => 'center',
+            'orientation' => 'landscape',
+            'marginTop' => 30,
+        );
+
+        $sizeTableHeader = array(
+              'size' => 36,
+        );
+
+        $size = array(
+              'size' => 32,
+        );
+        $section->addText('Review and rating', $styleTitle);
+
+        $table = array('borderColor'=>'black', 'borderSize'=> 1, 'cellMargin'=>50, 'valign'=>'center');
+        $phpWord->addTableStyle('table', $table);
+        $table = $section->addTable('table');
+        $table->addRow();
+        $table->addCell(1750)->addText(htmlspecialchars("PROPERTY NAME"), $sizeTableHeader);
+        $table->addCell(1750)->addText(htmlspecialchars("NUMBER OF REVIEWS"), $sizeTableHeader);
+
+        foreach($properties as $property) {
+            $property_name = $property->property_name;
+            $numberOfReviews =  $property->reviews->count();
+
+            $table->addRow();
+            $table->addCell(8000)->addText($property_name, $size);
+            $table->addCell(8000)->addText($numberOfReviews, $size);
+            }
+
+        \PhpOffice\PhpWord\Settings::setZipClass(Settings::PCLZIP);
+
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        try {
+            $objWriter->save(storage_path('ReviewAndRating.docx'));
+        } catch (Exception $e) {
+          return redirect('/dashboard')->with('danger-message', 'Error!');
+        }
+        return response()->download(storage_path('ReviewAndRating.docx'))->deleteFileAfterSend(true);
      }
 }

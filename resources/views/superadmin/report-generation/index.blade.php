@@ -12,6 +12,7 @@
         @include('superadmin.report-generation.reports.arrival-night-tourist.index')
         @include('superadmin.report-generation.reports.arrival-day-tourist.index')
         @include('superadmin.report-generation.reports.highest-tourist-arrival.index')
+        @include('superadmin.report-generation.reports.review-and-rating.index')
     </div>
 
 
