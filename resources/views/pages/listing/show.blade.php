@@ -213,8 +213,64 @@
                             </div>
                         </div>
                     </div>
+                    <div id="map" class="w-full my-4 h-[400px]"></div>
                 </div>
             </div>
+
+            
+<script>
+     var longitude = {!! json_encode($listing->properties_details->longitude, JSON_NUMERIC_CHECK ) !!};
+     var latitude = {!! json_encode($listing->properties_details->latitude, JSON_NUMERIC_CHECK ) !!};
+
+   
+     console.log(`longitude ${longitude}`)
+     console.log(`latitude ${latitude}`)
+
+     let dasol = { 
+            lat: 15.962587, 
+            lng: 119.904659 
+        };
+
+    if (longitude === null && latitude === null) {
+        console.log(dasol)
+    } else {
+        dasol = { 
+            lat: latitude, 
+            lng: longitude 
+        };
+    }
+
+    let map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 15.962587, lng: 119.904659 },
+        zoom: 8,
+        scrollwheel: true,
+    });
+  /*       const dasol = { 
+            lat: 15.962587, 
+            lng: 119.904659 
+        }; */
+        let marker = new google.maps.Marker({
+            position: dasol,
+            map: map,
+            draggable: false,
+        });
+        google.maps.event.addListener(marker, "position_changed", function () {
+            let lat = marker.position.lat();
+            let lng = marker.position.lng();
+            $("#latitude").val(lat);
+            $("#longitude").val(lng);
+        });
+        google.maps.event.addListener(map, "click", function (event) {
+            pos = event.latLng;
+            marker.setPosition(pos);
+        });
+    }
+</script>
+
+<script async defer type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
 
 
 
