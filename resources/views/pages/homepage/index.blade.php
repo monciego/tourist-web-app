@@ -76,6 +76,9 @@
             </div>
             @endforeach
         </div>
+        <div class="mt-4">
+        {{ $announcements->links() }}
+    </div>
     </div>
     @endif
 
