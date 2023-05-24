@@ -66,7 +66,7 @@
                             Price is not stated
                             @else
                             <p class="tracking-tight text-3xl text-gray-900">
-                                ₱ {{ $listing->properties_details->property_price }}
+                             Price starts at ₱{{ $listing->properties_details->property_price }}
                             </p>
                             @endif
                             {{-- reviews --}}

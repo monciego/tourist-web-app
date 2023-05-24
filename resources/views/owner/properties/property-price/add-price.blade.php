@@ -1,7 +1,7 @@
 <div x-data="{open:false}" class="inline">
     @if(empty($properties->properties_details->property_price))
     <button x-on:click="open = true" class="text-indigo-700 text-2xl flex gap-2 underline">
-        ₱ Add Price
+        ₱ Add Price start
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-8 h-8">
             <path stroke-linecap="round" stroke-linejoin="round"
