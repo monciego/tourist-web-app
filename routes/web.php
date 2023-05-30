@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BusinessLegalDocumentsController;
 use App\Http\Controllers\BusinessOwnersController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DataTouristController;
 use App\Http\Controllers\EmergencyHotlineController;
 use App\Http\Controllers\ExportDocuments;
@@ -147,6 +148,10 @@ Route::group(['middleware' => ['auth', 'role:owner']], function() {
     Route::post('/remove-image-four/{id}', [OwnerPropertiesController::class, 'removeImageFour'])->name('remove.image_four');
     Route::post('/remove-featurer/{id}', [OwnerPropertiesController::class, 'removeFeature'])->name('remove.feature');
 
+    // change password
+    Route::resource('change-password', ChangePasswordController::class);
+    Route::put('password', [ChangePasswordController::class, 'update'])->name('change.password');
+    // Route::post('/password/update', [ChangePasswordController::class, 'changePassword'])->name('change.password');
 });
 
 // ** Route for users
