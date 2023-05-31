@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreignId('category_id');
+            $table->unsignedBigInteger('category_id');
+        /*     $table->foreignId('category_id')->constrained('categories')
+            ->onUpdate('cascade')->onDelete('cascade'); */
             $table->date('date_of_app')->nullable();
             $table->string('app_number')->nullable();
             $table->string('permit_number')->nullable();
@@ -25,6 +27,8 @@ return new class extends Migration
             $table->string('property_address')->nullable();
             $table->date('date_of_registration')->nullable();
             $table->foreign('user_id')->references('id')->on('users')
+                    ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')
                     ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

@@ -14,6 +14,10 @@
                             {{ $category->category_name }}
                         </h5>
                     </a>
+
+                    <div class="mt-4">
+                        @include('categories.edit')
+                    </div>
                 </div>
                 @endforeach
             </div>

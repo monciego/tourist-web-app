@@ -80,9 +80,19 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoriesRequest $request, Categories $categories)
+    public function update(UpdateCategoriesRequest $request, Categories $category)
     {
-        //
+        $request->validate([
+            'category_name' => 'required',
+
+        ]);
+
+        $category->update([
+            'category_name' => $request->category_name,
+
+        ]);
+
+        return redirect(route('categories.index'))->with('success-message', 'Category updated successfully!');
     }
 
     /**
