@@ -15,8 +15,9 @@
                         </h5>
                     </a>
 
-                    <div class="mt-4">
+                    <div class="mt-4 flex items-center gap-2">
                         @include('categories.edit')
+                        @include('categories.delete')
                     </div>
                 </div>
                 @endforeach

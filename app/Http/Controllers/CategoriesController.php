@@ -101,8 +101,9 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categories $categories)
+    public function destroy(Categories $category)
     {
-        //
+        $category->delete();
+        return redirect(route('categories.index'))->with('danger-message', 'Category deleted successfully!');
     }
 }
