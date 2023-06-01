@@ -103,6 +103,8 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('document/export-per-specific-month/{month}', [ExportDocuments::class, 'arrivalPerSpecificMonth'])->name('export.per.specific.month');
     Route::get('document/export-highest-tourist-arrival', [ExportDocuments::class, 'exportHighestTouristArrival'])->name('export.highest.tourist.arrival');
     Route::get('document/export-review-and-rating', [ExportDocuments::class, 'exportReviewAndRating'])->name('export.review.and.rating');
+    // category print
+    Route::get('document/category/{category}', [CategoriesController::class, 'printCategory'])->name('print.category');
 
     // Report Generation
     Route::resource('report-generation', ReportGenerationController::class);

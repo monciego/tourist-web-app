@@ -9,20 +9,23 @@
             <div class="grid grid-cols-6 gap-2">
                 @foreach ($categories as $category)
                 <div class="col-span-6 lg:col-span-3 p-6 rounded-lg border shadow-md bg-gray-800 border-gray-700">
-                    <a href="#">
+                    <span>
                         <h5 class="mb-2 text-2xl font-semibold tracking-tight  text-white">
                             {{ $category->category_name }}
                         </h5>
-                    </a>
+                    </span>
 
-                    <div class="mt-4 flex items-center gap-2">
+                    <div class="mt-4 z-[50] flex items-center gap-2">
                         @include('categories.edit')
                         @include('categories.delete')
+                        <a href="{{ route('categories.show', $category) }}"
+                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            More Details
+                        </a>
                     </div>
                 </div>
                 @endforeach
             </div>
         </div>
-    </div>
     </div>
 </x-app-sidebar-layout>
