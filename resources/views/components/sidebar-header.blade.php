@@ -136,8 +136,16 @@
             <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
                 {{ __('Categories') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('announcements.index')"
+                :active="request()->routeIs('announcements.index')">
+                {{ __('Announcements') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('register.staff')" :active="request()->routeIs('register.staff')">
                 {{ __('Create Staff Account') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('report-generation.index')"
+                :active="request()->routeIs('report-generation.index')">
+                {{ __('Report Generation') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('review-and-rating.index')"
                 :active="request()->routeIs('review-and-rating.index')">
@@ -153,6 +161,10 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('messages')" :active="request()->routeIs('messages')">
                 {{ __('Messages') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('change-password.index')"
+                :active="request()->routeIs('change-password.index')">
+                {{ __('Change Password') }}
             </x-responsive-nav-link>
             @endif
 

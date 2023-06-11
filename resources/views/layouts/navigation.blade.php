@@ -44,7 +44,7 @@
                     enjoy your time</p>
             </div>
 
-            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <div class="space-x-8 sm:-my-px sm:ml-10 flex">
                 @include('partials.__right-nav_links')
             </div>
 
