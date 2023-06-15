@@ -173,6 +173,14 @@
             <x-responsive-nav-link :href="route('staff.index')" :active="request()->routeIs('staff.index')">
                 {{ __('Verified Tickets') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('cancelled.ticket.index')"
+                :active="request()->routeIs('cancelled.ticket.index')">
+                {{ __('Cancelled Tickets') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('register-a-tour.index')"
+                :active="request()->routeIs('register-a-tour.index')">
+                {{ __('Register a tour') }}
+            </x-responsive-nav-link>
             @endif
         </div>
 
