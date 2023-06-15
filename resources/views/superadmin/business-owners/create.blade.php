@@ -5,7 +5,7 @@
             <path
                 d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
         </svg>
-        <span class="xs:block text-sm ml-2">Add Information</span>
+        <span class="xs:block text-sm ml-2">Update Information</span>
     </button>
     <div x-show="open" x-cloak x-on:click="open = false"
         class="bg-black/40 z-[500] fixed top-0 bottom-0 right-0 left-0">
