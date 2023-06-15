@@ -12,8 +12,7 @@ class DataTouristController extends Controller
         $date = date('Y-m-d H:i:s');
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('F j, Y');
         $as_of_now = date('Y-m-d');
-        $numberOfTourists = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->get();
-
+        $numberOfTourists = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->get();
         return view('superadmin.dashboard.as-of-now.number-of-tourists', compact('today', 'numberOfTourists'));
     }
 
@@ -21,7 +20,7 @@ class DataTouristController extends Controller
         $date = date('Y-m-d H:i:s');
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('F j, Y');
         $as_of_now = date('Y-m-d');
-        $numberOfDayTourists = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->where('tour_type', 'day_tour')->get();
+        $numberOfDayTourists = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->where('tour_type', 'day_tour')->get();
 
         return view('superadmin.dashboard.as-of-now.number-of-day-tourists', compact('today', 'numberOfDayTourists'));
     }
@@ -30,7 +29,7 @@ class DataTouristController extends Controller
         $date = date('Y-m-d H:i:s');
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('F j, Y');
         $as_of_now = date('Y-m-d');
-        $numberOfNightTourists = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->where('tour_type', 'overnight')->get();
+        $numberOfNightTourists = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->where('tour_type', 'overnight')->get();
 
         return view('superadmin.dashboard.as-of-now.number-of-night-tourists', compact('today', 'numberOfNightTourists'));
     }

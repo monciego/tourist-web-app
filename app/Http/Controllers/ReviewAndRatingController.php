@@ -17,10 +17,10 @@ class ReviewAndRatingController extends Controller
                 DB::raw('SUM(number_of_children) as total_number_of_children'),
                 DB::raw('SUM(number_of_infants) as total_number_of_infants'),
                 DB::raw('SUM(number_of_foreigner) as total_number_of_foreigner'))
-            ->where('status', 'already_left')
-            ->groupBy('tour_registrations.property_id', 'properties.property_name')
-            ->orderBy(DB::raw("`number_of_adults` + `number_of_children` + `number_of_infants` + `number_of_foreigner`"), 'desc')
-            ->get();
+                ->groupBy('tour_registrations.property_id', 'properties.property_name')
+                ->orderBy(DB::raw("`number_of_adults` + `number_of_children` + `number_of_infants` + `number_of_foreigner`"), 'desc')
+                ->where('verified', '1')
+                ->get();
 
         $properties = Properties::with('business_legal_documents', 'properties_details', 'frequently_questions', 'frequently_questions.frequently_answer', 'reviews')->has('reviews')->withCount('reviews')->orderBy('reviews_count', 'desc')->get();
 

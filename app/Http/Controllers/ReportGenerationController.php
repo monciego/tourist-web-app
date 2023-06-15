@@ -27,7 +27,7 @@ class ReportGenerationController extends Controller
         DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
         DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
         )
-        ->where('status', 'already_left')
+        ->where('verified', '1')
         ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%M %d %Y')"))
         ->get();
         return view('superadmin.report-generation.reports.arrival-per-day.show', compact('arrivals_per_day'));
@@ -41,7 +41,7 @@ class ReportGenerationController extends Controller
             DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
             DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
         )
-        ->where('status', 'already_left')
+        ->where('verified', '1')
         ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%m-%Y')"))
         ->get();
         return view('superadmin.report-generation.reports.arrival-per-month.show', compact('arrivals_per_month'));
@@ -55,17 +55,17 @@ class ReportGenerationController extends Controller
             DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
             DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
         )
-        ->where('status', 'already_left')
+        ->where('verified', '1')
         ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%Y')"))
         ->get();
         return view('superadmin.report-generation.reports.arrival-per-year.show', compact('arrivals_per_year'));
     }
 
     public function allTouristArrival() {
-        $adults = TourRegistration::where('status', 'already_left')->pluck('number_of_adults')->toArray();
-        $children = TourRegistration::where('status', 'already_left')->pluck('number_of_children')->toArray();
-        $infants = TourRegistration::where('status', 'already_left')->pluck('number_of_infants')->toArray();
-        $foreigners = TourRegistration::where('status', 'already_left')->pluck('number_of_foreigner')->toArray();
+        $adults = TourRegistration::where('verified', '1')->pluck('number_of_adults')->toArray();
+        $children = TourRegistration::where('verified', '1')->pluck('number_of_children')->toArray();
+        $infants = TourRegistration::where('verified', '1')->pluck('number_of_infants')->toArray();
+        $foreigners = TourRegistration::where('verified', '1')->pluck('number_of_foreigner')->toArray();
         $total_of_adults = array_sum($adults);
         $total_of_children = array_sum($children);
         $total_of_infants = array_sum($infants);
@@ -75,10 +75,10 @@ class ReportGenerationController extends Controller
     }
 
     public function nightTouristArrival() {
-        $adults_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_adults')->toArray();
-        $children_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_children')->toArray();
-        $infants_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_infants')->toArray();
-        $foreigners_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_foreigner')->toArray();
+        $adults_night_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'overnight')->pluck('number_of_adults')->toArray();
+        $children_night_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'overnight')->pluck('number_of_children')->toArray();
+        $infants_night_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'overnight')->pluck('number_of_infants')->toArray();
+        $foreigners_night_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'overnight')->pluck('number_of_foreigner')->toArray();
         $total_of_adults_night_tour = array_sum($adults_night_tourist);
         $total_of_children_night_tour = array_sum($children_night_tourist);
         $total_of_infants_night_tour = array_sum($infants_night_tourist);
@@ -88,10 +88,10 @@ class ReportGenerationController extends Controller
     }
 
     public function dayTouristArrival() {
-        $adults_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_adults')->toArray();
-        $children_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_children')->toArray();
-        $infants_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_infants')->toArray();
-        $foreigners_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_foreigner')->toArray();
+        $adults_day_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'day_tour')->pluck('number_of_adults')->toArray();
+        $children_day_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'day_tour')->pluck('number_of_children')->toArray();
+        $infants_day_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'day_tour')->pluck('number_of_infants')->toArray();
+        $foreigners_day_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'day_tour')->pluck('number_of_foreigner')->toArray();
         $total_of_adults_day_tour = array_sum($adults_day_tourist);
         $total_of_children_day_tour = array_sum($children_day_tourist);
         $total_of_infants_day_tour = array_sum($infants_day_tourist);
@@ -108,7 +108,7 @@ class ReportGenerationController extends Controller
                 DB::raw('SUM(number_of_children) as total_number_of_children'),
                 DB::raw('SUM(number_of_infants) as total_number_of_infants'),
                 DB::raw('SUM(number_of_foreigner) as total_number_of_foreigner'))
-            ->where('status', 'already_left')
+            ->where('verified', '1')
             ->groupBy('tour_registrations.property_id', 'properties.property_name')
             ->orderBy(DB::raw("`number_of_adults` + `number_of_children` + `number_of_infants` + `number_of_foreigner`"), 'desc')
             ->get();
@@ -123,7 +123,7 @@ class ReportGenerationController extends Controller
             DB::raw('SUM(number_of_children) as total_number_of_children'),
             DB::raw('SUM(number_of_infants) as total_number_of_infants'),
             DB::raw('SUM(number_of_foreigner) as total_number_of_foreigner'))
-        ->where('status', 'already_left')
+        ->where('verified', '1')
         ->groupBy('tour_registrations.property_id', 'properties.property_name')
         ->orderBy(DB::raw("`number_of_adults` + `number_of_children` + `number_of_infants` + `number_of_foreigner`"), 'desc')
         ->get();

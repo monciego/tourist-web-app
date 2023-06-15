@@ -28,10 +28,10 @@ class RedirectLoginController extends Controller
 
         // total of tourist as of this day
         $as_of_now = date('Y-m-d');
-        $adults_as_of_today = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->pluck('number_of_adults')->toArray();
-        $children_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->pluck('number_of_children')->toArray();
-        $infants_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->pluck('number_of_infants')->toArray();
-        $foreigners_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->pluck('number_of_foreigner')->toArray();
+        $adults_as_of_today = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->pluck('number_of_adults')->toArray();
+        $children_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->pluck('number_of_children')->toArray();
+        $infants_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->pluck('number_of_infants')->toArray();
+        $foreigners_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->pluck('number_of_foreigner')->toArray();
         $total_of_adults_as_of_now = array_sum($adults_as_of_today);
         $total_of_children_as_of_now = array_sum($children_as_of_now);
         $total_of_infants_as_of_now = array_sum($infants_as_of_now);
@@ -46,15 +46,15 @@ class RedirectLoginController extends Controller
                   DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
                   DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner'),
                   )
-                  ->where('status', 'already_left')
+                  ->where('verified', '1')
                   ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%Y')"))
                   ->get();
 
             // number of tourists
-            $adults = TourRegistration::where('status', 'already_left')->pluck('number_of_adults')->toArray();
-            $children = TourRegistration::where('status', 'already_left')->pluck('number_of_children')->toArray();
-            $infants = TourRegistration::where('status', 'already_left')->pluck('number_of_infants')->toArray();
-            $foreigners = TourRegistration::where('status', 'already_left')->pluck('number_of_foreigner')->toArray();
+            $adults = TourRegistration::where('verified', '1')->pluck('number_of_adults')->toArray();
+            $children = TourRegistration::where('verified', '1')->pluck('number_of_children')->toArray();
+            $infants = TourRegistration::where('verified', '1')->pluck('number_of_infants')->toArray();
+            $foreigners = TourRegistration::where('verified', '1')->pluck('number_of_foreigner')->toArray();
             $total_of_adults = array_sum($adults);
             $total_of_children = array_sum($children);
             $total_of_infants = array_sum($infants);
@@ -62,10 +62,10 @@ class RedirectLoginController extends Controller
             $totalTourists = $total_of_adults + $total_of_children + $total_of_infants + $total_of_foreigner ;
 
             // day tourists
-            $adults_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_adults')->toArray();
-            $children_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_children')->toArray();
-            $infants_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_infants')->toArray();
-            $foreigners_day_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'day_tour')->pluck('number_of_foreigner')->toArray();
+            $adults_day_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'day_tour')->pluck('number_of_adults')->toArray();
+            $children_day_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'day_tour')->pluck('number_of_children')->toArray();
+            $infants_day_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'day_tour')->pluck('number_of_infants')->toArray();
+            $foreigners_day_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'day_tour')->pluck('number_of_foreigner')->toArray();
             $total_of_adults_day_tour = array_sum($adults_day_tourist);
             $total_of_children_day_tour = array_sum($children_day_tourist);
             $total_of_infants_day_tour = array_sum($infants_day_tourist);
@@ -73,10 +73,10 @@ class RedirectLoginController extends Controller
             $day_tourists = $total_of_adults_day_tour + $total_of_children_day_tour + $total_of_infants_day_tour + $total_of_foreigner_day_tour;
 
             // day tourist as of today
-            $adults_day_tourist_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->where('tour_type', 'day_tour')->pluck('number_of_adults')->toArray();
-            $children_day_tourist_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->where('tour_type', 'day_tour')->pluck('number_of_children')->toArray();
-            $infants_day_tourist_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->where('tour_type', 'day_tour')->pluck('number_of_infants')->toArray();
-            $foreigners_day_tourist_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->where('tour_type', 'day_tour')->pluck('number_of_foreigner')->toArray();
+            $adults_day_tourist_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->where('tour_type', 'day_tour')->pluck('number_of_adults')->toArray();
+            $children_day_tourist_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->where('tour_type', 'day_tour')->pluck('number_of_children')->toArray();
+            $infants_day_tourist_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->where('tour_type', 'day_tour')->pluck('number_of_infants')->toArray();
+            $foreigners_day_tourist_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->where('tour_type', 'day_tour')->pluck('number_of_foreigner')->toArray();
             $total_of_adults_day_tour_as_of_now = array_sum($adults_day_tourist_as_of_now);
             $total_of_children_day_tour_as_of_now = array_sum($children_day_tourist_as_of_now);
             $total_of_infants_day_tour_as_of_now = array_sum($infants_day_tourist_as_of_now);
@@ -84,10 +84,10 @@ class RedirectLoginController extends Controller
             $dayoTuristsAsOfNow = $total_of_adults_day_tour_as_of_now + $total_of_children_day_tour_as_of_now + $total_of_infants_day_tour_as_of_now + $total_of_foreigner_day_tour_as_of_now;
 
             // night tour
-            $adults_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_adults')->toArray();
-            $children_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_children')->toArray();
-            $infants_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_infants')->toArray();
-            $foreigners_night_tourist = TourRegistration::where('status', 'already_left')->where('tour_type', 'overnight')->pluck('number_of_foreigner')->toArray();
+            $adults_night_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'overnight')->pluck('number_of_adults')->toArray();
+            $children_night_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'overnight')->pluck('number_of_children')->toArray();
+            $infants_night_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'overnight')->pluck('number_of_infants')->toArray();
+            $foreigners_night_tourist = TourRegistration::where('verified', '1')->where('tour_type', 'overnight')->pluck('number_of_foreigner')->toArray();
             $total_of_adults_night_tour = array_sum($adults_night_tourist);
             $total_of_children_night_tour = array_sum($children_night_tourist);
             $total_of_infants_night_tour = array_sum($infants_night_tourist);
@@ -95,10 +95,10 @@ class RedirectLoginController extends Controller
             $night_tourists = $total_of_adults_night_tour + $total_of_children_night_tour + $total_of_infants_night_tour + $total_of_foreigner_night_tour;
 
             // night tourist as of today
-            $adults_night_tourist_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->where('tour_type', 'overnight')->pluck('number_of_adults')->toArray();
-            $children_night_tourist_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->where('tour_type', 'overnight')->pluck('number_of_children')->toArray();
-            $infants_night_tourist_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->where('tour_type', 'overnight')->pluck('number_of_infants')->toArray();
-            $foreigners_night_tourist_as_of_now = TourRegistration::where('status', 'already_left')->where('tour_date', $as_of_now)->where('tour_type', 'overnight')->pluck('number_of_foreigner')->toArray();
+            $adults_night_tourist_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->where('tour_type', 'overnight')->pluck('number_of_adults')->toArray();
+            $children_night_tourist_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->where('tour_type', 'overnight')->pluck('number_of_children')->toArray();
+            $infants_night_tourist_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->where('tour_type', 'overnight')->pluck('number_of_infants')->toArray();
+            $foreigners_night_tourist_as_of_now = TourRegistration::where('verified', '1')->where('tour_date', $as_of_now)->where('tour_type', 'overnight')->pluck('number_of_foreigner')->toArray();
             $total_of_adults_night_tour_as_of_now = array_sum($adults_night_tourist_as_of_now);
             $total_of_children_night_tour_as_of_now = array_sum($children_night_tourist_as_of_now);
             $total_of_infants_night_tour_as_of_now = array_sum($infants_night_tourist_as_of_now);
@@ -128,7 +128,7 @@ class RedirectLoginController extends Controller
                 DB::raw( 'SUM(number_of_infants) as total_number_of_infants'),
                 DB::raw( 'SUM(number_of_foreigner) as total_number_of_foreigner')
             )
-            ->where('status', 'already_left')
+            ->where('verified', '1')
             ->groupBy(DB::raw("DATE_FORMAT(tour_date, '%Y')"))
             ->get();
 
