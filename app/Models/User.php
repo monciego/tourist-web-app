@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 
@@ -56,4 +58,18 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRedirectRoute()
+    {
+        // dd($this->hasRole('staff'));
+        if($this->hasRole('staff')) {
+            return match((int)$this->hasRole('staff')) {
+                1 => 'dashboard',
+                2 => 'dashboard',
+                3 => '/',
+                4 => 'dashboard',
+                // ...
+            };
+        }
+    }
 }
