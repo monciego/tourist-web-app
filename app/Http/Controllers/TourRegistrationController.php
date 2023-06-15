@@ -54,6 +54,7 @@ class TourRegistrationController extends Controller
     {
           TourRegistration::where('tour_code', $request->tour_code)->update([
                 'cancel' => $request->cancel === 'on',
+                'verified' => $request->verified === '0',
           ]);
 
           return redirect()->back()->with('cancel-message', 'You\'ve cancelled your registration, you want to explore other destination?');
