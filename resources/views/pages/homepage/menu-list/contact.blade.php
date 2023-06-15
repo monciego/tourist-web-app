@@ -65,7 +65,7 @@
                             <h3 class="text-lg font-medium text-white">Contact information</h3>
                             <div class="mt-6 text-base text-indigo-50 max-w-3xl">
                                 <h2 class="font-medium">Experienced Dasol ... and bedazzled</h2>
-                                <p>#garantisadongSerbisyoSaTurismo</p>
+                                <p class="text-sm sm:text-base">#garantisadongSerbisyoSaTurismo</p>
                             </div>
                             <dl class="mt-8 space-y-6">
                                 <dt><span class="sr-only">Phone number</span></dt>
