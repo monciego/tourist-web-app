@@ -31,24 +31,24 @@
 </form>
 
 <script>
-     var longitude = {!! json_encode($properties->properties_details->longitude, JSON_NUMERIC_CHECK ) !!};
-     var latitude = {!! json_encode($properties->properties_details->latitude, JSON_NUMERIC_CHECK ) !!};
+    var longitude = {!! json_encode($properties->properties_details->longitude ?? '', JSON_NUMERIC_CHECK ) !!};
+     var latitude = {!! json_encode($properties->properties_details->latitude ?? '', JSON_NUMERIC_CHECK ) !!};
 
-   
+
      console.log(`longitude ${longitude}`)
      console.log(`latitude ${latitude}`)
 
-     let dasol = { 
-            lat: 15.962587, 
-            lng: 119.904659 
+     let dasol = {
+            lat: 15.962587,
+            lng: 119.904659
         };
 
     if (longitude === null && latitude === null) {
         console.log(dasol)
     } else {
-        dasol = { 
-            lat: latitude, 
-            lng: longitude 
+        dasol = {
+            lat: latitude,
+            lng: longitude
         };
     }
 
@@ -59,9 +59,9 @@
         zoom: 8,
         scrollwheel: true,
     });
-  /*       const dasol = { 
-            lat: 15.962587, 
-            lng: 119.904659 
+  /*       const dasol = {
+            lat: 15.962587,
+            lng: 119.904659
         }; */
         let marker = new google.maps.Marker({
             position: dasol,
