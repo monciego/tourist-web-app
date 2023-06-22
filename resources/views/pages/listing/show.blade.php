@@ -22,16 +22,6 @@
                 </div>
             </div>
 
-            <p class="my-4">
-                @if(empty($listing->properties_details->latitude || $listing->properties_details->longitude ))
-                Distance not specified
-                @else
-                @foreach ($distance as $item)
-                {{ number_format($item->distance) }} KM away from you
-                @endforeach
-                @endif
-            </p>
-
             <div class="bg-white">
                 <div class="pt-6">
                     <p class="px-8 pb-4 text-xl font-semibold">{{ $listing->property_name }}</p>
@@ -47,7 +37,7 @@
                     @include('pages.listing.image-grid')
 
                     <div class="flex items-end justify-end my-4 mx-8">
-                   <!--      <button
+                        <!--      <button
                             class="flex items-center gap-2 justify-center active:scale-[.98] text-sm rounded text-right text-white bg-indigo-600 hover:bg-indigo-800 px-4 py-2">
                             View more photos
                         </button> -->
@@ -66,7 +56,7 @@
                             Price is not stated
                             @else
                             <p class="tracking-tight text-3xl text-gray-900">
-                             Price starts at ₱{{ $listing->properties_details->property_price }}
+                                Price starts at ₱{{ $listing->properties_details->property_price }}
                             </p>
                             @endif
                             {{-- reviews --}}
@@ -213,30 +203,41 @@
                             </div>
                         </div>
                     </div>
+                    <p class="my-4 sm:px-6 lg:px-8">
+                        @if(empty($listing->properties_details->latitude || $listing->properties_details->longitude
+                        ))
+                        Distance not specified
+                        @else
+                        @foreach ($distance as $item)
+                        {{ number_format($item->distance) }} KM away from you
+                        @endforeach
+                        @endif
+                    </p>
+
                     <div id="map" class="w-full my-4 h-[400px]"></div>
                 </div>
             </div>
 
-            
-<script>
-     var longitude = {!! json_encode($listing->properties_details->longitude, JSON_NUMERIC_CHECK ) !!};
+
+            <script>
+                var longitude = {!! json_encode($listing->properties_details->longitude, JSON_NUMERIC_CHECK ) !!};
      var latitude = {!! json_encode($listing->properties_details->latitude, JSON_NUMERIC_CHECK ) !!};
 
-   
+
      console.log(`longitude ${longitude}`)
      console.log(`latitude ${latitude}`)
 
-     let dasol = { 
-            lat: 15.962587, 
-            lng: 119.904659 
+     let dasol = {
+            lat: 15.962587,
+            lng: 119.904659
         };
 
     if (longitude === null && latitude === null) {
         console.log(dasol)
     } else {
-        dasol = { 
-            lat: latitude, 
-            lng: longitude 
+        dasol = {
+            lat: latitude,
+            lng: longitude
         };
     }
 
@@ -247,9 +248,9 @@
         zoom: 8,
         scrollwheel: true,
     });
-  /*       const dasol = { 
-            lat: 15.962587, 
-            lng: 119.904659 
+  /*       const dasol = {
+            lat: 15.962587,
+            lng: 119.904659
         }; */
         let marker = new google.maps.Marker({
             position: dasol,
@@ -267,10 +268,10 @@
             marker.setPosition(pos);
         });
     }
-</script>
+            </script>
 
-<script async defer type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
+            <script async defer type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
 
 
 
