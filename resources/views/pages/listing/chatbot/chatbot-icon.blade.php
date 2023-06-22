@@ -1,15 +1,6 @@
-<svg x-on:click="open = true" x-show="!open" x-cloak class="fixed bottom-8 cursor-pointer right-5"
-    xmlns="http://www.w3.org/2000/svg" height="70" width="90" viewBox="-149.1 -248.49675 1292.2 1490.9805">
-    <g transform="translate(-15 -11.5)">
-        <linearGradient y2="1005.5" x2="512" y1="11.5" x1="512" gradientUnits="userSpaceOnUse" id="a">
-            <stop offset="0" stop-color="#00b2ff" />
-            <stop offset="1" stop-color="#006aff" />
-        </linearGradient>
-        <path
-            d="M512 11.5c-280 0-497 205.1-497 482.1 0 144.9 59.4 270.1 156.1 356.6 8.1 7.3 13 17.4 13.4 28.3l2.7 88.4c.9 28.2 30 46.5 55.8 35.2l98.6-43.5c8.4-3.7 17.7-4.4 26.5-2 45.3 12.5 93.6 19.1 143.9 19.1 280 0 497-205.1 497-482.1S792 11.5 512 11.5z"
-            fill="url(#a)" fill-rule="evenodd" clip-rule="evenodd" />
-        <path
-            d="M213.6 634.6l146-231.6c23.2-36.8 73-46 107.8-19.9l116.1 87.1c10.7 8 25.3 7.9 35.9-.1l156.8-119c20.9-15.9 48.3 9.2 34.2 31.4L664.5 614c-23.2 36.8-73 46-107.8 19.9l-116.1-87.1c-10.7-8-25.3-7.9-35.9.1L247.8 666c-20.9 15.9-48.3-9.2-34.2-31.4z"
-            fill-rule="evenodd" clip-rule="evenodd" fill="#fff" />
-    </g>
+<svg x-on:click="open = true" x-show="!open" x-cloak class="h-16 fixed bottom-8 cursor-pointer right-5"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="blue">
+    <path fill-rule="evenodd"
+        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 01-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 01-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 01-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584zM12 18a.75.75 0 100-1.5.75.75 0 000 1.5z"
+        clip-rule="evenodd" />
 </svg>
