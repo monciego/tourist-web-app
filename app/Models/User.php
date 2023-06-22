@@ -71,5 +71,15 @@ class User extends Authenticatable implements MustVerifyEmail
                 // ...
             };
         }
+
+        if($this->hasRole('owner')) {
+            return match((int)$this->hasRole('owner')) {
+                1 => 'dashboard',
+                2 => 'dashboard',
+                3 => '/',
+                4 => 'dashboard',
+                // ...
+            };
+        }
     }
 }
