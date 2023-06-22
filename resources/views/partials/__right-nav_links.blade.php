@@ -1,5 +1,5 @@
 <div class="flex gap-4 items-center">
-    <div class="flex gap-2 items-center cursor-pointer underline font-medium">
+    <div class="flex gap-2 items-center cursor-pointer  font-medium">
         <div title="{{ ucfirst($data->weather[0]->description) }}"
             class="bg-slate-900 text-xs md:text-sm flex items-center justify-center gap-2 px-2 py-1 md:px-4 rounded text-white">
             <img class="h-8 hidden md:block w-8"
@@ -16,7 +16,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
                 </svg>
-                <a class="text-xs md:text-sm" href="{{ route('your-tickets.index') }}">Tickets</a>
+                <x-homepage-nav-link :href="route('your-tickets.index')"
+                    :active="request()->routeIs('your-tickets.index')">
+                    {{ __('Tickets') }}
+                </x-homepage-nav-link>
             </div>
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -24,20 +27,28 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
-                <a class="text-xs md:text-sm" href="{{ route('messages') }}">Messages</a>
+                <x-homepage-nav-link :href="route('messages')" :active="request()->routeIs('messages')">
+                    {{ __('Messages') }}
+                </x-homepage-nav-link>
             </div>
         </div>
 
 
         @endif
         @if (Auth::user()->hasRole('owner'))
-        <a class="text-sm" href="{{ route('dashboard') }}">Manage Properties</a>
+        <x-homepage-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            {{ __('Manage Properties') }}
+        </x-homepage-nav-link>
         @endif
         @if (Auth::user()->hasRole('superadministrator'))
-        <a class="text-sm" href="{{ route('dashboard') }}">Dashboard</a>
+        <x-homepage-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            {{ __('Dashboard') }}
+        </x-homepage-nav-link>
         @endif
         @if (Auth::user()->hasRole('staff'))
-        <a class="text-sm" href="{{ route('dashboard') }}">Verify Tickets</a>
+        <x-homepage-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            {{ __('Verify Tickets') }}
+        </x-homepage-nav-link>
         @endif
         @endauth
     </div>
