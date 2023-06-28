@@ -17,9 +17,31 @@
    $data = json_decode($response);
 ?>
 
+<div
+    class="flex fixed top-0 left-0 right-0 z-[900] h-10 items-center justify-between bg-indigo-600 mb-4 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+    @guest
+    <p>Welcome to Dasol Tourism!</p>
+    @endguest
+    @auth
+    @if (Auth::user()->hasRole('superadministrator'))
+    <p>Welcome, Admin!</p>
+    @else
+    <p>Welcome, {{ Auth::user()->name }}!</p>
+    @endif
+    @endauth
+
+    <div title="{{ ucfirst($data->weather[0]->description) }}"
+        class=" text-xs md:text-sm flex items-center justify-center gap-2 text-white">
+        <img class="h-8 block w-6 sm:w-8" src="http://openweathermap.org/img/wn/{{ $data->weather[0]->icon }}@2x.png"
+            alt="icon">
+        <p class="no-underline cursor-auto"> <span class="hidden lg:inline-block">Dasol Weather:</span> {{
+            round($data->main->temp) }}&#176;C</p>
+    </div>
+</div>
+
 
 <nav x-data="{ open: false, searchOpen: false }"
-    class="bg-white border-b fixed left-0 right-0 top-0 border-gray-100 z-[999]">
+    class="bg-white border-b fixed left-0 right-0 top-10 border-gray-100 z-[999]">
     <div x-show="searchOpen" x-cloak x-on:click="searchOpen = false"
         class="bg-black/50 z-[100] fixed top-0 bottom-0 right-0 left-0">
     </div>
